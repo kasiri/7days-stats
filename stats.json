@@ -1,0 +1,11 @@
+{
+  "playersOnline": 3,
+  "day": 12,
+  "hour": "21:15",
+  "hordeIn": "1h 45m",
+  "players": [
+    { "name": "Alice", "level": 42, "gamestage": 110 },
+    { "name": "Bob", "level": 35, "gamestage": 90 },
+    { "name": "Carlos", "level": 18, "gamestage": 45 }
+  ]
+}
