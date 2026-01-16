@@ -8,13 +8,26 @@
 <body>
 
 <h1>🧟 7 Days to Die - Server Stats</h1>
-<p>Si ves esto, GitHub Pages funciona 👍</p>
 
-</body>
-</html>
+<div class="card">
+  <p>👥 Jugadores online: <span id="playersOnline">-</span></p>
+  <p>📅 Día: <span id="day">-</span></p>
+  <p>⏰ Hora del mundo: <span id="hour">-</span></p>
+  <p>🩸 Próxima horda en: <span id="horde">-</span></p>
+</div>
 
-setInterval(cargarSDT, 5000);
-</script>
+<h2>🏆 Ranking de jugadores</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Jugador</th>
+      <th>Nivel</th>
+      <th>GameStage</th>
+    </tr>
+  </thead>
+  <tbody id="ranking"></tbody>
+</table>
 
+<script src="script.js"></script>
 </body>
 </html>
