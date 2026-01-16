@@ -5,3 +5,26 @@ body {
   text-align: center;
   padding-top: 50px;
 }
+
+.card {
+  background: #1c1c1c;
+  padding: 20px;
+  margin: 20px auto;
+  width: 300px;
+  border-radius: 10px;
+}
+
+table {
+  margin: auto;
+  border-collapse: collapse;
+  width: 60%;
+}
+
+th, td {
+  padding: 10px;
+  border-bottom: 1px solid #333;
+}
+
+th {
+  background: #222;
+}
