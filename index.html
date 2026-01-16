@@ -1,40 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Estado del servidor</title>
+  <meta charset="UTF-8">
+  <title>7DTD Stats</title>
 </head>
 <body>
 
-<h1>Estado del servidor SevenDaysToDie</h1>
+<h1>🧟 7 Days to Die - Server Stats</h1>
+<p>Si ves esto, GitHub Pages funciona 👍</p>
 
-<div id="sdt-stats">
-    Cargando estadísticas...
-</div>
+</body>
+</html>
 
-<script>
-async function cargarSDT() {
-    try {
-        const res = await fetch("https://necklace-suppose-intention-else.trycloudflare.com/api/servers/SevenDaysToDie01");
-        const data = await res.json();
-
-        const html = `
-            <h2>Seven Days To Die</h2>
-            <p><strong>Estado:</strong> ${data.running ? "Online" : "Offline"}</p>
-            <p><strong>Jugadores:</strong> ${data.players.online}/${data.players.max}</p>
-            <p><strong>FPS:</strong> ${data.performance.fps}</p>
-            <p><strong>RAM usada:</strong> ${data.performance.memory.used} MB</p>
-            <p><strong>CPU:</strong> ${data.performance.cpu}%</p>
-            <p><strong>Uptime:</strong> ${data.uptime}</p>
-        `;
-
-        document.getElementById("sdt-stats").innerHTML = html;
-    } catch (e) {
-        document.getElementById("sdt-stats").innerHTML = "No se pudieron cargar las estadísticas.";
-    }
-}
-
-cargarSDT();
 setInterval(cargarSDT, 5000);
 </script>
 
