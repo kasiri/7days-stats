@@ -1,12 +1,38 @@
-<<!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>7 Days to Die Stats</title>
+  <title>Operación 7D — Estadísticas en tiempo real</title>
   <style>
-    body { font-family: Arial; background: #111; color: #eee; padding: 20px; }
-    .card { background: #222; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
-    h1 { color: #ff4444; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #eee;
+      padding: 20px;
+      margin: 0;
+    }
+    h1 {
+      color: #ff4444;
+      text-align: center;
+    }
+    .card {
+      background: #222;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px auto;
+      max-width: 600px;
+      box-shadow: 0 0 10px #000;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      background: #333;
+      padding: 10px;
+      margin-bottom: 8px;
+      border-radius: 6px;
+    }
   </style>
 </head>
 <body>
@@ -15,35 +41,40 @@
 
 <div class="card">
   <h2>Servidor</h2>
-  <p>Día: <span id="day"></span></p>
-  <p>Hora: <span id="time"></span></p>
-  <p>Próxima horda (día <span id="hordeDay"></span>): <span id="hordeIn"></span></p>
+  <p><strong>Día:</strong> <span id="day">...</span></p>
+  <p><strong>Hora:</strong> <span id="time">...</span></p>
+  <p><strong>Próxima horda (día <span id="hordeDay">...</span>):</strong> <span id="hordeIn">...</span></p>
 </div>
 
 <div class="card">
-  <h2>Jugadores online: <span id="playersOnline"></span></h2>
+  <h2>Jugadores online: <span id="playersOnline">0</span></h2>
   <ul id="players"></ul>
 </div>
 
 <script>
 async function loadStats() {
-  const res = await fetch("http://TU-IP-PUBLICA:9000/stats");
-  const data = await res.json();
+  try {
+    const res = await fetch("https://they-europe-dogs-rss.trycloudflare.com/stats");
+    const data = await res.json();
 
-  document.getElementById("day").textContent = data.day;
-  document.getElementById("time").textContent = data.time;
-  document.getElementById("hordeDay").textContent = data.nextHordeDay;
-  document.getElementById("hordeIn").textContent = data.nextHordeIn;
-  document.getElementById("playersOnline").textContent = data.playersOnline;
+    document.getElementById("day").textContent = data.day;
+    document.getElementById("time").textContent = data.time;
+    document.getElementById("hordeDay").textContent = data.nextHordeDay;
+    document.getElementById("hordeIn").textContent = data.nextHordeIn;
+    document.getElementById("playersOnline").textContent = data.playersOnline;
 
-  const list = document.getElementById("players");
-  list.innerHTML = "";
+    const list = document.getElementById("players");
+    list.innerHTML = "";
 
-  data.players.forEach(p => {
-    const li = document.createElement("li");
-    li.textContent = `${p.name} — Nivel ${p.level}, Zombies ${p.zombies}, Score ${p.score}, Ping ${p.ping}`;
-    list.appendChild(li);
-  });
+    data.players.forEach(p => {
+      const li = document.createElement("li");
+      li.textContent = `${p.name} — Nivel ${p.level}, Zombies ${p.zombies}, Score ${p.score}, Ping ${p.ping}`;
+      list.appendChild(li);
+    });
+
+  } catch (err) {
+    console.error("Error cargando stats:", err);
+  }
 }
 
 loadStats();
