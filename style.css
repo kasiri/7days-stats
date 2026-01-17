@@ -1,7 +1,8 @@
+/* ======== ESTILO GLOBAL ======== */
 body {
-    background: #0d0d0d;
+    background: radial-gradient(circle at top, #1a0000, #000);
     color: #e6e6e6;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Orbitron", sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
@@ -9,49 +10,65 @@ body {
     min-height: 100vh;
 }
 
+/* ======== CONTENEDOR PRINCIPAL ======== */
 .container {
     width: 90%;
-    max-width: 800px;
+    max-width: 900px;
     margin-top: 40px;
-    background: #1a1a1a;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(255, 0, 0, 0.25);
-    border: 1px solid #333;
+    background: rgba(20, 20, 20, 0.85);
+    padding: 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 0, 0, 0.4);
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.35);
+    animation: fadeIn 1s ease;
 }
 
+/* ======== TÍTULO ======== */
 h1 {
     text-align: center;
-    color: #ff4444;
-    font-size: 2rem;
-    margin-bottom: 20px;
-    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    color: #ff3b3b;
+    font-size: 2.4rem;
+    margin-bottom: 25px;
+    text-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+    letter-spacing: 2px;
 }
 
+/* ======== CAJAS DE INFORMACIÓN ======== */
 .stats-box {
-    background: #111;
-    padding: 15px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    border-left: 4px solid #ff4444;
+    background: rgba(10, 10, 10, 0.8);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.25);
+    transition: transform 0.2s ease;
+}
+
+.stats-box:hover {
+    transform: scale(1.02);
 }
 
 .stats-box h2 {
     margin-top: 0;
     color: #ff6666;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
+    text-shadow: 0 0 10px rgba(255, 80, 80, 0.6);
 }
 
+/* ======== TEXTO ======== */
 .stat {
-    font-size: 1.1rem;
-    margin: 8px 0;
+    font-size: 1.2rem;
+    margin: 10px 0;
 }
 
 .stat span {
     color: #ff4444;
     font-weight: bold;
+    text-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
 }
 
+/* ======== LISTA DE JUGADORES ======== */
 #players {
     list-style: none;
     padding: 0;
@@ -59,23 +76,31 @@ h1 {
 }
 
 #players li {
-    background: #1f1f1f;
-    padding: 10px;
-    margin-bottom: 8px;
-    border-radius: 8px;
+    background: rgba(30, 0, 0, 0.7);
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 10px;
     border-left: 4px solid #ff4444;
-    transition: transform 0.15s ease;
+    transition: all 0.2s ease;
+    font-size: 1.1rem;
 }
 
 #players li:hover {
-    transform: translateX(5px);
-    background: #262626;
+    transform: translateX(8px);
+    background: rgba(50, 0, 0, 0.8);
+    box-shadow: 0 0 12px rgba(255, 0, 0, 0.4);
 }
 
+/* ======== FOOTER ======== */
 footer {
     text-align: center;
     margin-top: 20px;
-    color: #777;
+    color: #999;
     font-size: 0.9rem;
 }
 
+/* ======== ANIMACIONES ======== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
