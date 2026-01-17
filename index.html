@@ -24,15 +24,21 @@
     </div>
 
     <div class="stats-box">
-        <h2>Jugadores conectados</h2>
-        <p class="stat">Total: <span id="playersOnline">0</span></p>
-        <ul id="players"></ul>
-    </div>
-    <div class="stats-box">
-    <h2>Ranking Global</h2>
-    <ul id="ranking"></ul>
-</div>
+    <h2>Jugadores conectados</h2>
+    <p class="stat">Total: <span id="playersOnline">0</span></p>
 
+    <table class="players-table">
+        <thead>
+            <tr>
+                <th>👤 Jugador</th>
+                <th>⭐ Nivel</th>
+                <th>🧟 Zombies</th>
+                <th>📶 Ping</th>
+            </tr>
+        </thead>
+        <tbody id="playersTable"></tbody>
+    </table>
+</div>
 
     <footer>
         Dashboard — Operación 7D
@@ -57,14 +63,20 @@ async function loadStats() {
         document.getElementById("hordeIn").textContent = data.nextHordeIn;
         document.getElementById("playersOnline").textContent = data.playersOnline;
 
-        const list = document.getElementById("players");
-        list.innerHTML = "";
+    const table = document.getElementById("playersTable");
+table.innerHTML = "";
 
-        data.players.forEach(p => {
-            const li = document.createElement("li");
-            li.textContent = `${p.name} — Nivel ${p.level}, Zombies ${p.zombies}, Score ${p.score}, Ping ${p.ping}`;
-            list.appendChild(li);
-        });
+data.players.forEach(p => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+        <td>${p.name}</td>
+        <td>${p.level}</td>
+        <td>${p.zombies}</td>
+        <td>${p.ping}</td>
+    `;
+    table.appendChild(row);
+});
+
 
     } catch (err) {
         console.error("Error cargando stats:", err);
