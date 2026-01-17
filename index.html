@@ -77,19 +77,51 @@ async function loadStats() {
         document.getElementById("hordeIn").textContent = data.nextHordeIn;
         document.getElementById("playersOnline").textContent = data.playersOnline;
 
-        const table = document.getElementById("playersTable");
-        table.innerHTML = "";
+ const table = document.getElementById("playersTable");
 
-        data.players.forEach(p => {
-            const row = document.createElement("tr");
-            row.innerHTML = `
-                <td>${p.name}</td>
-                <td>${p.level}</td>
-                <td>${p.zombies}</td>
-                <td>${p.ping}</td>
-            `;
-            table.appendChild(row);
-        });
+// Guardamos los jugadores actuales para saber quién sigue conectado
+const jugadoresActuales = new Set(data.players.map(p => p.name));
+
+// Actualizar o crear filas
+data.players.forEach(p => {
+    let row = document.getElementById(`row-${p.name}`);
+
+    // Si la fila no existe, la creamos
+    if (!row) {
+        row = document.createElement("tr");
+        row.id = `row-${p.name}`;
+        row.innerHTML = `
+            <td class="name">${p.name}</td>
+            <td class="level"></td>
+            <td class="zombies"></td>
+            <td class="ping"></td>
+        `;
+        table.appendChild(row);
+    }
+
+    // Actualizamos solo los valores
+    row.querySelector(".level").textContent = p.level;
+    row.querySelector(".zombies").textContent = p.zombies;
+    row.querySelector(".ping").textContent = p.ping;
+
+    // Si estaba en fade-out por desconexión, lo cancelamos
+    row.classList.remove("fade-out");
+});
+
+// Eliminar jugadores desconectados con animación
+Array.from(table.children).forEach(row => {
+    const nombre = row.querySelector(".name").textContent;
+
+    if (!jugadoresActuales.has(nombre)) {
+        row.classList.add("fade-out");
+
+        // Esperamos la animación y luego eliminamos
+        setTimeout(() => {
+            if (row.parentNode) row.remove();
+        }, 300); // coincide con la animación CSS
+    }
+});
+
 
     } catch (err) {
         console.error("Error cargando stats:", err);
@@ -134,10 +166,10 @@ async function loadRanking() {
    AUTO-REFRESH
 ============================ */
 loadStats();
-setInterval(loadStats, 5000);
+setInterval(loadStats, 30000);
 
 loadRanking();
-setInterval(loadRanking, 5000);
+setInterval(loadRanking, 30000);
 </script>
 
 </body>
