@@ -8,53 +8,37 @@
     <!-- Fuente futurista -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css?v=4">
-    
+    <link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
 
 <div class="container">
-  <header class="header">
-    <h1>Operación 7D</h1>
-    <p class="subtitle">Centro de control del servidor</p>
-  </header>
+    <h1>Operación 7D — Estadísticas</h1>
 
-  <section class="grid">
+    <div class="stats-box">
+        <h2>Estado del mundo</h2>
+        <p class="stat">Día actual: <span id="day">...</span></p>
+        <p class="stat">Hora del servidor: <span id="time">...</span></p>
+        <p class="stat">Próxima horda (día): <span id="hordeDay">...</span></p>
+        <p class="stat">Tiempo restante para la horda: <span id="hordeIn">...</span></p>
+    </div>
 
+    <div class="stats-box">
+        <h2>Jugadores conectados</h2>
+        <p class="stat">Total: <span id="playersOnline">0</span></p>
 
-    <div class="card">
-  <h2>🌍 Mundo</h2>
-  <div class="kpi">
-    <span>Día</span>
-    <strong id="day">--</strong>
-  </div>
-  <div class="kpi">
-    <span>Hora</span>
-    <strong id="time">--</strong>
-  </div>
-</div>
-
-<div class="card">
-  <h2>🩸 Horda</h2>
-  <div class="kpi">
-    <span>Día</span>
-    <strong id="hordeDay">--</strong>
-  </div>
-  <div class="kpi">
-    <span>En</span>
-    <strong id="hordeIn">--</strong>
-  </div>
-</div>
-
-<div class="card full">
-  <h2>👥 Jugadores online</h2>
-  <div class="big-number" id="playersOnline">0</div>
-
-  <table class="players-table">
-    <!-- igual que ahora -->
-  </table>
-</div>
-</section>
+        <table class="players-table">
+            <thead>
+                <tr>
+                    <th>👤 Jugador</th>
+                    <th>⭐ Nivel</th>
+                    <th>🧟 Zombies</th>
+                    <th>📶 Ping</th>
+                </tr>
+            </thead>
+            <tbody id="playersTable"></tbody>
+        </table>
+    </div>
 
     <footer>
         Dashboard — Operación 7D
@@ -79,64 +63,27 @@ async function loadStats() {
         document.getElementById("hordeIn").textContent = data.nextHordeIn;
         document.getElementById("playersOnline").textContent = data.playersOnline;
 
-    const table = document.getElementById("playersTable");
-table.innerHTML = "";
+        const table = document.getElementById("playersTable");
+        table.innerHTML = "";
 
-data.players.forEach(p => {
-    const row = document.createElement("tr");
-    row.innerHTML = `
-        <td>${p.name}</td>
-        <td>${p.level}</td>
-        <td>${p.zombies}</td>
-        <td>${p.ping}</td>
-    `;
-    table.appendChild(row);
-});
-
+        data.players.forEach(p => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${p.name}</td>
+                <td>${p.level}</td>
+                <td>${p.zombies}</td>
+                <td>${p.ping}</td>
+            `;
+            table.appendChild(row);
+        });
 
     } catch (err) {
         console.error("Error cargando stats:", err);
     }
 }
-    async function loadRanking() {
-    try {
-        const tunnel = await getTunnelUrl();
-        const res = await fetch(`${tunnel}/ranking`);
-        const data = await res.json();
-
-        const list = document.getElementById("ranking");
-        list.innerHTML = "";
-
-        // Convertir ranking en array ordenado por score
-        const sorted = Object.entries(data)
-            .sort((a, b) => b[1].score - a[1].score);
-
-        sorted.forEach(([name, stats], index) => {
-            const li = document.createElement("li");
-            li.innerHTML = `
-                <strong>#${index + 1}</strong> — ${name}
-                <br>
-                <span class="rank-info">
-                    Nivel máx: ${stats.level} |
-                    Zombies: ${stats.zombies} |
-                    Score: ${stats.score} |
-                    Sesiones: ${stats.sessions}
-                </span>
-            `;
-            list.appendChild(li);
-        });
-
-    } catch (err) {
-        console.error("Error cargando ranking:", err);
-    }
-}
-
 
 loadStats();
 setInterval(loadStats, 10000);
-loadRanking();
-setInterval(loadRanking, 30000);
-
 </script>
 
 </body>
