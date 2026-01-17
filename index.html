@@ -1,33 +1,55 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
   <meta charset="UTF-8">
-  <title>7DTD Stats</title>
-  <link rel="stylesheet" href="style.css">
+  <title>7 Days to Die Stats</title>
+  <style>
+    body { font-family: Arial; background: #111; color: #eee; padding: 20px; }
+    .card { background: #222; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
+    h1 { color: #ff4444; }
+  </style>
 </head>
 <body>
 
-<h1>🧟 7 Days to Die - Server Stats</h1>
+<h1>Operación 7D — Estadísticas en tiempo real</h1>
 
 <div class="card">
-  <p>👥 Jugadores online: <span id="playersOnline">-</span></p>
-  <p>📅 Día: <span id="day">-</span></p>
-  <p>⏰ Hora del mundo: <span id="hour">-</span></p>
-  <p>🩸 Próxima horda en: <span id="horde">-</span></p>
+  <h2>Servidor</h2>
+  <p>Día: <span id="day"></span></p>
+  <p>Hora: <span id="time"></span></p>
+  <p>Próxima horda (día <span id="hordeDay"></span>): <span id="hordeIn"></span></p>
 </div>
 
-<h2>🏆 Ranking de jugadores</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Jugador</th>
-      <th>Nivel</th>
-      <th>GameStage</th>
-    </tr>
-  </thead>
-  <tbody id="ranking"></tbody>
-</table>
+<div class="card">
+  <h2>Jugadores online: <span id="playersOnline"></span></h2>
+  <ul id="players"></ul>
+</div>
 
-<script src="script.js"></script>
+<script>
+async function loadStats() {
+  const res = await fetch("http://TU-IP-PUBLICA:9000/stats");
+  const data = await res.json();
+
+  document.getElementById("day").textContent = data.day;
+  document.getElementById("time").textContent = data.time;
+  document.getElementById("hordeDay").textContent = data.nextHordeDay;
+  document.getElementById("hordeIn").textContent = data.nextHordeIn;
+  document.getElementById("playersOnline").textContent = data.playersOnline;
+
+  const list = document.getElementById("players");
+  list.innerHTML = "";
+
+  data.players.forEach(p => {
+    const li = document.createElement("li");
+    li.textContent = `${p.name} — Nivel ${p.level}, Zombies ${p.zombies}, Score ${p.score}, Ping ${p.ping}`;
+    list.appendChild(li);
+  });
+}
+
+loadStats();
+setInterval(loadStats, 10000);
+</script>
+
 </body>
 </html>
+
