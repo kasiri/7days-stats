@@ -1,4 +1,6 @@
 /* ======== ESTILO GLOBAL ======== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
 body {
     background: radial-gradient(circle at top, #1a0000, #000);
     color: #e6e6e6;
@@ -102,9 +104,6 @@ h1 {
     transition: 0.2s ease;
 }
 
-/* Tipografía más legible */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
-
 /* ======== FOOTER ======== */
 footer {
     text-align: center;
@@ -115,6 +114,12 @@ footer {
 
 /* ======== ANIMACIONES ======== */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
