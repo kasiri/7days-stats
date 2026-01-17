@@ -1,92 +1,70 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Operación 7D — Estadísticas en tiempo real</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #111;
-      color: #eee;
-      padding: 20px;
-      margin: 0;
-    }
-    h1 {
-      color: #ff4444;
-      text-align: center;
-    }
-    .card {
-      background: #222;
-      padding: 20px;
-      border-radius: 10px;
-      margin: 20px auto;
-      max-width: 600px;
-      box-shadow: 0 0 10px #000;
-    }
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-    li {
-      background: #333;
-      padding: 10px;
-      margin-bottom: 8px;
-      border-radius: 6px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operación 7D — Dashboard</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>Operación 7D — Estadísticas en tiempo real</h1>
+<div class="container">
+    <h1>Operación 7D — Estadísticas en Tiempo Real</h1>
 
-<div class="card">
-  <h2>Servidor</h2>
-  <p><strong>Día:</strong> <span id="day">...</span></p>
-  <p><strong>Hora:</strong> <span id="time">...</span></p>
-  <p><strong>Próxima horda (día <span id="hordeDay">...</span>):</strong> <span id="hordeIn">...</span></p>
-</div>
+    <div class="stats-box">
+        <h2>Estado del Mundo</h2>
+        <p class="stat">Día actual: <span id="day">...</span></p>
+        <p class="stat">Hora del servidor: <span id="time">...</span></p>
+        <p class="stat">Próxima horda (día): <span id="hordeDay">...</span></p>
+        <p class="stat">Tiempo restante para la horda: <span id="hordeIn">...</span></p>
+    </div>
 
-<div class="card">
-  <h2>Jugadores online: <span id="playersOnline">0</span></h2>
-  <ul id="players"></ul>
+    <div class="stats-box">
+        <h2>Jugadores Conectados</h2>
+        <p class="stat">Total: <span id="playersOnline">0</span></p>
+        <ul id="players"></ul>
+    </div>
+
+    <footer>
+        Dashboard generado automáticamente — Operación 7D
+    </footer>
 </div>
 
 <script>
 async function getTunnelUrl() {
-  const res = await fetch("tunnel_url.txt");
-  return (await res.text()).trim();
+    const res = await fetch("tunnel_url.txt");
+    return (await res.text()).trim();
 }
 
 async function loadStats() {
-  try {
-    const tunnel = await getTunnelUrl();
-    const res = await fetch(`${tunnel}/stats`);
-    const data = await res.json();
+    try {
+        const tunnel = await getTunnelUrl();
+        const res = await fetch(`${tunnel}/stats`);
+        const data = await res.json();
 
-    document.getElementById("day").textContent = data.day;
-    document.getElementById("time").textContent = data.time;
-    document.getElementById("hordeDay").textContent = data.nextHordeDay;
-    document.getElementById("hordeIn").textContent = data.nextHordeIn;
-    document.getElementById("playersOnline").textContent = data.playersOnline;
+        document.getElementById("day").textContent = data.day;
+        document.getElementById("time").textContent = data.time;
+        document.getElementById("hordeDay").textContent = data.nextHordeDay;
+        document.getElementById("hordeIn").textContent = data.nextHordeIn;
+        document.getElementById("playersOnline").textContent = data.playersOnline;
 
-    const list = document.getElementById("players");
-    list.innerHTML = "";
+        const list = document.getElementById("players");
+        list.innerHTML = "";
 
-    data.players.forEach(p => {
-      const li = document.createElement("li");
-      li.textContent = `${p.name} — Nivel ${p.level}, Zombies ${p.zombies}, Score ${p.score}, Ping ${p.ping}`;
-      list.appendChild(li);
-    });
+        data.players.forEach(p => {
+            const li = document.createElement("li");
+            li.textContent = `${p.name} — Nivel ${p.level}, Zombies ${p.zombies}, Score ${p.score}, Ping ${p.ping}`;
+            list.appendChild(li);
+        });
 
-  } catch (err) {
-    console.error("Error cargando stats:", err);
-  }
+    } catch (err) {
+        console.error("Error cargando stats:", err);
+    }
 }
 
 loadStats();
 setInterval(loadStats, 10000);
 </script>
-
 
 </body>
 </html>
