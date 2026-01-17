@@ -14,32 +14,47 @@
 <body>
 
 <div class="container">
-    <h1>Operación 7D — Estadísticas</h1>
+  <header class="header">
+    <h1>Operación 7D</h1>
+    <p class="subtitle">Centro de control del servidor</p>
+  </header>
 
-    <div class="stats-box">
-        <h2>Estado del mundo</h2>
-        <p class="stat">Día actual: <span id="day">...</span></p>
-        <p class="stat">Hora del servidor: <span id="time">...</span></p>
-        <p class="stat">Próxima horda (día): <span id="hordeDay">...</span></p>
-        <p class="stat">Tiempo restante para la horda: <span id="hordeIn">...</span></p>
-    </div>
+  <section class="grid">
 
-    <div class="stats-box">
-    <h2>Jugadores conectados</h2>
-    <p class="stat">Total: <span id="playersOnline">0</span></p>
 
-    <table class="players-table">
-        <thead>
-            <tr>
-                <th>👤 Jugador</th>
-                <th>⭐ Nivel</th>
-                <th>🧟 Zombies</th>
-                <th>📶 Ping</th>
-            </tr>
-        </thead>
-        <tbody id="playersTable"></tbody>
-    </table>
+    <div class="card">
+  <h2>🌍 Mundo</h2>
+  <div class="kpi">
+    <span>Día</span>
+    <strong id="day">--</strong>
+  </div>
+  <div class="kpi">
+    <span>Hora</span>
+    <strong id="time">--</strong>
+  </div>
 </div>
+
+<div class="card">
+  <h2>🩸 Horda</h2>
+  <div class="kpi">
+    <span>Día</span>
+    <strong id="hordeDay">--</strong>
+  </div>
+  <div class="kpi">
+    <span>En</span>
+    <strong id="hordeIn">--</strong>
+  </div>
+</div>
+
+<div class="card full">
+  <h2>👥 Jugadores online</h2>
+  <div class="big-number" id="playersOnline">0</div>
+
+  <table class="players-table">
+    <!-- igual que ahora -->
+  </table>
+</div>
+</section>
 
     <footer>
         Dashboard — Operación 7D
