@@ -52,9 +52,15 @@
 </div>
 
 <script>
+async function getTunnelUrl() {
+  const res = await fetch("tunnel_url.txt");
+  return (await res.text()).trim();
+}
+
 async function loadStats() {
   try {
-    const res = await fetch("https://they-europe-dogs-rss.trycloudflare.com/stats");
+    const tunnel = await getTunnelUrl();
+    const res = await fetch(`${tunnel}/stats`);
     const data = await res.json();
 
     document.getElementById("day").textContent = data.day;
@@ -80,6 +86,7 @@ async function loadStats() {
 loadStats();
 setInterval(loadStats, 10000);
 </script>
+
 
 </body>
 </html>
