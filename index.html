@@ -28,6 +28,11 @@
         <p class="stat">Total: <span id="playersOnline">0</span></p>
         <ul id="players"></ul>
     </div>
+    <div class="stats-box">
+    <h2>Ranking Global</h2>
+    <ul id="ranking"></ul>
+</div>
+
 
     <footer>
         Dashboard — Operación 7D
@@ -65,9 +70,45 @@ async function loadStats() {
         console.error("Error cargando stats:", err);
     }
 }
+    async function loadRanking() {
+    try {
+        const tunnel = await getTunnelUrl();
+        const res = await fetch(`${tunnel}/ranking`);
+        const data = await res.json();
+
+        const list = document.getElementById("ranking");
+        list.innerHTML = "";
+
+        // Convertir ranking en array ordenado por score
+        const sorted = Object.entries(data)
+            .sort((a, b) => b[1].score - a[1].score);
+
+        sorted.forEach(([name, stats], index) => {
+            const li = document.createElement("li");
+            li.innerHTML = `
+                <strong>#${index + 1}</strong> — ${name}
+                <br>
+                <span class="rank-info">
+                    Nivel máx: ${stats.level} |
+                    Zombies: ${stats.zombies} |
+                    Score: ${stats.score} |
+                    Sesiones: ${stats.sessions}
+                </span>
+            `;
+            list.appendChild(li);
+        });
+
+    } catch (err) {
+        console.error("Error cargando ranking:", err);
+    }
+}
+
 
 loadStats();
 setInterval(loadStats, 10000);
+loadRanking();
+setInterval(loadRanking, 30000);
+
 </script>
 
 </body>
