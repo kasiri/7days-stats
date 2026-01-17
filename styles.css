@@ -1,0 +1,80 @@
+body {
+    background: #0d0d0d;
+    color: #e6e6e6;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 800px;
+    margin-top: 40px;
+    background: #1a1a1a;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.25);
+    border: 1px solid #333;
+}
+
+h1 {
+    text-align: center;
+    color: #ff4444;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+.stats-box {
+    background: #111;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border-left: 4px solid #ff4444;
+}
+
+.stats-box h2 {
+    margin-top: 0;
+    color: #ff6666;
+    font-size: 1.3rem;
+}
+
+.stat {
+    font-size: 1.1rem;
+    margin: 8px 0;
+}
+
+.stat span {
+    color: #ff4444;
+    font-weight: bold;
+}
+
+#players {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#players li {
+    background: #1f1f1f;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    border-left: 4px solid #ff4444;
+    transition: transform 0.15s ease;
+}
+
+#players li:hover {
+    transform: translateX(5px);
+    background: #262626;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #777;
+    font-size: 0.9rem;
+}
