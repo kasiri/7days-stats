@@ -8,13 +8,15 @@
     <!-- Fuente futurista -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css?v=5">
+    <link rel="stylesheet" href="style.css?v=2">
 </head>
-<body>
 
+<body>
 <div class="container">
+
     <h1>Operación 7D — Estadísticas</h1>
 
+    <!-- ESTADO DEL MUNDO -->
     <div class="stats-box">
         <h2>Estado del mundo</h2>
         <p class="stat">Día actual: <span id="day">...</span></p>
@@ -23,6 +25,7 @@
         <p class="stat">Tiempo restante para la horda: <span id="hordeIn">...</span></p>
     </div>
 
+    <!-- JUGADORES -->
     <div class="stats-box">
         <h2>Jugadores conectados</h2>
         <p class="stat">Total: <span id="playersOnline">0</span></p>
@@ -40,17 +43,28 @@
         </table>
     </div>
 
-    <footer>
-        Dashboard — Operación 7D
-    </footer>
+    <!-- RANKING GLOBAL -->
+    <div class="stats-box">
+        <h2>Ranking Global</h2>
+        <ul id="ranking" class="ranking-list"></ul>
+    </div>
+
+    <footer>Dashboard — Operación 7D</footer>
+
 </div>
 
 <script>
+/* ============================
+   OBTENER URL DEL TÚNEL
+============================ */
 async function getTunnelUrl() {
     const res = await fetch("tunnel_url.txt");
     return (await res.text()).trim();
 }
 
+/* ============================
+   CARGAR ESTADÍSTICAS
+============================ */
 async function loadStats() {
     try {
         const tunnel = await getTunnelUrl();
@@ -82,8 +96,48 @@ async function loadStats() {
     }
 }
 
+/* ============================
+   CARGAR RANKING GLOBAL
+============================ */
+async function loadRanking() {
+    try {
+        const tunnel = await getTunnelUrl();
+        const res = await fetch(`${tunnel}/ranking`);
+        const data = await res.json();
+
+        const list = document.getElementById("ranking");
+        list.innerHTML = "";
+
+        const sorted = Object.entries(data)
+            .sort((a, b) => b[1].score - a[1].score);
+
+        sorted.forEach(([name, stats], index) => {
+            const li = document.createElement("li");
+            li.innerHTML = `
+                <strong>#${index + 1}</strong> — ${name}<br>
+                <span class="rank-info">
+                    Nivel máx: ${stats.level} |
+                    Zombies: ${stats.zombies} |
+                    Score: ${stats.score} |
+                    Sesiones: ${stats.sessions}
+                </span>
+            `;
+            list.appendChild(li);
+        });
+
+    } catch (err) {
+        console.error("Error cargando ranking:", err);
+    }
+}
+
+/* ============================
+   AUTO-REFRESH
+============================ */
 loadStats();
 setInterval(loadStats, 10000);
+
+loadRanking();
+setInterval(loadRanking, 30000);
 </script>
 
 </body>
