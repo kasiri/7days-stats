@@ -1,122 +1,135 @@
-/* ======== ESTILO GLOBAL ======== */
+/* ===== RESET ===== */
+* {
+  box-sizing: border-box;
+}
+
+/* ===== BODY ===== */
 body {
-    background: radial-gradient(circle at top, #1a0000, #000);
-    color: #e6e6e6;
-    font-family: "Orbitron", sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    min-height: 100vh;
+  background: radial-gradient(circle at top, #1a0000, #000);
+  color: #e6e6e6;
+  font-family: "Orbitron", sans-serif;
+  margin: 0;
+  display: flex;
+  justify-content: center;
 }
 
-/* ======== CONTENEDOR PRINCIPAL ======== */
+/* ===== CONTAINER ===== */
 .container {
-    width: 90%;
-    max-width: 900px;
-    margin-top: 40px;
-    background: rgba(20, 20, 20, 0.85);
-    padding: 30px;
-    border-radius: 15px;
-    backdrop-filter: blur(6px);
-    border: 1px solid rgba(255, 0, 0, 0.4);
-    box-shadow: 0 0 25px rgba(255, 0, 0, 0.35);
-    animation: fadeIn 1s ease;
+  width: 100%;
+  max-width: 1200px;
+  padding: 30px;
 }
 
-/* ======== TÍTULO ======== */
-h1 {
-    text-align: center;
-    color: #ff3b3b;
-    font-size: 2.4rem;
-    margin-bottom: 25px;
-    text-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
-    letter-spacing: 2px;
+/* ===== HEADER ===== */
+.header {
+  text-align: center;
+  margin-bottom: 30px;
 }
 
-/* ======== CAJAS DE INFORMACIÓN ======== */
-.stats-box {
-    background: rgba(10, 10, 10, 0.8);
-    padding: 20px;
-    border-radius: 12px;
-    margin-bottom: 25px;
-    border: 1px solid rgba(255, 0, 0, 0.3);
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.25);
-    transition: transform 0.2s ease;
+.header h1 {
+  color: #ff3b3b;
+  font-size: 2.8rem;
+  margin: 0;
+  text-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
 }
 
-.stats-box:hover {
-    transform: scale(1.02);
+.subtitle {
+  color: #aaa;
+  font-size: 1rem;
+  margin-top: 8px;
+  letter-spacing: 1px;
 }
 
-.stats-box h2 {
-    margin-top: 0;
-    color: #ff6666;
-    font-size: 1.5rem;
-    text-shadow: 0 0 10px rgba(255, 80, 80, 0.6);
+/* ===== GRID ===== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
 }
 
-/* ======== TEXTO ======== */
-.stat {
-    font-size: 1.2rem;
-    margin: 10px 0;
+/* ===== CARDS ===== */
+.card {
+  background: rgba(15, 15, 15, 0.9);
+  border-radius: 15px;
+  padding: 25px;
+  border: 1px solid rgba(255, 0, 0, 0.25);
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.25);
+  backdrop-filter: blur(6px);
+  animation: fadeIn 0.8s ease;
 }
 
-.stat span {
-    color: #ff4444;
-    font-weight: bold;
-    text-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
+.card.full {
+  grid-column: 1 / -1;
 }
 
-/* ======== TABLA DE JUGADORES ======== */
-/* ======== TABLA DE JUGADORES ======== */
+.card h2 {
+  margin-top: 0;
+  color: #ff6666;
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+}
+
+/* ===== KPI ===== */
+.kpi {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.kpi span {
+  color: #aaa;
+  font-size: 0.9rem;
+}
+
+.kpi strong {
+  font-size: 1.5rem;
+  color: #ff4444;
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+}
+
+/* ===== BIG NUMBER ===== */
+.big-number {
+  font-size: 3.5rem;
+  text-align: center;
+  color: #ff3b3b;
+  margin-bottom: 20px;
+  text-shadow: 0 0 25px rgba(255, 0, 0, 0.8);
+}
+
+/* ===== TABLE ===== */
 .players-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-    font-family: "Inter", sans-serif;
-    font-size: 1rem;
-    color: #f2f2f2;
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "Inter", sans-serif;
 }
 
-.players-table thead {
-    background: rgba(255, 50, 50, 0.25);
-    backdrop-filter: blur(4px);
+.players-table th,
+.players-table td {
+  padding: 12px;
+  border-bottom: 1px solid rgba(255, 0, 0, 0.2);
 }
 
 .players-table th {
-    padding: 10px;
-    text-align: left;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    color: #ff7777;
-    border-bottom: 1px solid rgba(255, 80, 80, 0.4);
-}
-
-.players-table td {
-    padding: 10px;
-    border-bottom: 1px solid rgba(255, 50, 50, 0.15);
+  color: #ff7777;
+  text-align: left;
 }
 
 .players-table tr:hover {
-    background: rgba(255, 0, 0, 0.15);
-    transition: 0.2s ease;
+  background: rgba(255, 0, 0, 0.15);
 }
 
-/* Tipografía más legible */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
-
-
-/* ======== FOOTER ======== */
+/* ===== FOOTER ===== */
 footer {
-    text-align: center;
-    margin-top: 20px;
-    color: #999;
-    font-size: 0.9rem;
+  text-align: center;
+  margin-top: 30px;
+  color: #777;
+  font-size: 0.85rem;
 }
 
-/* ======== ANIMACIONES ======== */
+/* ===== ANIM ===== */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
 }
+
