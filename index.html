@@ -62,7 +62,6 @@
     </div>
 
 </div>
-
 <script>
 /* ============================
    OBTENER URL DEL TÚNEL
@@ -115,10 +114,9 @@ async function loadStats() {
 function renderPlayers(players) {
     const table = document.getElementById("playersTable");
 
-    // Guardamos nombres actuales
     const actuales = new Set(players.map(p => p.name));
 
-    // Actualizamos o creamos filas
+    // Actualizar o crear filas
     players.forEach(p => {
         let row = document.getElementById(`row-${p.name}`);
 
@@ -141,7 +139,7 @@ function renderPlayers(players) {
         row.classList.remove("fade-out");
     });
 
-    // Eliminamos jugadores desconectados con animación
+    // Eliminar jugadores desconectados con animación
     Array.from(table.children).forEach(row => {
         const nombre = row.querySelector(".name").textContent;
 
@@ -150,23 +148,6 @@ function renderPlayers(players) {
             setTimeout(() => row.remove(), 300);
         }
     });
-}
-
-/* ============================
-   CARGAR RANKING GLOBAL
-============================ */
-async function loadRanking() {
-    try {
-        const tunnel = await getTunnelUrl();
-        const res = await fetch(`${tunnel}/ranking`);
-        const data = await res.json();
-
-        const list = document.getElementById("ranking");
-        if (list) list.innerHTML = "";
-
-    } catch (err) {
-        console.error("Error cargando ranking:", err);
-    }
 }
 
 /* ============================
@@ -233,11 +214,9 @@ document.addEventListener("DOMContentLoaded", () => {
 ============================ */
 loadStats();
 setInterval(loadStats, 30000);
-
-loadRanking();
-setInterval(loadRanking, 30000);
-
 </script>
+
+
 
 </body>
 </html>
