@@ -45,12 +45,22 @@
 
     <!-- RANKING GLOBAL -->
     <div class="stats-box">
-        <h2>Ranking Global</h2>
-        <ul id="ranking" class="ranking-list"></ul>
-    </div>
+       <!-- RANKING AVANZADO -->
+<div class="stats-box">
+    <h2>Ranking por Nivel</h2>
+    <input type="text" id="search-player" placeholder="Buscar jugador..." 
+           style="margin-bottom: 10px; padding: 5px; width: 200px;">
 
-    <footer>Dashboard — Operación 7D</footer>
-
+    <table class="players-table">
+        <thead>
+            <tr>
+                <th>👤 Jugador</th>
+                <th>⭐ Nivel</th>
+                <th>🧟 Zombies</th>
+            </tr>
+        </thead>
+        <tbody id="rankingTable"></tbody>
+    </table>
 </div>
 
 <script>
@@ -162,6 +172,74 @@ async function loadRanking() {
     }
 }
 
+
+/* ============================
+   RANKING AVANZADO (TABLA + BUSCADOR)
+============================ */
+let rankingData = [];
+
+async function loadRankingTable() {
+    try {
+        const tunnel = await getTunnelUrl();
+        const res = await fetch(`${tunnel}/ranking`);
+        const data = await res.json();
+
+        // Convertimos el objeto en array
+        rankingData = Object.entries(data).map(([name, stats]) => ({
+            name,
+            level: stats.level,
+            zombies: stats.zombies
+        }));
+
+        // Ordenar por nivel (descendente)
+        rankingData.sort((a, b) => b.level - a.level);
+
+        renderRankingTable(rankingData);
+
+    } catch (err) {
+        console.error("Error cargando ranking avanzado:", err);
+    }
+}
+
+function renderRankingTable(data) {
+    const tbody = document.getElementById("rankingTable");
+    tbody.innerHTML = "";
+
+    data.forEach(player => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${player.name}</td>
+            <td>${player.level}</td>
+            <td>${player.zombies}</td>
+        `;
+        tbody.appendChild(row);
+    });
+}
+
+// Buscador
+document.addEventListener("DOMContentLoaded", () => {
+    const search = document.getElementById("search-player");
+
+    if (search) {
+        search.addEventListener("input", () => {
+            const text = search.value.toLowerCase();
+            const filtered = rankingData.filter(p =>
+                p.name.toLowerCase().includes(text)
+            );
+            renderRankingTable(filtered);
+        });
+    }
+
+    loadRankingTable();
+    setInterval(loadRankingTable, 30000);
+});
+
+
+
+
+
+
+    
 /* ============================
    AUTO-REFRESH
 ============================ */
@@ -170,6 +248,10 @@ setInterval(loadStats, 30000);
 
 loadRanking();
 setInterval(loadRanking, 30000);
+
+
+
+    
 </script>
 
 </body>
