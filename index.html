@@ -43,24 +43,24 @@
         </table>
     </div>
 
-    <!-- RANKING GLOBAL -->
+    <!-- RANKING AVANZADO -->
     <div class="stats-box">
-       <!-- RANKING AVANZADO -->
-<div class="stats-box">
-    <h2>Estadísticas Jugadores</h2>
-    <input type="text" id="search-player" placeholder="Buscar jugador..." 
-           style="margin-bottom: 10px; padding: 5px; width: 200px;">
+        <h2>Estadísticas Jugadores</h2>
+        <input type="text" id="search-player" placeholder="Buscar jugador..." 
+               style="margin-bottom: 10px; padding: 5px; width: 200px;">
 
-    <table class="players-table">
-        <thead>
-            <tr>
-                <th>👤 Jugador</th>
-                <th>⭐ Nivel</th>
-                <th>🧟 Zombies</th>
-            </tr>
-        </thead>
-        <tbody id="rankingTable"></tbody>
-    </table>
+        <table class="players-table">
+            <thead>
+                <tr>
+                    <th>👤 Jugador</th>
+                    <th>⭐ Nivel</th>
+                    <th>🧟 Zombies</th>
+                </tr>
+            </thead>
+            <tbody id="rankingTable"></tbody>
+        </table>
+    </div>
+
 </div>
 
 <script>
@@ -72,9 +72,6 @@ async function getTunnelUrl() {
     return (await res.text()).trim();
 }
 
-/* ============================
-   CARGAR ESTADÍSTICAS
-============================ */
 /* ============================
    CARGAR ESTADÍSTICAS (SIN PARPADEOS)
 ============================ */
@@ -155,12 +152,6 @@ function renderPlayers(players) {
     });
 }
 
-
-    } catch (err) {
-        console.error("Error cargando stats:", err);
-    }
-}
-
 /* ============================
    CARGAR RANKING GLOBAL
 ============================ */
@@ -171,30 +162,12 @@ async function loadRanking() {
         const data = await res.json();
 
         const list = document.getElementById("ranking");
-        list.innerHTML = "";
-
-        const sorted = Object.entries(data)
-            .sort((a, b) => b[1].score - a[1].score);
-
-        sorted.forEach(([name, stats], index) => {
-            const li = document.createElement("li");
-            li.innerHTML = `
-                <strong>#${index + 1}</strong> — ${name}<br>
-                <span class="rank-info">
-                    Nivel máx: ${stats.level} |
-                    Zombies: ${stats.zombies} |
-                    Score: ${stats.score} |
-                    Sesiones: ${stats.sessions}
-                </span>
-            `;
-            list.appendChild(li);
-        });
+        if (list) list.innerHTML = "";
 
     } catch (err) {
         console.error("Error cargando ranking:", err);
     }
 }
-
 
 /* ============================
    RANKING AVANZADO (TABLA + BUSCADOR)
@@ -207,14 +180,12 @@ async function loadRankingTable() {
         const res = await fetch(`${tunnel}/ranking`);
         const data = await res.json();
 
-        // Convertimos el objeto en array
         rankingData = Object.entries(data).map(([name, stats]) => ({
             name,
             level: stats.level,
             zombies: stats.zombies
         }));
 
-        // Ordenar por nivel (descendente)
         rankingData.sort((a, b) => b.level - a.level);
 
         renderRankingTable(rankingData);
@@ -257,7 +228,6 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(loadRankingTable, 30000);
 });
 
-    
 /* ============================
    AUTO-REFRESH
 ============================ */
@@ -267,9 +237,6 @@ setInterval(loadStats, 30000);
 loadRanking();
 setInterval(loadRanking, 30000);
 
-
-
-    
 </script>
 
 </body>
