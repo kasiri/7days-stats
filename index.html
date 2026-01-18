@@ -75,62 +75,85 @@ async function getTunnelUrl() {
 /* ============================
    CARGAR ESTADÍSTICAS
 ============================ */
+/* ============================
+   CARGAR ESTADÍSTICAS (SIN PARPADEOS)
+============================ */
+let lastPlayers = []; // Guardamos los últimos jugadores válidos
+
 async function loadStats() {
     try {
         const tunnel = await getTunnelUrl();
         const res = await fetch(`${tunnel}/stats`);
         const data = await res.json();
 
+        // Actualizamos datos del mundo
         document.getElementById("day").textContent = data.day;
         document.getElementById("time").textContent = data.time;
         document.getElementById("hordeDay").textContent = data.nextHordeDay;
         document.getElementById("hordeIn").textContent = data.nextHordeIn;
-        document.getElementById("playersOnline").textContent = data.playersOnline;
 
- const table = document.getElementById("playersTable");
+        // Si la respuesta es válida, actualizamos lastPlayers
+        if (data.players && Array.isArray(data.players)) {
+            lastPlayers = data.players;
+        }
 
-// Guardamos los jugadores actuales para saber quién sigue conectado
-const jugadoresActuales = new Set(data.players.map(p => p.name));
+        // Renderizamos usando lastPlayers (nunca se queda vacío)
+        renderPlayers(lastPlayers);
 
-// Actualizar o crear filas
-data.players.forEach(p => {
-    let row = document.getElementById(`row-${p.name}`);
+        // Actualizamos contador
+        document.getElementById("playersOnline").textContent = lastPlayers.length;
 
-    // Si la fila no existe, la creamos
-    if (!row) {
-        row = document.createElement("tr");
-        row.id = `row-${p.name}`;
-        row.innerHTML = `
-            <td class="name">${p.name}</td>
-            <td class="level"></td>
-            <td class="zombies"></td>
-            <td class="ping"></td>
-        `;
-        table.appendChild(row);
+    } catch (err) {
+        console.error("Error cargando stats:", err);
+
+        // Si falla, mantenemos los datos anteriores
+        renderPlayers(lastPlayers);
+        document.getElementById("playersOnline").textContent = lastPlayers.length;
     }
+}
 
-    // Actualizamos solo los valores
-    row.querySelector(".level").textContent = p.level;
-    row.querySelector(".zombies").textContent = p.zombies;
-    row.querySelector(".ping").textContent = p.ping;
+/* ============================
+   RENDER DE JUGADORES (SUAVE)
+============================ */
+function renderPlayers(players) {
+    const table = document.getElementById("playersTable");
 
-    // Si estaba en fade-out por desconexión, lo cancelamos
-    row.classList.remove("fade-out");
-});
+    // Guardamos nombres actuales
+    const actuales = new Set(players.map(p => p.name));
 
-// Eliminar jugadores desconectados con animación
-Array.from(table.children).forEach(row => {
-    const nombre = row.querySelector(".name").textContent;
+    // Actualizamos o creamos filas
+    players.forEach(p => {
+        let row = document.getElementById(`row-${p.name}`);
 
-    if (!jugadoresActuales.has(nombre)) {
-        row.classList.add("fade-out");
+        if (!row) {
+            row = document.createElement("tr");
+            row.id = `row-${p.name}`;
+            row.innerHTML = `
+                <td class="name">${p.name}</td>
+                <td class="level"></td>
+                <td class="zombies"></td>
+                <td class="ping"></td>
+            `;
+            table.appendChild(row);
+        }
 
-        // Esperamos la animación y luego eliminamos
-        setTimeout(() => {
-            if (row.parentNode) row.remove();
-        }, 300); // coincide con la animación CSS
-    }
-});
+        row.querySelector(".level").textContent = p.level;
+        row.querySelector(".zombies").textContent = p.zombies;
+        row.querySelector(".ping").textContent = p.ping;
+
+        row.classList.remove("fade-out");
+    });
+
+    // Eliminamos jugadores desconectados con animación
+    Array.from(table.children).forEach(row => {
+        const nombre = row.querySelector(".name").textContent;
+
+        if (!actuales.has(nombre)) {
+            row.classList.add("fade-out");
+            setTimeout(() => row.remove(), 300);
+        }
+    });
+}
 
 
     } catch (err) {
@@ -233,11 +256,6 @@ document.addEventListener("DOMContentLoaded", () => {
     loadRankingTable();
     setInterval(loadRankingTable, 30000);
 });
-
-
-
-
-
 
     
 /* ============================
