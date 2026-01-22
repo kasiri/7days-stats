@@ -36,6 +36,7 @@
                     <th>👤 Jugador</th>
                     <th>⭐ Nivel</th>
                     <th>🧟 Zombies</th>
+                    <th>💀 Muertes</th>
                     <th>📶 Ping</th>
                 </tr>
             </thead>
@@ -55,6 +56,7 @@
                     <th>👤 Jugador</th>
                     <th>⭐ Nivel</th>
                     <th>🧟 Zombies</th>
+                    <th>💀 Muertes</th>
                 </tr>
             </thead>
             <tbody id="rankingTable"></tbody>
@@ -62,6 +64,7 @@
     </div>
 
 </div>
+
 <script>
 /* ============================
    OBTENER URL DEL TÚNEL
@@ -72,9 +75,9 @@ async function getTunnelUrl() {
 }
 
 /* ============================
-   CARGAR ESTADÍSTICAS (SIN PARPADEOS)
+   CARGAR ESTADÍSTICAS
 ============================ */
-let lastPlayers = []; // Guardamos los últimos jugadores válidos
+let lastPlayers = [];
 
 async function loadStats() {
     try {
@@ -82,41 +85,32 @@ async function loadStats() {
         const res = await fetch(`${tunnel}/stats`);
         const data = await res.json();
 
-        // Actualizamos datos del mundo
         document.getElementById("day").textContent = data.day;
         document.getElementById("time").textContent = data.time;
         document.getElementById("hordeDay").textContent = data.nextHordeDay;
         document.getElementById("hordeIn").textContent = data.nextHordeIn;
 
-        // Si la respuesta es válida, actualizamos lastPlayers
         if (data.players && Array.isArray(data.players)) {
             lastPlayers = data.players;
         }
 
-        // Renderizamos usando lastPlayers (nunca se queda vacío)
         renderPlayers(lastPlayers);
-
-        // Actualizamos contador
         document.getElementById("playersOnline").textContent = lastPlayers.length;
 
     } catch (err) {
         console.error("Error cargando stats:", err);
-
-        // Si falla, mantenemos los datos anteriores
         renderPlayers(lastPlayers);
         document.getElementById("playersOnline").textContent = lastPlayers.length;
     }
 }
 
 /* ============================
-   RENDER DE JUGADORES (SUAVE)
+   RENDER DE JUGADORES
 ============================ */
 function renderPlayers(players) {
     const table = document.getElementById("playersTable");
-
     const actuales = new Set(players.map(p => p.name));
 
-    // Actualizar o crear filas
     players.forEach(p => {
         let row = document.getElementById(`row-${p.name}`);
 
@@ -127,6 +121,7 @@ function renderPlayers(players) {
                 <td class="name">${p.name}</td>
                 <td class="level"></td>
                 <td class="zombies"></td>
+                <td class="deaths"></td>
                 <td class="ping"></td>
             `;
             table.appendChild(row);
@@ -134,15 +129,14 @@ function renderPlayers(players) {
 
         row.querySelector(".level").textContent = p.level;
         row.querySelector(".zombies").textContent = p.zombies;
+        row.querySelector(".deaths").textContent = p.deaths;
         row.querySelector(".ping").textContent = p.ping;
 
         row.classList.remove("fade-out");
     });
 
-    // Eliminar jugadores desconectados con animación
     Array.from(table.children).forEach(row => {
         const nombre = row.querySelector(".name").textContent;
-
         if (!actuales.has(nombre)) {
             row.classList.add("fade-out");
             setTimeout(() => row.remove(), 300);
@@ -151,7 +145,7 @@ function renderPlayers(players) {
 }
 
 /* ============================
-   RANKING AVANZADO (TABLA + BUSCADOR)
+   RANKING AVANZADO
 ============================ */
 let rankingData = [];
 
@@ -164,11 +158,11 @@ async function loadRankingTable() {
         rankingData = Object.entries(data).map(([name, stats]) => ({
             name,
             level: stats.level,
-            zombies: stats.zombies
+            zombies: stats.zombies,
+            deaths: stats.deaths
         }));
 
         rankingData.sort((a, b) => b.level - a.level);
-
         renderRankingTable(rankingData);
 
     } catch (err) {
@@ -186,12 +180,12 @@ function renderRankingTable(data) {
             <td>${player.name}</td>
             <td>${player.level}</td>
             <td>${player.zombies}</td>
+            <td>${player.deaths}</td>
         `;
         tbody.appendChild(row);
     });
 }
 
-// Buscador
 document.addEventListener("DOMContentLoaded", () => {
     const search = document.getElementById("search-player");
 
@@ -215,8 +209,6 @@ document.addEventListener("DOMContentLoaded", () => {
 loadStats();
 setInterval(loadStats, 30000);
 </script>
-
-
 
 </body>
 </html>
