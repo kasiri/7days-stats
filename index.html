@@ -31,15 +31,24 @@
         <p class="stat">Total: <span id="playersOnline">0</span></p>
 
         <table class="players-table">
-            <thead>
-                <tr>
-                    <th>👤 Jugador</th>
-                    <th>⭐ Nivel</th>
-                    <th>🧟 Zombies</th>
-                    <th>💀 Muertes</th>
-                    <th>📶 Ping</th>
-                </tr>
-            </thead>
+           <thead>
+    <tr>
+        <th>👤 Jugador</th>
+
+        <th class="sortable" onclick="sortRanking('level')">
+            ⭐ Nivel <span id="arrow-level" class="arrow">▼</span>
+        </th>
+
+        <th class="sortable" onclick="sortRanking('zombies')">
+            🧟 Zombies <span id="arrow-zombies" class="arrow">▼</span>
+        </th>
+
+        <th class="sortable" onclick="sortRanking('deaths')">
+            💀 Muertes <span id="arrow-deaths" class="arrow">▼</span>
+        </th>
+    </tr>
+</thead>
+
             <tbody id="playersTable"></tbody>
         </table>
     </div>
