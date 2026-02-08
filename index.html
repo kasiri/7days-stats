@@ -25,13 +25,33 @@
         <p class="stat">Tiempo restante para la horda: <span id="hordeIn">...</span></p>
     </div>
 
-    <!-- JUGADORES -->
+   <!-- JUGADORES -->
     <div class="stats-box">
         <h2>Jugadores conectados</h2>
         <p class="stat">Total: <span id="playersOnline">0</span></p>
 
         <table class="players-table">
-           <thead>
+            <thead>
+                <tr>
+                    <th>👤 Jugador</th>
+                    <th>⭐ Nivel</th>
+                    <th>🧟 Zombies</th>
+                    <th>💀 Muertes</th>
+                    <th>📶 Ping</th>
+                </tr>
+            </thead>
+            <tbody id="playersTable"></tbody>
+        </table>
+    </div>
+
+    <!-- RANKING AVANZADO -->
+    <div class="stats-box">
+        <h2>Estadísticas Jugadores</h2>
+        <input type="text" id="search-player" placeholder="Buscar jugador..." 
+               style="margin-bottom: 10px; padding: 5px; width: 200px;">
+
+        <table class="players-table">
+            <thead>
     <tr>
         <th>👤 Jugador</th>
 
@@ -49,25 +69,6 @@
     </tr>
 </thead>
 
-            <tbody id="playersTable"></tbody>
-        </table>
-    </div>
-
-    <!-- RANKING AVANZADO -->
-    <div class="stats-box">
-        <h2>Estadísticas Jugadores</h2>
-        <input type="text" id="search-player" placeholder="Buscar jugador..." 
-               style="margin-bottom: 10px; padding: 5px; width: 200px;">
-
-        <table class="players-table">
-            <thead>
-                <tr>
-                    <th>👤 Jugador</th>
-                    <th>⭐ Nivel</th>
-                    <th>🧟 Zombies</th>
-                    <th>💀 Muertes</th>
-                </tr>
-            </thead>
             <tbody id="rankingTable"></tbody>
         </table>
     </div>
