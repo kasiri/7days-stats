@@ -213,6 +213,47 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(loadRankingTable, 30000);
 });
 
+
+    let sortState = {
+    level: "desc",
+    zombies: "desc",
+    deaths: "desc"
+};
+
+function sortRanking(field) {
+    // Cambiar asc/desc
+    sortState[field] = sortState[field] === "desc" ? "asc" : "desc";
+
+    // Ordenar
+    const sorted = [...rankingData].sort((a, b) => {
+        return sortState[field] === "desc"
+            ? b[field] - a[field]
+            : a[field] - b[field];
+    });
+
+    updateRankingArrows(field);
+    renderRankingTable(sorted);
+}
+
+function updateRankingArrows(activeField) {
+    const arrows = {
+        level: document.getElementById("arrow-level"),
+        zombies: document.getElementById("arrow-zombies"),
+        deaths: document.getElementById("arrow-deaths")
+    };
+
+    // Resetear todas
+    Object.keys(arrows).forEach(key => {
+        arrows[key].textContent = "▼";
+        arrows[key].style.opacity = "0.4";
+    });
+
+    // Activar la flecha correcta
+    arrows[activeField].textContent =
+        sortState[activeField] === "desc" ? "▼" : "▲";
+    arrows[activeField].style.opacity = "1";
+}
+
 /* ============================
    AUTO-REFRESH
 ============================ */
