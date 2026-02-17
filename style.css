@@ -176,75 +176,49 @@ body {
 
 /* ======== NORMAS ESPECIALES ======== */
 
-.normas-title {
-    text-shadow: 0 0 20px red, 0 0 40px rgba(255,0,0,0.6);
+/* Quitar bullets duplicados */
+.normas-card ul {
+    list-style: none;
+    padding-left: 0;
 }
 
-/* Tarjetas con borde sangriento */
-.normas-card {
-    border: 2px solid rgba(255, 0, 0, 0.7);
-    box-shadow: 0 0 25px rgba(255, 0, 0, 0.4), inset 0 0 20px rgba(255, 0, 0, 0.3);
-    position: relative;
-    overflow: hidden;
+.normas-card ul li {
+    margin: 6px 0;
 }
 
-/* Sangre animada arriba */
-.normas-card::before {
-    content: "";
-    position: absolute;
-    top: -5px;
-    left: 0;
-    width: 100%;
-    height: 30px;
-    background: url('https://i.imgur.com/7Vb8H8C.png') repeat-x;
-    opacity: 0.9;
-    animation: blood-drip 3s infinite linear;
-}
-
-@keyframes blood-drip {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(8px); }
-}
-
-/* Títulos rojos animados */
+/* Títulos rojos bonitos */
 .bloody-title {
     color: #ff3b3b;
-    text-shadow: 0 0 15px red, 0 0 30px rgba(255,0,0,0.6);
-    animation: pulse-red 2s infinite alternate;
+    text-shadow: 0 0 12px red, 0 0 25px rgba(255,0,0,0.6);
+    font-size: 1.6rem;
+    margin-bottom: 15px;
 }
 
-@keyframes pulse-red {
-    from { text-shadow: 0 0 10px red; }
-    to { text-shadow: 0 0 25px red; }
+/* Títulos de sección */
+.section-title {
+    color: #ff6666;
+    font-size: 1.3rem;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px rgba(255,0,0,0.5);
 }
 
-/* Icono animado SOLO en títulos */
-.section-title::before {
-    content: "🩸";
-    margin-right: 6px;
-    animation: drip 1.5s infinite ease-in-out;
-}
-
-/* Quitar iconos duplicados en listas */
-.normas-card ul li::before {
-    content: "";
-}
-
-
-@keyframes drip {
-    0% { transform: translateY(0); opacity: 1; }
-    50% { transform: translateY(4px); opacity: 0.6; }
-    100% { transform: translateY(0); opacity: 1; }
-}
-
-/* Separador sangriento */
+/* Separador bonito sin imágenes rotas */
 .bloody-separator {
     width: 100%;
-    height: 25px;
-    background: url('https://i.imgur.com/0Zf0j0p.png') repeat-x;
+    height: 3px;
+    background: linear-gradient(to right, transparent, #ff0000, transparent);
     margin: 30px 0;
-    opacity: 1;
+    opacity: 0.8;
 }
+
+/* Tarjetas con borde rojo elegante */
+.normas-card {
+    border: 2px solid rgba(255, 0, 0, 0.5);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+    padding-top: 25px;
+}
+
 
 
 
