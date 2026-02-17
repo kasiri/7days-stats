@@ -3,265 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>El ultimo amanecer — Dashboard</title>
+    <title>El Último Amanecer — Dashboard</title>
 
-    <!-- Fuente futurista -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="style.css?v=2">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+
+<header class="navbar">
+    <div class="logo">EL ÚLTIMO AMANECER</div>
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="stats.html">Estado</a>
+        <a href="ranking.html">Ranking</a>
+        <a href="mapa.html">Mapa</a>
+        <a href="normas.html">Normas</a>
+    </nav>
+</header>
+
 <div class="container">
 
-    <h1>El ultimo amanecer — Estadísticas</h1>
+    <h1 class="page-title">Dashboard del Servidor</h1>
 
-    <!-- ESTADO DEL MUNDO -->
-    <div class="stats-box">
-        <h2>Estado del mundo</h2>
-        <p class="stat">Día actual: <span id="day">...</span></p>
-        <p class="stat">Hora del servidor: <span id="time">...</span></p>
-        <p class="stat">Próxima horda (día): <span id="hordeDay">...</span></p>
-        <p class="stat">Tiempo restante para la horda: <span id="hordeIn">...</span></p>
-    </div>
+    <div class="grid">
 
-   <!-- JUGADORES -->
-    <div class="stats-box">
-        <h2>Jugadores conectados</h2>
-        <p class="stat">Total: <span id="playersOnline">0</span></p>
+        <div class="card">
+            <h2>Estado del Mundo</h2>
+            <p>Día actual: <span id="day">...</span></p>
+            <p>Hora del servidor: <span id="time">...</span></p>
+            <p>Próxima horda: <span id="hordeDay">...</span></p>
+            <p>Tiempo restante: <span id="hordeIn">...</span></p>
+        </div>
 
-        <table class="players-table">
-            <thead>
-                <tr>
-                    <th>👤 Jugador</th>
-                    <th>⭐ Nivel</th>
-                    <th>🧟 Zombies</th>
-                    <th>💀 Muertes</th>
-                    <th>📶 Ping</th>
-                </tr>
-            </thead>
-            <tbody id="playersTable"></tbody>
-        </table>
-    </div>
+        <div class="card">
+            <h2>Jugadores Online</h2>
+            <p>Total: <span id="playersOnline">0</span></p>
+            <div id="playersList"></div>
+        </div>
 
-    <!-- RANKING AVANZADO -->
-    <div class="stats-box">
-        <h2>Estadísticas Jugadores</h2>
-        <input type="text" id="search-player" placeholder="Buscar jugador..." 
-               style="margin-bottom: 10px; padding: 5px; width: 200px;">
-
-        <table class="players-table">
-            <thead>
-    <tr>
-        <th>👤 Jugador</th>
-
-        <th class="sortable" onclick="sortRanking('level')">
-            ⭐ Nivel <span id="arrow-level" class="arrow">▼</span>
-        </th>
-
-        <th class="sortable" onclick="sortRanking('zombies')">
-            🧟 Zombies <span id="arrow-zombies" class="arrow">▼</span>
-        </th>
-
-        <th class="sortable" onclick="sortRanking('deaths')">
-            💀 Muertes <span id="arrow-deaths" class="arrow">▼</span>
-        </th>
-    </tr>
-</thead>
-
-            <tbody id="rankingTable"></tbody>
-        </table>
     </div>
 
 </div>
 
-<script>
-/* ============================
-   OBTENER URL DEL TÚNEL
-============================ */
-async function getTunnelUrl() {
-    const res = await fetch("tunnel_url.txt");
-    return (await res.text()).trim();
-}
- /* ============================ CONFIG ============================ */
-const API_BASE = "https://kasiriserver.servegame.com:9000";
-
-/* ============================
-   CARGAR ESTADÍSTICAS
-============================ */
-let lastPlayers = [];
-
-async function loadStats() {
-    try {
-        const tunnel = await getTunnelUrl();
-        const res = await fetch(`${tunnel}/stats`);
-        const data = await res.json();
-
-        document.getElementById("day").textContent = data.day;
-        document.getElementById("time").textContent = data.time;
-        document.getElementById("hordeDay").textContent = data.nextHordeDay;
-        document.getElementById("hordeIn").textContent = data.nextHordeIn;
-
-        if (data.players && Array.isArray(data.players)) {
-            lastPlayers = data.players;
-        }
-
-        renderPlayers(lastPlayers);
-        document.getElementById("playersOnline").textContent = lastPlayers.length;
-
-    } catch (err) {
-        console.error("Error cargando stats:", err);
-        renderPlayers(lastPlayers);
-        document.getElementById("playersOnline").textContent = lastPlayers.length;
-    }
-}
-
-/* ============================
-   RENDER DE JUGADORES
-============================ */
-function renderPlayers(players) {
-    const table = document.getElementById("playersTable");
-    const actuales = new Set(players.map(p => p.name));
-
-    players.forEach(p => {
-        let row = document.getElementById(`row-${p.name}`);
-
-        if (!row) {
-            row = document.createElement("tr");
-            row.id = `row-${p.name}`;
-            row.innerHTML = `
-                <td class="name">${p.name}</td>
-                <td class="level"></td>
-                <td class="zombies"></td>
-                <td class="deaths"></td>
-                <td class="ping"></td>
-            `;
-            table.appendChild(row);
-        }
-
-        row.querySelector(".level").textContent = p.level;
-        row.querySelector(".zombies").textContent = p.zombies;
-        row.querySelector(".deaths").textContent = p.deaths;
-        row.querySelector(".ping").textContent = p.ping;
-
-        row.classList.remove("fade-out");
-    });
-
-    Array.from(table.children).forEach(row => {
-        const nombre = row.querySelector(".name").textContent;
-        if (!actuales.has(nombre)) {
-            row.classList.add("fade-out");
-            setTimeout(() => row.remove(), 300);
-        }
-    });
-}
-
-/* ============================
-   RANKING AVANZADO
-============================ */
-let rankingData = [];
-
-async function loadRankingTable() {
-    try {
-        const tunnel = await getTunnelUrl();
-        const res = await fetch(`${tunnel}/ranking`);
-        const data = await res.json();
-
-        rankingData = Object.entries(data).map(([name, stats]) => ({
-            name,
-            level: stats.level,
-            zombies: stats.zombies,
-            deaths: stats.deaths
-        }));
-
-        rankingData.sort((a, b) => b.level - a.level);
-        renderRankingTable(rankingData);
-
-    } catch (err) {
-        console.error("Error cargando ranking avanzado:", err);
-    }
-}
-
-function renderRankingTable(data) {
-    const tbody = document.getElementById("rankingTable");
-    tbody.innerHTML = "";
-
-    data.forEach(player => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-            <td>${player.name}</td>
-            <td>${player.level}</td>
-            <td>${player.zombies}</td>
-            <td>${player.deaths}</td>
-        `;
-        tbody.appendChild(row);
-    });
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    const search = document.getElementById("search-player");
-
-    if (search) {
-        search.addEventListener("input", () => {
-            const text = search.value.toLowerCase();
-            const filtered = rankingData.filter(p =>
-                p.name.toLowerCase().includes(text)
-            );
-            renderRankingTable(filtered);
-        });
-    }
-
-    loadRankingTable();
-    setInterval(loadRankingTable, 30000);
-});
-
-
-    let sortState = {
-    level: "desc",
-    zombies: "desc",
-    deaths: "desc"
-};
-
-function sortRanking(field) {
-    // Cambiar asc/desc
-    sortState[field] = sortState[field] === "desc" ? "asc" : "desc";
-
-    // Ordenar
-    const sorted = [...rankingData].sort((a, b) => {
-        return sortState[field] === "desc"
-            ? b[field] - a[field]
-            : a[field] - b[field];
-    });
-
-    updateRankingArrows(field);
-    renderRankingTable(sorted);
-}
-
-function updateRankingArrows(activeField) {
-    const arrows = {
-        level: document.getElementById("arrow-level"),
-        zombies: document.getElementById("arrow-zombies"),
-        deaths: document.getElementById("arrow-deaths")
-    };
-
-    // Resetear todas
-    Object.keys(arrows).forEach(key => {
-        arrows[key].textContent = "▼";
-        arrows[key].style.opacity = "0.4";
-    });
-
-    // Activar la flecha correcta
-    arrows[activeField].textContent =
-        sortState[activeField] === "desc" ? "▼" : "▲";
-    arrows[activeField].style.opacity = "1";
-}
-
-/* ============================
-   AUTO-REFRESH
-============================ */
-loadStats();
-setInterval(loadStats, 30000);
-</script>
-
+<script src="main.js"></script>
 </body>
 </html>
