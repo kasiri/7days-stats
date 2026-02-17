@@ -218,12 +218,18 @@ body {
     to { text-shadow: 0 0 25px red; }
 }
 
-/* Iconos animados tipo goteo */
+/* Icono animado SOLO en títulos */
 .section-title::before {
     content: "🩸";
     margin-right: 6px;
     animation: drip 1.5s infinite ease-in-out;
 }
+
+/* Quitar iconos duplicados en listas */
+.normas-card ul li::before {
+    content: "";
+}
+
 
 @keyframes drip {
     0% { transform: translateY(0); opacity: 1; }
