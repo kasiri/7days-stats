@@ -49,87 +49,85 @@
 
 <script src="main.js"></script>
 <script>
-// Espera a que el servidor meta los jugadores en #rankingTable
+const tbody = document.querySelector("#rankingTable");
+
+// Observa cambios en el tbody SIEMPRE
 const observer = new MutationObserver(() => {
-    const tbody = document.querySelector("#rankingTable");
-    if (tbody && tbody.children.length > 0) {
-        observer.disconnect();
-        iniciarRanking();
+    if (tbody.children.length > 0) {
+        aplicarOrdenYDecoracion();
     }
 });
 
-observer.observe(document.querySelector("#rankingTable"), { childList: true });
+observer.observe(tbody, { childList: true, subtree: false });
 
-function iniciarRanking() {
-
+function aplicarOrdenYDecoracion() {
     const table = document.querySelector("table");
-    const tbody = table.querySelector("tbody");
     const headers = table.querySelectorAll("th");
-    let sortDirection = false; // false = descendente por defecto
 
-    // ORDENAR POR NIVEL AL CARGAR (columna 1)
+    // Orden por defecto: NIVEL (columna 1)
     ordenarPorColumna(1, false);
     decorar();
 
-    // Activar flechas en cabeceras
+    // Activar flechas
     headers.forEach((th, index) => {
         th.style.cursor = "pointer";
-        th.addEventListener("click", () => {
-            sortDirection = !sortDirection;
+        th.onclick = () => {
             ordenarPorColumna(index, true);
             decorar();
-        });
+        };
+    });
+}
+
+let sortDirection = false; // false = descendente
+
+function ordenarPorColumna(colIndex, toggle) {
+    const rows = Array.from(tbody.querySelectorAll("tr"));
+
+    if (toggle) sortDirection = !sortDirection;
+
+    rows.sort((a, b) => {
+        const A = a.children[colIndex].innerText.trim();
+        const B = b.children[colIndex].innerText.trim();
+
+        const numA = parseFloat(A);
+        const numB = parseFloat(B);
+
+        if (!isNaN(numA) && !isNaN(numB)) {
+            return sortDirection ? numA - numB : numB - numA;
+        }
+
+        return sortDirection
+            ? A.localeCompare(B)
+            : B.localeCompare(A);
     });
 
-    function ordenarPorColumna(colIndex, toggle) {
-        const rows = Array.from(tbody.querySelectorAll("tr"));
+    tbody.innerHTML = "";
+    rows.forEach(row => tbody.appendChild(row));
+}
 
-        rows.sort((a, b) => {
-            const A = a.children[colIndex].innerText.trim();
-            const B = b.children[colIndex].innerText.trim();
+function decorar() {
+    const rows = tbody.querySelectorAll("tr");
 
-            const numA = parseFloat(A);
-            const numB = parseFloat(B);
+    rows.forEach((row, index) => {
+        const lvl = parseInt(row.children[1].innerText.trim());
+        const nameCell = row.children[0];
 
-            if (!isNaN(numA) && !isNaN(numB)) {
-                return sortDirection ? numA - numB : numB - numA;
-            }
+        // Quitar medallas previas
+        nameCell.innerText = nameCell.innerText.replace(/^🥇 |^🥈 |^🥉 /, "");
 
-            return sortDirection
-                ? A.localeCompare(B)
-                : B.localeCompare(A);
-        });
+        // Medallas
+        if (index === 0) nameCell.innerText = "🥇 " + nameCell.innerText;
+        else if (index === 1) nameCell.innerText = "🥈 " + nameCell.innerText;
+        else if (index === 2) nameCell.innerText = "🥉 " + nameCell.innerText;
 
-        tbody.innerHTML = "";
-        rows.forEach(row => tbody.appendChild(row));
-    }
-
-    function decorar() {
-        const rows = tbody.querySelectorAll("tr");
-
-        rows.forEach((row, index) => {
-            const lvl = parseInt(row.children[1].innerText.trim());
-            const nameCell = row.children[0];
-
-            // Quitar medallas previas
-            nameCell.innerText = nameCell.innerText.replace(/^🥇 |^🥈 |^🥉 /, "");
-
-            // Medallas
-            if (index === 0) nameCell.innerText = "🥇 " + nameCell.innerText;
-            else if (index === 1) nameCell.innerText = "🥈 " + nameCell.innerText;
-            else if (index === 2) nameCell.innerText = "🥉 " + nameCell.innerText;
-
-            // Colores por nivel
-            if (lvl >= 60) row.style.color = "#ff4d4d";
-            else if (lvl >= 40) row.style.color = "#b266ff";
-            else if (lvl >= 20) row.style.color = "#4da6ff";
-            else row.style.color = "#66ff66";
-        });
-    }
+        // Colores por nivel
+        if (lvl >= 60) row.style.color = "#ff4d4d";
+        else if (lvl >= 40) row.style.color = "#b266ff";
+        else if (lvl >= 20) row.style.color = "#4da6ff";
+        else row.style.color = "#66ff66";
+    });
 }
 </script>
-
-
 
 <footer class="footer">
     ...
