@@ -18,37 +18,37 @@ body {
     background: rgba(10, 10, 10, 0.85);
     backdrop-filter: blur(6px);
     border-bottom: 1px solid rgba(255, 0, 0, 0.3);
-    padding: 10px 15px 14px 15px;
+    padding: 14px 15px 18px 15px; /* más alto */
     display: flex;
-    flex-direction: column; /* ← LOGO ARRIBA, MENÚ DEBAJO */
-    align-items: center;    /* ← CENTRA TODO */
+    flex-direction: column; /* logo arriba, menú debajo */
+    align-items: center;
     z-index: 1000;
 }
 
 .navbar .logo {
     font-family: "Orbitron", sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.8rem; /* ← MÁS GRANDE */
     color: #ff3b3b;
-    text-shadow: 0 0 10px red;
-    margin-bottom: 6px;
+    text-shadow: 0 0 12px red;
+    margin-bottom: 10px;
 }
 
 /* NAV LINKS */
 .navbar nav {
     display: flex;
-    flex-wrap: wrap; /* ← PERMITE 2 LÍNEAS SI HACE FALTA */
-    justify-content: center; /* ← CENTRADO REAL */
-    gap: 10px;
+    flex-wrap: wrap; /* permite 2 líneas si hace falta */
+    justify-content: center;
+    gap: 12px; /* más espacio entre botones */
 }
 
 .navbar a {
     color: #ff7777;
     text-decoration: none;
-    font-size: 0.82rem;
-    padding: 4px 6px;
+    font-size: 1rem; /* ← MÁS GRANDE */
+    padding: 5px 8px;
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
     white-space: nowrap;
     transition: 0.2s;
     font-family: "Inter", sans-serif;
@@ -63,14 +63,14 @@ body {
 .container {
     width: 90%;
     max-width: 1200px;
-    margin: 150px auto 40px auto; /* ← MÁS ESPACIO POR EL MENÚ DOBLE */
+    margin: 180px auto 40px auto; /* más espacio por el header más grande */
 }
 
 /* ======== TÍTULO ======== */
 .page-title {
     text-align: center;
     color: #ff3b3b;
-    font-size: 2.4rem;
+    font-size: 2.6rem;
     margin-bottom: 40px;
     text-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
     font-family: "Orbitron", sans-serif;
@@ -158,6 +158,18 @@ body {
 
 /* ======== RESPONSIVE ======== */
 @media (max-width: 850px) {
+    .navbar .logo {
+        font-size: 1.4rem;
+    }
+
     .navbar a {
-        font-size: 0.75rem;
-        padding
+        font-size: 0.85rem;
+        padding: 4px 6px;
+    }
+}
+
+/* ======== ANIMACIONES ======== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
