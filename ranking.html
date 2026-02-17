@@ -58,6 +58,41 @@
         </div>
     </div>
 </footer>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const table = document.querySelector("table");
+    const headers = table.querySelectorAll("th");
 
+    headers.forEach((header, index) => {
+        header.style.cursor = "pointer";
+        header.addEventListener("click", () => sortTable(index));
+    });
+
+    function sortTable(colIndex) {
+        const rows = Array.from(table.querySelectorAll("tbody tr"));
+        const isAsc = table.getAttribute("data-sort") !== "asc";
+
+        rows.sort((a, b) => {
+            const A = a.children[colIndex].innerText.trim();
+            const B = b.children[colIndex].innerText.trim();
+
+            return isAsc
+                ? A.localeCompare(B, undefined, { numeric: true })
+                : B.localeCompare(A, undefined, { numeric: true });
+        });
+
+        table.setAttribute("data-sort", isAsc ? "asc" : "desc");
+
+        const tbody = table.querySelector("tbody");
+        tbody.innerHTML = "";
+        rows.forEach(row => tbody.appendChild(row));
+    }
+});
+</script>
+
+
+
+
+    
 </body>
 </html>
