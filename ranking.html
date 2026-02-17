@@ -60,35 +60,44 @@
 </footer>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+
     const table = document.querySelector("table");
-    const headers = table.querySelectorAll("th");
+    const tbody = table.querySelector("tbody");
 
-    headers.forEach((header, index) => {
-        header.style.cursor = "pointer";
-        header.addEventListener("click", () => sortTable(index));
-    });
-
-    function sortTable(colIndex) {
-        const rows = Array.from(table.querySelectorAll("tbody tr"));
-        const isAsc = table.getAttribute("data-sort") !== "asc";
+    // ORDENAR SIEMPRE POR NIVEL (columna 2)
+    function ordenarPorNivel() {
+        const rows = Array.from(tbody.querySelectorAll("tr"));
 
         rows.sort((a, b) => {
-            const A = a.children[colIndex].innerText.trim();
-            const B = b.children[colIndex].innerText.trim();
-
-            return isAsc
-                ? A.localeCompare(B, undefined, { numeric: true })
-                : B.localeCompare(A, undefined, { numeric: true });
+            const lvlA = parseInt(a.children[2].innerText.trim());
+            const lvlB = parseInt(b.children[2].innerText.trim());
+            return lvlB - lvlA; // mayor a menor
         });
 
-        table.setAttribute("data-sort", isAsc ? "asc" : "desc");
-
-        const tbody = table.querySelector("tbody");
         tbody.innerHTML = "";
-        rows.forEach(row => tbody.appendChild(row));
+        rows.forEach((row, index) => {
+            // MEDALLAS TOP 3
+            const posCell = row.children[0];
+            if (index === 0) posCell.innerHTML = "🥇";
+            else if (index === 1) posCell.innerHTML = "🥈";
+            else if (index === 2) posCell.innerHTML = "🥉";
+            else posCell.innerHTML = index + 1;
+
+            // COLORES POR NIVEL
+            const lvl = parseInt(row.children[2].innerText.trim());
+            if (lvl >= 60) row.style.color = "#ff4d4d";        // rojo
+            else if (lvl >= 40) row.style.color = "#b266ff";   // morado
+            else if (lvl >= 20) row.style.color = "#4da6ff";   // azul
+            else row.style.color = "#66ff66";                  // verde
+
+            tbody.appendChild(row);
+        });
     }
+
+    ordenarPorNivel();
 });
 </script>
+
 
 
 
