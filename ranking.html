@@ -47,8 +47,6 @@
 </div>
 
 <script src="main.js"></script>
-<script src="main.js"></script>
-
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -57,17 +55,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const tbody = table.querySelector("tbody");
     let sortDirection = true;
 
-    // AÑADIR COLUMNA POSICIÓN (#)
+    // AÑADIR COLUMNA POSICIÓN (#) AL PRINCIPIO
     const thPos = document.createElement("th");
     thPos.innerText = "#";
     theadRow.insertBefore(thPos, theadRow.children[0]);
 
-    // AÑADIR COLUMNA PROGRESO
+    // AÑADIR COLUMNA PROGRESO DESPUÉS DE NIVEL
     const thProg = document.createElement("th");
     thProg.innerText = "Progreso";
     theadRow.insertBefore(thProg, theadRow.children[3]);
 
-    // AÑADIR CELDAS A CADA FILA
+    // PREPARAR FILAS AUTOMÁTICAMENTE
     function prepararFilas() {
         tbody.querySelectorAll("tr").forEach(row => {
 
@@ -122,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
         decorar();
     }
 
-    // ORDENAR SIEMPRE POR NIVEL AL CARGAR
+    // ORDENAR POR NIVEL AL CARGAR (columna 2)
     function ordenarPorNivel() {
         const rows = Array.from(tbody.querySelectorAll("tr"));
 
@@ -163,7 +161,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // EJECUCIÓN
     prepararFilas();
     ordenarPorNivel();
     decorar();
