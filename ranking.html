@@ -47,20 +47,55 @@
 </div>
 
 <script src="main.js"></script>
+<script src="main.js"></script>
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
     const table = document.querySelector("table");
+    const theadRow = table.querySelector("thead tr");
     const tbody = table.querySelector("tbody");
     let sortDirection = true;
 
-    // ORDENAR POR CUALQUIER COLUMNA (flechas)
-    document.querySelectorAll("th").forEach((th, index) => {
-        th.style.cursor = "pointer";
-        th.addEventListener("click", () => sortTable(index));
-    });
+    // AÑADIR COLUMNA POSICIÓN (#)
+    const thPos = document.createElement("th");
+    thPos.innerText = "#";
+    theadRow.insertBefore(thPos, theadRow.children[0]);
 
-    function sortTable(colIndex) {
+    // AÑADIR COLUMNA PROGRESO
+    const thProg = document.createElement("th");
+    thProg.innerText = "Progreso";
+    theadRow.insertBefore(thProg, theadRow.children[3]);
+
+    // AÑADIR CELDAS A CADA FILA
+    function prepararFilas() {
+        tbody.querySelectorAll("tr").forEach(row => {
+
+            // POSICIÓN
+            const tdPos = document.createElement("td");
+            tdPos.innerText = "";
+            row.insertBefore(tdPos, row.children[0]);
+
+            // PROGRESO
+            const tdProg = document.createElement("td");
+            tdProg.innerHTML = `
+                <div class="progress">
+                    <div class="bar"></div>
+                </div>
+            `;
+            row.insertBefore(tdProg, row.children[3]);
+        });
+    }
+
+    // ORDENAR POR CUALQUIER COLUMNA
+    function activarOrden() {
+        document.querySelectorAll("th").forEach((th, index) => {
+            th.style.cursor = "pointer";
+            th.addEventListener("click", () => ordenarTabla(index));
+        });
+    }
+
+    function ordenarTabla(colIndex) {
         const rows = Array.from(tbody.querySelectorAll("tr"));
 
         rows.sort((a, b) => {
@@ -84,16 +119,16 @@ document.addEventListener("DOMContentLoaded", () => {
         tbody.innerHTML = "";
         rows.forEach(row => tbody.appendChild(row));
 
-        aplicarDecoraciones();
+        decorar();
     }
 
-    // ORDENAR SIEMPRE POR NIVEL AL CARGAR (columna 2)
+    // ORDENAR SIEMPRE POR NIVEL AL CARGAR
     function ordenarPorNivel() {
         const rows = Array.from(tbody.querySelectorAll("tr"));
 
         rows.sort((a, b) => {
-            const lvlA = parseInt(a.children[1].innerText.trim());
-            const lvlB = parseInt(b.children[1].innerText.trim());
+            const lvlA = parseInt(a.children[2].innerText.trim());
+            const lvlB = parseInt(b.children[2].innerText.trim());
             return lvlB - lvlA;
         });
 
@@ -102,12 +137,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // MEDALLAS + COLORES + BARRAS
-    function aplicarDecoraciones() {
+    function decorar() {
         const rows = tbody.querySelectorAll("tr");
 
         rows.forEach((row, index) => {
-            const lvl = parseInt(row.children[1].innerText.trim());
-            const progresoCell = row.children[3];
+            const lvl = parseInt(row.children[2].innerText.trim());
+            const bar = row.querySelector(".bar");
 
             // MEDALLAS
             const posCell = row.children[0];
@@ -116,28 +151,30 @@ document.addEventListener("DOMContentLoaded", () => {
             else if (index === 2) posCell.innerHTML = "🥉";
             else posCell.innerHTML = index + 1;
 
-            // COLORES POR NIVEL
+            // COLORES
             if (lvl >= 60) row.style.color = "#ff4d4d";
             else if (lvl >= 40) row.style.color = "#b266ff";
             else if (lvl >= 20) row.style.color = "#4da6ff";
             else row.style.color = "#66ff66";
 
-            // BARRA DE PROGRESO (usando la columna ya existente)
+            // BARRA
             const porcentaje = Math.min((lvl / 100) * 100, 100);
-
-            progresoCell.innerHTML = `
-                <div class="progress">
-                    <div class="bar" style="width:${porcentaje}%"></div>
-                </div>
-            `;
+            bar.style.width = porcentaje + "%";
         });
     }
 
+    // EJECUCIÓN
+    prepararFilas();
     ordenarPorNivel();
-    aplicarDecoraciones();
+    decorar();
+    activarOrden();
 
 });
 </script>
+
+<footer class="footer">
+    ...
+</footer>
 
 
     
