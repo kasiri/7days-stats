@@ -301,6 +301,57 @@ body {
     transition: width 0.8s ease;
 }
 
+.podio-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+.podio-item {
+    text-align: center;
+    padding: 15px 20px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(4px);
+    width: 150px;
+    transform: translateY(0);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    animation: aparecer 0.8s ease forwards;
+    opacity: 0;
+}
+
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.podio-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 15px rgba(255,255,255,0.2);
+}
+
+.podio-item .puesto {
+    font-size: 40px;
+    margin-bottom: 5px;
+}
+
+.podio-item .nombre {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.podio-item .nivel {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.oro   { border: 2px solid gold; }
+.plata { border: 2px solid silver; }
+.bronce{ border: 2px solid #cd7f32; }
+
+
 
 
 
