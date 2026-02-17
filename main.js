@@ -78,6 +78,32 @@ function renderRanking(data) {
 }
 
 /* ============================
+   CUENTA ATRÁS DEL WIPE
+============================ */
+function startWipeCountdown() {
+    const target = new Date("2026-03-13T00:00:00").getTime();
+
+    setInterval(() => {
+        const now = Date.now();
+        const diff = target - now;
+
+        if (diff <= 0) {
+            document.getElementById("wipeCountdown").textContent = "¡El nuevo servidor ya está activo!";
+            return;
+        }
+
+        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const m = Math.floor((diff / (1000 * 60)) % 60);
+        const s = Math.floor((diff / 1000) % 60);
+
+        document.getElementById("wipeCountdown").textContent =
+            `${d} días, ${h} horas, ${m} min, ${s} seg`;
+
+    }, 1000);
+}
+
+/* ============================
    AUTO-REFRESH
 ============================ */
 loadStats();
@@ -85,3 +111,7 @@ setInterval(loadStats, 30000);
 
 loadRanking();
 setInterval(loadRanking, 30000);
+
+if (document.getElementById("wipeCountdown")) {
+    startWipeCountdown();
+}
