@@ -220,6 +220,56 @@ body {
 }
 
 
+/* ======== MODS PAGE ======== */
+
+.mods-card {
+    padding: 25px 30px;
+}
+
+.mods-download {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+}
+
+.mod-item {
+    margin-bottom: 22px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 0, 0, 0.25);
+}
+
+.mod-item:last-child {
+    border-bottom: none;
+}
+
+.mod-item a {
+    color: #ff6666;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.mod-item a:hover {
+    color: #ffffff;
+    text-shadow: 0 0 8px red;
+}
+
+/* Agradecimientos */
+.thanks-card {
+    margin-top: 35px;
+    text-align: center;
+    border: 2px solid rgba(255, 0, 0, 0.4);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.25);
+}
+
+.thanks-card h2 {
+    color: #ff4d4d;
+    text-shadow: 0 0 10px red;
+}
+
+.thanks-card p {
+    font-size: 1rem;
+    margin: 8px 0;
+}
+
 
 
 
