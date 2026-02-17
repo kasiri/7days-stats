@@ -43,6 +43,29 @@
     text-shadow: 0 0 10px red;
 }
 
+.footer {
+    margin-top: 60px;
+    padding: 20px;
+    text-align: center;
+    color: #aaa;
+    font-size: 0.85rem;
+    border-top: 1px solid rgba(255, 0, 0, 0.3);
+    background: rgba(10, 10, 10, 0.4);
+}
+
+.footer .social a {
+    margin: 0 10px;
+    color: #ff7777;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.footer .social a:hover {
+    color: #fff;
+    text-shadow: 0 0 10px red;
+}
+
+
 /* RESPONSIVE */
 @media (max-width: 850px) {
     .navbar a {
