@@ -7,7 +7,7 @@ body {
     margin: 0;
     background: radial-gradient(circle at top, #1a0000, #000);
     color: #e6e6e6;
-    font-family: "Inter", sans-serif; /* ← Texto legible */
+    font-family: "Inter", sans-serif;
 }
 
 /* ======== NAVBAR ======== */
@@ -36,18 +36,19 @@ body {
 .navbar nav {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
+    flex-wrap: wrap; /* ← CLAVE: evita que se corte */
 }
 
 .navbar a {
     color: #ff7777;
     text-decoration: none;
-    font-size: 0.82rem;
+    font-size: 0.78rem;
     padding: 3px 5px;
     display: flex;
     align-items: center;
     gap: 4px;
-    white-space: nowrap;
+    white-space: nowrap; /* ← evita cortes de texto */
     transition: 0.2s;
     font-family: "Inter", sans-serif;
 }
@@ -71,7 +72,7 @@ body {
     font-size: 2.4rem;
     margin-bottom: 40px;
     text-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
-    font-family: "Orbitron", sans-serif; /* ← Títulos con Orbitron */
+    font-family: "Orbitron", sans-serif;
 }
 
 /* ======== GRID ======== */
@@ -135,7 +136,6 @@ body {
     margin: 0;
     color: #bbb;
     font-size: 0.8rem;
-    font-family: "Inter", sans-serif;
 }
 
 .footer-links {
@@ -168,4 +168,3 @@ body {
     from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
 }
-
