@@ -47,6 +47,100 @@
 </div>
 
 <script src="main.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const table = document.querySelector("table");
+    const tbody = table.querySelector("tbody");
+    let sortDirection = true;
+
+    // ORDENAR POR CUALQUIER COLUMNA (flechas)
+    document.querySelectorAll("th").forEach((th, index) => {
+        th.style.cursor = "pointer";
+        th.addEventListener("click", () => sortTable(index));
+    });
+
+    function sortTable(colIndex) {
+        const rows = Array.from(tbody.querySelectorAll("tr"));
+
+        rows.sort((a, b) => {
+            const A = a.children[colIndex].innerText.trim();
+            const B = b.children[colIndex].innerText.trim();
+
+            const numA = parseFloat(A);
+            const numB = parseFloat(B);
+
+            if (!isNaN(numA) && !isNaN(numB)) {
+                return sortDirection ? numA - numB : numB - numA;
+            }
+
+            return sortDirection
+                ? A.localeCompare(B)
+                : B.localeCompare(A);
+        });
+
+        sortDirection = !sortDirection;
+
+        tbody.innerHTML = "";
+        rows.forEach(row => tbody.appendChild(row));
+
+        aplicarDecoraciones();
+    }
+
+    // ORDENAR SIEMPRE POR NIVEL AL CARGAR (columna 2)
+    function ordenarPorNivel() {
+        const rows = Array.from(tbody.querySelectorAll("tr"));
+
+        rows.sort((a, b) => {
+            const lvlA = parseInt(a.children[1].innerText.trim());
+            const lvlB = parseInt(b.children[1].innerText.trim());
+            return lvlB - lvlA;
+        });
+
+        tbody.innerHTML = "";
+        rows.forEach(row => tbody.appendChild(row));
+    }
+
+    // MEDALLAS + COLORES + BARRAS
+    function aplicarDecoraciones() {
+        const rows = tbody.querySelectorAll("tr");
+
+        rows.forEach((row, index) => {
+            const lvl = parseInt(row.children[1].innerText.trim());
+            const progresoCell = row.children[3];
+
+            // MEDALLAS
+            const posCell = row.children[0];
+            if (index === 0) posCell.innerHTML = "🥇";
+            else if (index === 1) posCell.innerHTML = "🥈";
+            else if (index === 2) posCell.innerHTML = "🥉";
+            else posCell.innerHTML = index + 1;
+
+            // COLORES POR NIVEL
+            if (lvl >= 60) row.style.color = "#ff4d4d";
+            else if (lvl >= 40) row.style.color = "#b266ff";
+            else if (lvl >= 20) row.style.color = "#4da6ff";
+            else row.style.color = "#66ff66";
+
+            // BARRA DE PROGRESO (usando la columna ya existente)
+            const porcentaje = Math.min((lvl / 100) * 100, 100);
+
+            progresoCell.innerHTML = `
+                <div class="progress">
+                    <div class="bar" style="width:${porcentaje}%"></div>
+                </div>
+            `;
+        });
+    }
+
+    ordenarPorNivel();
+    aplicarDecoraciones();
+
+});
+</script>
+
+
+    
 <footer class="footer">
     <div class="footer-content">
         <p>© 2026 El Último Amanecer — Comunidad 7 Days to Die</p>
@@ -58,103 +152,6 @@
         </div>
     </div>
 </footer>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-
-    const table = document.querySelector("table");
-    const theadRow = table.querySelector("thead tr");
-    const tbody = table.querySelector("tbody");
-
-    // AÑADIR COLUMNA "Progreso" AUTOMÁTICAMENTE
-    const th = document.createElement("th");
-    th.innerText = "Progreso";
-    theadRow.insertBefore(th, theadRow.children[3]); // después de Nivel
-
-    // AÑADIR CELDAS DE PROGRESO A CADA FILA
-    function addProgressBars() {
-        tbody.querySelectorAll("tr").forEach(row => {
-            const nivelCell = row.children[2];
-            const nivel = parseInt(nivelCell.innerText.trim());
-
-            const td = document.createElement("td");
-            td.innerHTML = `
-                <div class="progress">
-                    <div class="bar"></div>
-                </div>
-            `;
-
-            row.insertBefore(td, row.children[3]);
-
-            // Rellenar barra
-            const bar = td.querySelector(".bar");
-            const porcentaje = Math.min((nivel / 100) * 100, 100);
-            bar.style.width = porcentaje + "%";
-        });
-    }
-
-    // ORDENAR SIEMPRE POR NIVEL AL CARGAR
-    function ordenarPorNivel() {
-        const rows = Array.from(tbody.querySelectorAll("tr"));
-
-        rows.sort((a, b) => {
-            const lvlA = parseInt(a.children[2].innerText.trim());
-            const lvlB = parseInt(b.children[2].innerText.trim());
-            return lvlB - lvlA;
-        });
-
-        tbody.innerHTML = "";
-        rows.forEach((row, index) => {
-            // MEDALLAS
-            const posCell = row.children[0];
-            if (index === 0) posCell.innerHTML = "🥇";
-            else if (index === 1) posCell.innerHTML = "🥈";
-            else if (index === 2) posCell.innerHTML = "🥉";
-            else posCell.innerHTML = index + 1;
-
-            tbody.appendChild(row);
-        });
-    }
-
-    // ORDENAR POR CUALQUIER COLUMNA (flechas)
-    let sortDirection = true;
-    document.querySelectorAll("th").forEach((th, index) => {
-        th.style.cursor = "pointer";
-        th.addEventListener("click", () => {
-            const rows = Array.from(tbody.querySelectorAll("tr"));
-
-            rows.sort((a, b) => {
-                const A = a.children[index].innerText.trim();
-                const B = b.children[index].innerText.trim();
-
-                const numA = parseFloat(A);
-                const numB = parseFloat(B);
-
-                if (!isNaN(numA) && !isNaN(numB)) {
-                    return sortDirection ? numA - numB : numB - numA;
-                }
-
-                return sortDirection
-                    ? A.localeCompare(B)
-                    : B.localeCompare(A);
-            });
-
-            sortDirection = !sortDirection;
-
-            tbody.innerHTML = "";
-            rows.forEach(row => tbody.appendChild(row));
-        });
-    });
-
-    // EJECUTAR TODO
-    addProgressBars();
-    ordenarPorNivel();
-
-});
-</script>
-
-
-
-
 
 
 
