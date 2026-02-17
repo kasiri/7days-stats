@@ -90,8 +90,7 @@ function aplicarOrdenYDecoracion() {
 
     ordenarPorColumna(1, false); // Orden por nivel
     decorar();
-
-    actualizarPodio();
+    actualizarPodio(); // ← AQUÍ SE ACTUALIZA EL PODIO
 
     headers.forEach((th, index) => {
         th.style.cursor = "pointer";
@@ -99,6 +98,7 @@ function aplicarOrdenYDecoracion() {
             sortDirection = !sortDirection;
             ordenarPorColumna(index, true);
             decorar();
+            actualizarPodio(); // ← Y AQUÍ TAMBIÉN
         };
     });
 }
@@ -152,7 +152,38 @@ function decorar() {
         else row.style.color = "#66ff66";
     });
 }
+
+function actualizarPodio() {
+    const rows = tbody.querySelectorAll("tr");
+
+    if (rows.length < 3) return;
+
+    const top1 = rows[0];
+    const top2 = rows[1];
+    const top3 = rows[2];
+
+    // Jugadores
+    document.getElementById("podio-1").innerText =
+        top1.children[0].innerText.replace(/^🥇 /, "");
+
+    document.getElementById("podio-2").innerText =
+        top2.children[0].innerText.replace(/^🥈 /, "");
+
+    document.getElementById("podio-3").innerText =
+        top3.children[0].innerText.replace(/^🥉 /, "");
+
+    // Niveles
+    document.getElementById("podio-1-nivel").innerText =
+        "Nivel " + top1.children[1].innerText;
+
+    document.getElementById("podio-2-nivel").innerText =
+        "Nivel " + top2.children[1].innerText;
+
+    document.getElementById("podio-3-nivel").innerText =
+        "Nivel " + top3.children[1].innerText;
+}
 </script>
+
 
 
 
