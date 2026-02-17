@@ -38,6 +38,7 @@
                     <th>Nivel</th>
                     <th>Zombies</th>
                     <th>Muertes</th>
+                    <th>Progreso</th>
                 </tr>
             </thead>
             <tbody id="rankingTable"></tbody>
@@ -48,52 +49,39 @@
 
 <script src="main.js"></script>
 <script>
-document.addEventListener("DOMContentLoaded", () => {
+// Espera a que el servidor meta los jugadores en #rankingTable
+const observer = new MutationObserver(() => {
+    const tbody = document.querySelector("#rankingTable");
+    if (tbody && tbody.children.length > 0) {
+        observer.disconnect();
+        iniciarRanking();
+    }
+});
+
+observer.observe(document.querySelector("#rankingTable"), { childList: true });
+
+function iniciarRanking() {
 
     const table = document.querySelector("table");
-    const theadRow = table.querySelector("thead tr");
     const tbody = table.querySelector("tbody");
-    let sortDirection = true;
+    const headers = table.querySelectorAll("th");
+    let sortDirection = false; // false = descendente por defecto
 
-    // AÑADIR COLUMNA POSICIÓN (#) AL PRINCIPIO
-    const thPos = document.createElement("th");
-    thPos.innerText = "#";
-    theadRow.insertBefore(thPos, theadRow.children[0]);
+    // ORDENAR POR NIVEL AL CARGAR (columna 1)
+    ordenarPorColumna(1, false);
+    decorar();
 
-    // AÑADIR COLUMNA PROGRESO DESPUÉS DE NIVEL
-    const thProg = document.createElement("th");
-    thProg.innerText = "Progreso";
-    theadRow.insertBefore(thProg, theadRow.children[3]);
-
-    // PREPARAR FILAS AUTOMÁTICAMENTE
-    function prepararFilas() {
-        tbody.querySelectorAll("tr").forEach(row => {
-
-            // POSICIÓN
-            const tdPos = document.createElement("td");
-            tdPos.innerText = "";
-            row.insertBefore(tdPos, row.children[0]);
-
-            // PROGRESO
-            const tdProg = document.createElement("td");
-            tdProg.innerHTML = `
-                <div class="progress">
-                    <div class="bar"></div>
-                </div>
-            `;
-            row.insertBefore(tdProg, row.children[3]);
+    // Activar flechas en cabeceras
+    headers.forEach((th, index) => {
+        th.style.cursor = "pointer";
+        th.addEventListener("click", () => {
+            sortDirection = !sortDirection;
+            ordenarPorColumna(index, true);
+            decorar();
         });
-    }
+    });
 
-    // ORDENAR POR CUALQUIER COLUMNA
-    function activarOrden() {
-        document.querySelectorAll("th").forEach((th, index) => {
-            th.style.cursor = "pointer";
-            th.addEventListener("click", () => ordenarTabla(index));
-        });
-    }
-
-    function ordenarTabla(colIndex) {
+    function ordenarPorColumna(colIndex, toggle) {
         const rows = Array.from(tbody.querySelectorAll("tr"));
 
         rows.sort((a, b) => {
@@ -112,62 +100,36 @@ document.addEventListener("DOMContentLoaded", () => {
                 : B.localeCompare(A);
         });
 
-        sortDirection = !sortDirection;
-
-        tbody.innerHTML = "";
-        rows.forEach(row => tbody.appendChild(row));
-
-        decorar();
-    }
-
-    // ORDENAR POR NIVEL AL CARGAR (columna 2)
-    function ordenarPorNivel() {
-        const rows = Array.from(tbody.querySelectorAll("tr"));
-
-        rows.sort((a, b) => {
-            const lvlA = parseInt(a.children[2].innerText.trim());
-            const lvlB = parseInt(b.children[2].innerText.trim());
-            return lvlB - lvlA;
-        });
-
         tbody.innerHTML = "";
         rows.forEach(row => tbody.appendChild(row));
     }
 
-    // MEDALLAS + COLORES + BARRAS
     function decorar() {
         const rows = tbody.querySelectorAll("tr");
 
         rows.forEach((row, index) => {
-            const lvl = parseInt(row.children[2].innerText.trim());
-            const bar = row.querySelector(".bar");
+            const lvl = parseInt(row.children[1].innerText.trim());
+            const nameCell = row.children[0];
 
-            // MEDALLAS
-            const posCell = row.children[0];
-            if (index === 0) posCell.innerHTML = "🥇";
-            else if (index === 1) posCell.innerHTML = "🥈";
-            else if (index === 2) posCell.innerHTML = "🥉";
-            else posCell.innerHTML = index + 1;
+            // Quitar medallas previas
+            nameCell.innerText = nameCell.innerText.replace(/^🥇 |^🥈 |^🥉 /, "");
 
-            // COLORES
+            // Medallas
+            if (index === 0) nameCell.innerText = "🥇 " + nameCell.innerText;
+            else if (index === 1) nameCell.innerText = "🥈 " + nameCell.innerText;
+            else if (index === 2) nameCell.innerText = "🥉 " + nameCell.innerText;
+
+            // Colores por nivel
             if (lvl >= 60) row.style.color = "#ff4d4d";
             else if (lvl >= 40) row.style.color = "#b266ff";
             else if (lvl >= 20) row.style.color = "#4da6ff";
             else row.style.color = "#66ff66";
-
-            // BARRA
-            const porcentaje = Math.min((lvl / 100) * 100, 100);
-            bar.style.width = porcentaje + "%";
         });
     }
-
-    prepararFilas();
-    ordenarPorNivel();
-    decorar();
-    activarOrden();
-
-});
+}
 </script>
+
+
 
 <footer class="footer">
     ...
