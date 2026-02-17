@@ -1,12 +1,13 @@
 /* ======== FUENTES ======== */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
 
 /* ======== GLOBAL ======== */
 body {
     margin: 0;
     background: radial-gradient(circle at top, #1a0000, #000);
     color: #e6e6e6;
-    font-family: "Orbitron", sans-serif;
+    font-family: "Inter", sans-serif; /* ← Texto legible */
 }
 
 /* ======== NAVBAR ======== */
@@ -25,6 +26,7 @@ body {
 }
 
 .navbar .logo {
+    font-family: "Orbitron", sans-serif;
     font-size: 1.1rem;
     color: #ff3b3b;
     text-shadow: 0 0 10px red;
@@ -34,19 +36,20 @@ body {
 .navbar nav {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
 }
 
 .navbar a {
     color: #ff7777;
     text-decoration: none;
-    font-size: 0.78rem;
+    font-size: 0.82rem;
     padding: 3px 5px;
     display: flex;
     align-items: center;
     gap: 4px;
-    transition: 0.2s;
     white-space: nowrap;
+    transition: 0.2s;
+    font-family: "Inter", sans-serif;
 }
 
 .navbar a:hover {
@@ -68,6 +71,7 @@ body {
     font-size: 2.4rem;
     margin-bottom: 40px;
     text-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+    font-family: "Orbitron", sans-serif; /* ← Títulos con Orbitron */
 }
 
 /* ======== GRID ======== */
@@ -90,4 +94,78 @@ body {
 .card h2 {
     color: #ff6666;
     margin-top: 0;
-    text
+    text-shadow: 0 0 10px rgba(255, 80, 80, 0.6);
+    font-family: "Orbitron", sans-serif;
+}
+
+/* ======== TABLAS ======== */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-family: "Inter", sans-serif;
+}
+
+.table th, .table td {
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 50, 50, 0.2);
+}
+
+.table th {
+    color: #ff7777;
+    text-align: left;
+    font-weight: 600;
+}
+
+/* ======== FOOTER ======== */
+.footer {
+    margin-top: 40px;
+    padding: 20px 10px;
+    text-align: center;
+    background: rgba(10, 10, 10, 0.5);
+    border-top: 1px solid rgba(255, 0, 0, 0.3);
+}
+
+.footer-content {
+    max-width: 900px;
+    margin: auto;
+}
+
+.footer p {
+    margin: 0;
+    color: #bbb;
+    font-size: 0.8rem;
+    font-family: "Inter", sans-serif;
+}
+
+.footer-links {
+    margin-top: 8px;
+}
+
+.footer-links a {
+    margin: 0 8px;
+    color: #ff6666;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: 0.2s;
+}
+
+.footer-links a:hover {
+    color: #fff;
+    text-shadow: 0 0 8px red;
+}
+
+/* ======== RESPONSIVE ======== */
+@media (max-width: 850px) {
+    .navbar a {
+        font-size: 0.7rem;
+        padding: 2px 4px;
+    }
+}
+
+/* ======== ANIMACIONES ======== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
