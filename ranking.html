@@ -91,6 +91,8 @@ function aplicarOrdenYDecoracion() {
     ordenarPorColumna(1, false); // Orden por nivel
     decorar();
 
+    actualizarPodio();
+
     headers.forEach((th, index) => {
         th.style.cursor = "pointer";
         th.onclick = () => {
