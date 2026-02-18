@@ -506,10 +506,16 @@ body {
     text-align: center;
 }
 
-/* Normas: devolver alineación a la izquierda */
+/* Normas: todo alineado a la izquierda */
+.normas-card {
+    text-align: left !important;
+}
+
 .normas-card p,
 .normas-card ul,
-.normas-card li {
+.normas-card li,
+.normas-card h2,
+.normas-card h3 {
     text-align: left !important;
 }
 
