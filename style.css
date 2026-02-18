@@ -507,23 +507,21 @@ body {
 }
 
 /* Normas: todo alineado a la izquierda */
-.normas-card {
+.normas .card,
+.normas .card p,
+.normas .card ul,
+.normas .card li,
+.normas .card h2,
+.normas .card h3 {
     text-align: left !important;
 }
 
-.normas-card p,
-.normas-card ul,
-.normas-card li,
-.normas-card h2,
-.normas-card h3 {
-    text-align: left !important;
-}
-
-.normas-card ul {
+/* Sangría y separación como antes */
+.normas .card ul {
     padding-left: 20px;
 }
 
-.normas-card li {
+.normas .card li {
     margin-bottom: 6px;
     line-height: 1.5;
 }
