@@ -352,33 +352,6 @@ body {
 .bronce{ border: 2px solid #cd7f32; }
 
 
-.status-panel {
-    background: #111;
-    padding: 20px;
-    border-radius: 12px;
-    border: 1px solid #222;
-    margin-top: 20px;
-}
-
-.panel-title {
-    text-align: center;
-    color: #4da6ff;
-    margin-bottom: 20px;
-}
-
-.panel-section {
-    background: #1a1a1a;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    border-left: 3px solid #4da6ff;
-}
-
-.panel-section h3 {
-    margin-top: 0;
-    color: #4da6ff;
-}
-
 
 
 
