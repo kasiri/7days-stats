@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía para Nuevos Jugadores — El Último Amanecer</title>
+
+    <link rel="stylesheet" href="style.css?=7">
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="logo">EL ÚLTIMO AMANECER</div>
+    
+       <nav>
+    <a href="index.html">🏠 Inicio</a>
+    <a href="stats.html">📊 Estado</a>
+    <a href="ranking.html">🏅 Ranking</a>
+    <a href="mods.html">🧩 Mods</a>
+    <a href="staff.html">👥 Staff</a>
+    <a href="wipe.html">🔥 Wipe</a>
+    <a href="normas.html">📜 Normas</a>
+    <a href="nuevos.html">🎒 Guía</a>
+    <a href="bot.html">🤖 Bot</a>
+
+
+    </nav>
+</header>
+
+<div class="container">
+
+    <h1 class="page-title">Guía para Nuevos Jugadores</h1>
+
+    <!-- BLOQUE ROJO IMPORTANTE -->
+    <div class="alert-red">
+        ⚠️ <strong>IMPORTANTE:</strong> Antes de abrir el juego debes instalar los mods del servidor.  
+        Si no lo haces, podrás entrar, pero te va a funcional mal..
+        <br><br>
+        👉 Descarga los mods aquí: <a href="mods.html">🧩 Página de Mods</a>
+    </div>
+
+    <!-- INSTALACIÓN DE MODS -->
+    <div class="card">
+        <h2>1. Instalación de Mods (OBLIGATORIO)</h2>
+        <p>1. Descarga los mods desde nuestra página.</p>
+        <p>2. Extrae la carpeta <strong>Mods</strong> en:</p>
+        <p class="code">C:\Program Files (x86)\Steam\steamapps\common\7 Days To Die\ También puedes ir a steam buscar el juego en la biblioteca, Click derecho - Propiedades - Archivos Instalados - Explorar (y ahí tienes la ruta donde tienes el juego instalado) </p>
+        <p>3. La ruta final debe quedar así:</p>
+        <p class="code">...\7 Days To Die\Mods\NombreDelMod</p>
+        <p>4. Ahora sí, abre el juego.</p>
+    </div>
+
+    <!-- CONEXIÓN AL SERVIDOR -->
+    <div class="card">
+        <h2>2. Cómo entrar al servidor</h2>
+        <p>Nuestro servidor <strong>NO aparece en el buscador</strong>, debes añadirlo manualmente.</p>
+
+        <p>1. Abre 7 Days to Die</p>
+        <p>2. Te va a decir que tienes mods, y un mensaje que dice que se abrirá sin EAC, dale a Aceptar</p>
+        <p>3. Ve a <strong>Unirse a partida</strong></p>
+        <p>4. Haz clic en <strong>Conectarse a ip</strong></p>
+        <p>5. Introduce esta IP: kasiriserver.servegame.com</p>
+        <p>6. Puerto 26900</p>
+
+        <div class="copy-box">
+            <span id="serverIP">kasiriserver.servegame.com:26900</span>
+            <button onclick="copyIP()">📋 Copiar IP</button>
+        </div>
+
+        <p>7. Conectar</p>
+        <p>8. ¡Listo!</p>
+    </div>
+
+    <!-- PRIMEROS PASOS -->
+    <div class="card">
+        <h2>3. Primeros Pasos</h2>
+        <p>✔ Completa el tutorial inicial</p>
+        <p>✔ Coloca tu cama</p>
+        <p>✔ Reúne materiales básicos</p>
+        <p>✔ Fabrica tus primeras herramientas</p>
+        <p>✔ Busca un refugio para la noche</p>
+    </div>
+
+    <!-- HORDAS -->
+    <div class="card">
+        <h2>4. Hordas y Dificultad</h2>
+        <p>• Las hordas ocurren cada <strong>7 días</strong></p>
+        <p>• La dificultad aumenta con el tiempo</p>
+        <p>• Recomendamos tener base antes del Día 7</p>
+        <p>• Puedes ver el tiempo restante en el Dashboard</p>
+    </div>
+
+    <!-- CONSEJOS -->
+    <div class="card">
+        <h2>5. Consejos Útiles</h2>
+        <p>• Evita ciudades grandes los primeros días</p>
+        <p>• No construyas en ningún bioma que no sea bosque de pino de inicio</p>
+        <p>• Guarda munición para la horda</p>
+        <p>• Juega con amigos para avanzar más rápido</p>
+        <p>• El servidor está en una dificultad más alta que lo normal, no te preocupes si mueres</p>
+        <p>• Si necesitas ayuda, pídela</p>
+    </div>
+
+</div>
+
+<script>
+function copyIP() {
+    const ip = document.getElementById("serverIP").innerText;
+    navigator.clipboard.writeText(ip);
+    alert("IP copiada al portapapeles");
+}
+</script>
+
+<footer class="footer">
+    <div class="footer-content">
+        <p>© 2026 El Último Amanecer — Comunidad 7 Days to Die</p>
+        <div class="footer-links">
+            <a href="https://discord.gg/SaZdsmvJsg" target="_blank">💬 Discord</a>
+            <a href="https://twitter.com/Kasiri93" target="_blank">🐦 Twitter</a>
+            <a href="https://twitch.tv/Kasiri" target="_blank">🎮 Twitch</a>
+            <a href="https://www.youtube.com/@kasiri93" target="_blank">🎮 Youtube</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
