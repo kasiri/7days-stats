@@ -506,16 +506,11 @@ body {
     text-align: center;
 }
 
-/* Normas: texto alineado a la izquierda */
-.normas-card p,
-.normas-card ul,
-.normas-card li {
+/* SOLO en la página de normas: texto alineado a la izquierda */
+.normas .card p,
+.normas .card ul,
+.normas .card li {
     text-align: left !important;
-}
-
-.normas-card li {
-    margin-left: 15px;
-    line-height: 1.5;
 }
 
 
