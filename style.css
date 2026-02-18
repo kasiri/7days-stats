@@ -506,12 +506,20 @@ body {
     text-align: center;
 }
 
-/* SOLO en la página de normas: texto alineado a la izquierda */
-.normas .card p,
-.normas .card ul,
-.normas .card li {
+/* Normas: devolver alineación a la izquierda */
+.normas-card p,
+.normas-card ul,
+.normas-card li {
     text-align: left !important;
 }
 
+.normas-card ul {
+    padding-left: 20px;
+}
+
+.normas-card li {
+    margin-bottom: 6px;
+    line-height: 1.5;
+}
 
 
