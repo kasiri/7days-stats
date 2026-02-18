@@ -393,3 +393,115 @@ body {
 .copy-box button:hover {
     background: #80c1ff;
 }
+
+.section-title {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    color: #ff4444;
+    text-align: center;
+}
+
+
+
+.staff-role {
+    color: #ccc;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.staff-link {
+    background: #4da6ff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.staff-link:hover {
+    background: #80c1ff;
+}
+
+.staff-row {
+   display: flex; 
+   flex-wrap: wrap; 
+   gap: 20px; 
+   justify-content: center; 
+   margin-bottom: 30px; 
+}
+
+.staff-avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto 10px auto;
+}
+
+.twitch-center {
+    text-align: center;
+    margin-top: 8px;
+}
+
+.twitch-btn {
+    background: #9146FF;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.twitch-btn:hover {
+    background: #b084ff;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+
+
+.card {
+    background: rgba(20, 20, 20, 0.85);
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 0, 0, 0.4);
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.35);
+    animation: fadeIn 1s ease;
+}
+
+.staff-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+}
+
+.staff-card {
+    background: rgba(20, 20, 20, 0.85);
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 0, 0, 0.4);
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.35);
+    width: 350px;          /* ← ALARGADAS COMO ANTES */
+    min-height: 260px;     /* ← TODAS IGUALES */
+    text-align: center;
+    animation: fadeIn 1s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.staff-card p {
+    font-size: 14px;
+    line-height: 1.4;
+    min-height: 60px; /* ← hace que todas las descripciones ocupen el mismo espacio */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
