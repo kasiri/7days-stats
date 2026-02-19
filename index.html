@@ -8,11 +8,21 @@
     <link rel="stylesheet" href="style.css?=7">
 </head>
 
-<body>
+<body class="index-page">
+
+
+<div id="loader">
+    <div class="loader-content">
+        <h1>EL ÚLTIMO AMANECER</h1>
+    </div>
+</div>
+
 
 <header class="navbar">
     <div class="logo">EL ÚLTIMO AMANECER</div>
-   
+    <p class="nav-subtitle">Servidor PvE — Comunidad Española — 24/7</p>
+
+
     <nav>
     <a href="index.html">🏠 Inicio</a>
     <a href="stats.html">📊 Estado</a>
@@ -23,15 +33,28 @@
     <a href="normas.html">📜 Normas</a>
     <a href="nuevos.html">🎒 Guía</a>
     <a href="bot.html">🤖 Bot</a>
+    <a href="bases.html">🏠 Bases</a>
 
 
 </nav>
 
+
+
 </header>
 
 <div class="container">
+    <h1 class="page-title"></h1>
 
-    <h1 class="page-title">Dashboard del Servidor</h1>
+    <p class="page-subtitle-main"></p>
+
+
+
+
+    <!-- Banner de Consejos -->
+    <div class="tips-banner">
+        <div class="tips-text" id="tipsText"></div>
+    </div>
+
 
     <div class="grid">
 
@@ -51,7 +74,70 @@
 
     </div>
 
+<h2 class="section-title">🏠 Bases de los Jugadores</h2>
+
+<div class="mini-slider-container">
+    <button class="mini-btn left" onclick="moveMiniSlider(-1)">❮</button>
+
+    <div class="mini-slider" id="miniSlider">
+        <img src="imagenes/base1.jpg" alt="Base 1">
+        <img src="imagenes/base2.jpg" alt="Base 2">
+    </div>
+
+    <button class="mini-btn right" onclick="moveMiniSlider(1)">❯</button>
 </div>
+
+<div style="text-align:center; margin-top:10px;">
+    <a href="bases.html" class="btn-bases">Galería completa</a>
+</div>
+
+<!-- Lightbox compartido -->
+<div id="lightbox" class="lightbox">
+    <span class="close" onclick="closeLightbox()">✖</span>
+    <img id="lightbox-img">
+</div>
+
+
+<script>
+const tips = [
+    "Consejo: A veces es mejor crear un arma nueva que repararla, sobre todo de inicio.",
+    "Consejo: Coloca trampas alrededor de tu base para frenar hordas.",
+    "Consejo: Usa el arco al principio, es barato y silencioso.",
+    "Consejo: Explora ciudades para lootear mejores armas.",
+    "Consejo: Acuerdate de comer y beber. Sino morirás",
+    "Consejo: Recuerda ir a explorar diferentes biomas",
+    "Consejo: Los caramelos destruyeroca son exquisitos",
+    "Consejo: Mina con cuidado en el desierto",
+    "Consejo: Un Cafe siempre viene bien",
+    "Consejo: Si escuchas un gruñido, corre o prepárate para pelear",
+    "Consejo: Las minas pueden ser tu mejor amigo o tu peor enemigo, úsalas sabiamente",
+    "Consejo: Siempre lleva kits de reparacion",
+    "Consejo: Recuerda llevar siempre algo para curarte"
+];
+
+const tipsText = document.getElementById("tipsText");
+let lastIndex = -1;
+
+function showTip() {
+    tipsText.classList.add("fade");
+
+    setTimeout(() => {
+        let randomIndex;
+
+        do {
+            randomIndex = Math.floor(Math.random() * tips.length);
+        } while (randomIndex === lastIndex);
+
+        lastIndex = randomIndex;
+
+        tipsText.textContent = tips[randomIndex];
+        tipsText.classList.remove("fade");
+    }, 800);
+}
+
+showTip();
+setInterval(showTip, 8000);
+</script>
 
 <script src="main.js"></script>
 
@@ -67,5 +153,34 @@
     </div>
 </footer>
 
+<div id="center-alert" class="center-alert">
+    <div class="center-alert-box">
+        <span class="center-alert-icon">🔥</span>
+        <p id="center-alert-text">Reinicio del servidor en 10 minutos</p>
+        <button id="close-center-alert" class="center-alert-close">Cerrar</button>
+    </div>
+</div>
+
+<script>
+let mostrarPopup = false; // ← CAMBIA A true PARA MOSTRARLO
+
+if (!mostrarPopup) {
+    document.getElementById("center-alert").style.display = "none";
+}
+
+document.getElementById("close-center-alert").addEventListener("click", function() {
+    document.getElementById("center-alert").style.display = "none";
+});
+</script>
+
+
+<script>
+document.getElementById("close-center-alert").addEventListener("click", function() {
+    document.getElementById("center-alert").style.display = "none";
+});
+</script>
+
+
 </body>
 </html>
+
