@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Último Amanecer — Dashboard (Static)</title>
+
+    <link rel="stylesheet" href="style.css?=7">
+</head>
+
+<body class="index-page">
+
+
+<div id="loader">
+    <div class="loader-content">
+        <h1>EL ÚLTIMO AMANECER</h1>
+    </div>
+</div>
+
+<!-- Original static content preserved -->
+
+<header class="navbar">
+    <div class="logo">EL ÚLTIMO AMANECER</div>
+    <p class="nav-subtitle">Servidor PvE — Comunidad Española — 24/7</p>
+
+
+    <nav>
+    <a href="index.html">🏠 Inicio</a>
+    <a href="stats.html">📊 Estado</a>
+    <a href="ranking.html">🏅 Ranking</a>
+    <a href="mods.html">🧩 Mods</a>
+    <a href="staff.html">👥 Staff</a>
+    <a href="wipe.html">🔥 Wipe</a>
+    <a href="normas.html">📜 Normas</a>
+    <a href="nuevos.html">🎒 Guía</a>
+    <a href="bot.html">🤖 Bot</a>
+    <a href="bases.html">🏠 Bases</a>
+
+
+</nav>
+
+
+
+</header>
+
+<div class="container">
+    <h1 class="page-title"></h1>
+
+    <p class="page-subtitle-main"></p>
+
+ <!-- preserved content truncated in scaffold to keep file concise -->
+
+    <div class="grid">
+
+        <div class="card">
+            <h2>Estado del Mundo</h2>
+            <p>Día actual: <span id="day">...</span></p>
+            <p>Hora del servidor: <span id="time">...</span></p>
+            <p>Próxima horda: <span id="hordeDay">...</span></p>
+            <p>Tiempo restante: <span id="hordeIn">...</span></p>
+        </div>
+
+        <div class="card">
+            <h2>Jugadores Online</h2>
+            <p>Total: <span id="playersOnline">0</span></p>
+            <div id="playersList"></div>
+        </div>
+
+    </div>
+
+<h2 class="section-title">🏠 Bases de los Jugadores</h2>
+
+<div class="mini-slider-container">
+    <button class="mini-btn left" onclick="moveMiniSlider(-1)">❮</button>
+
+    <div class="mini-slider" id="miniSlider">
+        <img src="images/base1.jpg" alt="Base 1">
+        <img src="images/base2.jpg" alt="Base 2">
+    </div>
+
+    <button class="mini-btn right" onclick="moveMiniSlider(1)">❯</button>
+</div>
+
+<div style="text-align:center; margin-top:10px;">
+    <a href="bases.html" class="btn-bases">Galería completa</a>
+</div>
+
+<!-- Lightbox compartido -->
+<div id="lightbox" class="lightbox">
+    <span class="close" onclick="closeLightbox()">✖</span>
+    <img id="lightbox-img">
+</div>
+
+<script src="main.js"></script>
+
+<footer class="footer">
+    <div class="footer-content">
+        <p>© 2026 El Último Amanecer — Comunidad 7 Days to Die</p>
+        <div class="footer-links">
+            <a href="https://discord.gg/SaZdsmvJsg" target="_blank">💬 Discord</a>
+            <a href="https://twitter.com/Kasiri93" target="_blank">🐦 Twitter</a>
+            <a href="https://twitch.tv/Kasiri" target="_blank">🎮 Twitch</a>
+            <a href="https://www.youtube.com/@kasiri93" target="_blank">🎮 Youtube</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
