@@ -1,0 +1,55 @@
+.card {
+  background: rgba(20, 20, 20, 0.85);
+  padding: 25px;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 0, 0, 0.4);
+  box-shadow: 0 0 25px rgba(255, 0, 0, 0.35);
+  animation: fadeIn 1s ease;
+}
+
+.card h2, .card h3 {
+  color: #ff6666;
+  margin-top: 0;
+  text-shadow: 0 0 10px rgba(255, 80, 80, 0.6);
+  font-family: "Orbitron", sans-serif;
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 15px;
+    border-radius: 10px;
+  }
+
+  .card h2 {
+    font-size: 1.2rem;
+  }
+
+  .card h3 {
+    font-size: 1rem;
+  }
+
+  .card p {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+
+  .card h2 {
+    font-size: 1.1rem;
+  }
+
+  .card h3 {
+    font-size: 0.95rem;
+  }
+
+  .card p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+}
