@@ -2,99 +2,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
 
+/* ======== RESET UNIVERSAL ======== */
+* {
+    box-sizing: border-box;
+}
+
 /* ======== GLOBAL ======== */
 body {
     margin: 0;
     background: radial-gradient(circle at top, #1a0000, #000);
     color: #e6e6e6;
     font-family: "Inter", sans-serif;
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
 
-/* ======== NAVBAR ======== */
-.navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background: rgba(10, 10, 10, 0.85);
-    backdrop-filter: blur(6px);
-    border-bottom: 1px solid rgba(255, 0, 0, 0.3);
-    padding: 14px 15px 18px 15px; /* más alto */
-    display: flex;
-    flex-direction: column; /* logo arriba, menú debajo */
-    align-items: center;
-    z-index: 1000;
-}
-
-.navbar .logo {
-    font-family: "Orbitron", sans-serif;
-    font-size: 40px; 
-    letter-spacing: 1px;
-    color: #ff4d4d;
-    text-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
-    margin-bottom: 10px;
-}
-
-
-/* NAV LINKS */
-.navbar nav {
-    display: flex;
-    flex-wrap: wrap; /* permite 2 líneas si hace falta */
-    justify-content: center;
-    gap: 12px; /* más espacio entre botones */
-}
-
-.navbar a {
-    color: #ff7777;
-    text-decoration: none;
-    font-size: 1rem; /* ← MÁS GRANDE */
-    padding: 5px 8px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    white-space: nowrap;
-    transition: 0.2s;
-    font-family: "Inter", sans-serif;
-}
-
-.navbar a:hover {
-    color: #fff;
-    text-shadow: 0 0 10px red;
-}
+/* Navbar styles moved to src/components/Header/Header.scss */
 
 /* ======== CONTENEDOR ======== */
 .container {
    
     width: 90%;
     max-width: 1200px;
-    margin: 140px auto 40px auto; /* MISMO valor que el Wipe */
+    margin: 200px auto 40px auto; /* Aumentado para que no tape el navbar fixed */
     padding-top: 0; /* ya no hace falta */
+    box-sizing: border-box;
 
 }
 
 
 
 
-/* ======== TÍTULO ======== */
-.page-title {
-    text-align: center;
-    color: #ff3b3b;
-    font-size: 40px;
-    font-weight: 900;
-    padding: 0px;
-    text-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
-    font-family: "Orbitron", sans-serif;
-}
-
-
-.page-subtitle-main {
-    text-align: center;
-    font-size: 20px;
-    color: #ccc;
-    margin-top: -5px;
-    margin-bottom: 20px;
-    opacity: 0.9;
-    padding: 20px;
-}
+/* Page header styles moved to src/components/PageHeader/PageHeader.scss */
 
 
 
@@ -106,22 +45,7 @@ body {
     gap: 25px;
 }
 
-/* ======== TARJETAS ======== */
-.card {
-    background: rgba(20, 20, 20, 0.85);
-    padding: 25px;
-    border-radius: 15px;
-    border: 1px solid rgba(255, 0, 0, 0.4);
-    box-shadow: 0 0 25px rgba(255, 0, 0, 0.35);
-    animation: fadeIn 1s ease;
-}
-
-.card h2 {
-    color: #ff6666;
-    margin-top: 0;
-    text-shadow: 0 0 10px rgba(255, 80, 80, 0.6);
-    font-family: "Orbitron", sans-serif;
-}
+/* Card styles moved to src/components/Card/Card.scss */
 
 /* ======== TABLAS ======== */
 .table {
@@ -142,54 +66,10 @@ body {
     font-weight: 600;
 }
 
-/* ======== FOOTER ======== */
-.footer {
-    margin-top: 40px;
-    padding: 20px 10px;
-    text-align: center;
-    background: rgba(10, 10, 10, 0.5);
-    border-top: 1px solid rgba(255, 0, 0, 0.3);
-}
-
-.footer-content {
-    max-width: 900px;
-    margin: auto;
-}
-
-.footer p {
-    margin: 0;
-    color: #bbb;
-    font-size: 0.8rem;
-}
-
-.footer-links {
-    margin-top: 8px;
-}
-
-.footer-links a {
-    margin: 0 8px;
-    color: #ff6666;
-    text-decoration: none;
-    font-size: 0.9rem;
-    transition: 0.2s;
-}
-
-.footer-links a:hover {
-    color: #fff;
-    text-shadow: 0 0 8px red;
-}
+/* Footer styles moved to src/components/Footer/Footer.scss */
 
 /* ======== RESPONSIVE ======== */
-@media (max-width: 850px) {
-    .navbar .logo {
-        font-size: 1.4rem;
-    }
-
-    .navbar a {
-        font-size: 0.85rem;
-        padding: 4px 6px;
-    }
-}
+/* Navbar responsive rules moved to src/components/Header/Header.scss (@media 850px) */
 
 /* ======== ANIMACIONES ======== */
 @keyframes fadeIn {
@@ -217,14 +97,7 @@ body {
     margin-bottom: 15px;
 }
 
-/* Títulos de sección */
-.section-title {
-    color: #ff6666;
-    font-size: 1.3rem;
-    margin-top: 25px;
-    margin-bottom: 10px;
-    text-shadow: 0 0 10px rgba(255,0,0,0.5);
-}
+/* section-title moved to src/components/SectionTitle/SectionTitle.scss */
 
 /* Separador bonito sin imágenes rotas */
 .bloody-separator {
@@ -243,37 +116,7 @@ body {
 }
 
 
-/* ======== MODS PAGE ======== */
-
-.mods-card {
-    padding: 25px 30px;
-}
-
-.mods-download {
-    font-size: 1.1rem;
-    margin-bottom: 25px;
-}
-
-.mod-item {
-    margin-bottom: 22px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid rgba(255, 0, 0, 0.25);
-}
-
-.mod-item:last-child {
-    border-bottom: none;
-}
-
-.mod-item a {
-    color: #ff6666;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.mod-item a:hover {
-    color: #ffffff;
-    text-shadow: 0 0 8px red;
-}
+/* Mods-specific styles moved to src/components/ModItem/ModItem.scss */
 
 /* Agradecimientos */
 .thanks-card {
@@ -385,6 +228,27 @@ body {
     font-weight: bold;
 }
 
+.retry-btn {
+    margin-top: 10px;
+    background: #ff4d4d;
+    border: 0;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.retry-btn:hover {
+    background: #ff6666;
+}
+
+.retry-btn:disabled {
+    background: #7a3a3a;
+    cursor: not-allowed;
+    opacity: 0.75;
+}
+
 .code {
     background: #1a1a1a;
     padding: 6px 10px;
@@ -481,14 +345,7 @@ body {
 }
 
 
-.card {
-    background: rgba(20, 20, 20, 0.85);
-    padding: 25px;
-    border-radius: 15px;
-    border: 1px solid rgba(255, 0, 0, 0.4);
-    box-shadow: 0 0 25px rgba(255, 0, 0, 0.35);
-    animation: fadeIn 1s ease;
-}
+/* Card styles moved to src/components/Card/Card.scss */
 
 .staff-row {
     display: flex;
@@ -525,9 +382,10 @@ body {
 
 .tips-banner {
     width: 100%;
+    box-sizing: border-box;
     background: rgba(255, 0, 0, 0.25);
     border: 1px solid rgba(255, 0, 0, 0.5);
-    padding: 15px;
+    padding: 15px 20px;
     margin: 20px 0;
     border-radius: 10px;
     text-align: center;
@@ -636,6 +494,25 @@ body {
     color: white;
     cursor: pointer;
 }
+
+.lightbox .nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.08);
+    border: none;
+    color: #fff;
+    font-size: 36px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 10000;
+}
+
+.lightbox .nav-btn.prev { left: 18px }
+.lightbox .nav-btn.next { right: 18px }
+
+.lightbox .nav-btn:hover { background: rgba(255,255,255,0.12) }
 
 /* Mini slider */
 .mini-slider-container {
@@ -903,10 +780,324 @@ body.index-page .page-title {
     text-shadow: 0 0 6px rgba(255,0,0,0.6);
 }
 
-.cards-container {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+/* ======== RESPONSIVE - TABLETS Y MÓVILES (max-width: 768px) ======== */
+@media (max-width: 768px) {
+    /* Navbar responsive rules moved to src/components/Header/Header.scss (@media 768px) */
+
+    /* CONTENEDOR */
+    .container {
+        margin: 160px auto 30px auto;
+        width: 95%;
+    }
+
+    /* TÍTULOS */
+    .page-title {
+        font-size: 28px;
+        padding: 10px;
+    }
+
+    .page-subtitle-main {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    /* GRID */
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    /* Card responsive moved to src/components/Card/Card.scss */
+
+    /* Card typography responsive moved to src/components/Card/Card.scss */
+
+    /* TABLAS */
+    .table {
+        font-size: 0.85rem;
+    }
+
+    .table th, .table td {
+        padding: 8px 5px;
+    }
+
+    /* Footer responsive rules moved to src/components/Footer/Footer.scss */
+
+    /* Section title responsive moved to src/components/SectionTitle/SectionTitle.scss */
+
+    /* TIPS BANNER */
+    .tips-banner {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 12px 15px;
+        margin: 15px 0;
+        font-size: 0.95rem;
+    }
+
+    .tips-text {
+        font-size: 0.95rem;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    /* ANIMACIONES - REDUCIR EN MÓVIL */
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to   { opacity: 1; }
+    }
+
+    /* ESPECIALES */
+    .wipe-wrapper .card {
+        max-width: 100%;
+    }
+
+    .consejo-card {
+        padding: 12px;
+        margin: 10px 0;
+    }
+
+    .cards-container {
+        gap: 10px;
+    }
+
+    /* SLIDER */
+    .slider {
+        height: 200px;
+    }
+
+    .slider-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
+
+    /* COPY BOX */
+    .copy-box {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .copy-box button {
+        width: 100%;
+    }
+
+    /* TARJETAS STAFF */
+    .staff-row {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    }
+
+    .staff-card {
+        padding: 10px;
+    }
+
+    .staff-avatar {
+        width: 80px;
+        height: 80px;
+    }
+
+    .staff-card h3 {
+        font-size: 0.9rem;
+    }
+
+    .staff-card p {
+        font-size: 0.8rem;
+    }
+
+    /* PODIO */
+    .podio-container {
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .podio-item {
+        width: 90px;
+    }
+
+    .podio-item .puesto {
+        font-size: 2rem;
+    }
+
+    .podio-item .nombre {
+        font-size: 0.8rem;
+    }
+
+    .podio-item .nivel {
+        font-size: 0.75rem;
+    }
+}
+
+/* ======== RESPONSIVE - MÓVILES PEQUEÑOS (max-width: 480px) ======== */
+@media (max-width: 480px) {
+    /* Navbar responsive rules moved to src/components/Header/Header.scss (@media 480px) */
+
+    /* CONTENEDOR */
+    .container {
+        margin: 140px auto 20px auto;
+        width: 98%;
+    }
+
+    /* TÍTULOS */
+    .page-title {
+        font-size: 22px;
+        padding: 5px;
+    }
+
+    .page-subtitle-main {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    /* Card responsive moved to src/components/Card/Card.scss */
+
+    /* Card typography responsive moved to src/components/Card/Card.scss */
+
+    /* TABLAS */
+    .table {
+        font-size: 0.75rem;
+    }
+
+    .table th, .table td {
+        padding: 6px 3px;
+    }
+
+    /* Footer responsive moved to src/components/Footer/Footer.scss */
+
+    /* Section title responsive moved to src/components/SectionTitle/SectionTitle.scss */
+
+    /* TIPS BANNER */
+    .tips-banner {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 10px 12px;
+        margin: 12px 0;
+        font-size: 0.85rem;
+        border-radius: 6px;
+    }
+
+    .tips-text {
+        font-size: 0.85rem;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    /* ESPECIALES */
+    .wipe-wrapper {
+        width: 100%;
+    }
+
+    .wipe-wrapper .card {
+        max-width: 100%;
+        margin-bottom: 12px;
+    }
+
+    .consejo-card {
+        padding: 10px;
+        margin: 8px 0;
+        font-size: 0.9rem;
+    }
+
+    /* SLIDER */
+    .slider {
+        height: auto;
+    }
+
+    .slide-text {
+        font-size: 0.8rem;
+    }
+
+    .slider-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+    }
+
+    /* COPY BOX */
+    .copy-box {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .copy-box button {
+        width: 100%;
+        font-size: 0.85rem;
+        padding: 8px;
+    }
+
+    /* TARJETAS STAFF */
+    .staff-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .staff-card {
+        padding: 8px;
+    }
+
+    .staff-avatar {
+        width: 60px;
+        height: 60px;
+    }
+
+    .staff-card h3 {
+        font-size: 0.8rem;
+    }
+
+    .staff-card p {
+        font-size: 0.7rem;
+    }
+
+    .twitch-btn {
+        font-size: 0.75rem;
+        padding: 4px 8px;
+    }
+
+    /* PODIO */
+    .podio-container {
+        flex-direction: row;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 15px;
+    }
+
+    .podio-item {
+        width: 80px;
+    }
+
+    .podio-item .puesto {
+        font-size: 1.8rem;
+    }
+
+    .podio-item .nombre {
+        font-size: 0.75rem;
+    }
+
+    .podio-item .nivel {
+        font-size: 0.7rem;
+    }
+
+    /* LISTAS */
+    ul, ol {
+        padding-left: 18px;
+        margin: 8px 0;
+    }
+
+    li {
+        margin: 4px 0;
+    }
+
+    /* ALERTA */
+    .alert-red {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    /* QUOTE */
+    .wipe-quote-small {
+        padding: 10px;
+        font-size: 0.9rem;
+        margin-top: 15px;
+    }
 }
 
 

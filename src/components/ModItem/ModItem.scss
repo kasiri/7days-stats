@@ -1,0 +1,28 @@
+.mod-item {
+  margin-bottom: 22px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 0, 0, 0.25);
+}
+
+.mod-item:last-child {
+  border-bottom: none;
+}
+
+.mod-item a {
+  color: #ff6666;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.mod-item a:hover {
+  color: #ffffff;
+  text-shadow: 0 0 8px red;
+}
+
+.mods-card {
+  padding: 25px 30px;
+}
+.mods-download {
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+}
