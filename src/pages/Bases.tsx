@@ -3,6 +3,9 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useRef, useState, useEffect } from "react";
 import PageHeader from "../components/PageHeader";
+import base1 from "@/images/base1.jpg";
+import base2 from "@/images/base2.jpg";
+
 
 function useSlider(
   sliderRef: React.RefObject<HTMLDivElement | null>,
@@ -29,14 +32,11 @@ export default function Bases(): React.ReactElement {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const { move } = useSlider(sliderRef);
 
-  const images = [
-    { src: "images/base1.jpg", alt: "Base 1", caption: "Base de OQ49" },
-    {
-      src: "images/base2.jpg",
-      alt: "Base 2",
-      caption: "Base de CalvoTeam primer server",
-    },
-  ];
+  const images = [ 
+    { src: base1, alt: "Base 1", caption: "Base de OQ49" }, 
+    { src: base2, alt: "Base 2", caption: "Base de CalvoTeam primer server", },
+];
+
 
   useEffect(() => {
     // lock scroll when lightbox is open

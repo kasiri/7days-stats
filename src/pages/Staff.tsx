@@ -6,8 +6,6 @@ export default function Staff(): React.ReactElement {
     <div className="container">
       <PageHeader title="Equipo del Servidor" />
 
-      <h2 className="section-title">Administración</h2>
-
       <div className="staff-row">
         <div className="staff-card">
           <a

@@ -3,9 +3,12 @@ import useRotatingTip from "../hooks/useRotatingTip";
 import useStats from "../hooks/useStats";
 import Card from "../components/Card";
 import SectionTitle from "../components/SectionTitle";
-import PageHeader from "../components/PageHeader";
+//import PageHeader from "../components/PageHeader";
 import Loader from "../components/Loader";
 import { DEFAULT_TIPS } from "@/config/tips";
+import base1 from "@/images/base1.jpg";
+import base2 from "@/images/base2.jpg";
+
 
 export default function Home(): React.ReactElement {
   const tip = useRotatingTip(DEFAULT_TIPS, 8000);
@@ -14,9 +17,7 @@ export default function Home(): React.ReactElement {
   return (
     <div>
       <div className="container">
-        <PageHeader title="EL ÚLTIMO AMANECER" />
         <p className="page-subtitle-main"></p>
-
         <div className="tips-banner">
           <div className="tips-text">{tip}</div>
         </div>
@@ -95,10 +96,17 @@ export default function Home(): React.ReactElement {
 
         <div className="mini-slider-container">
           <div className="mini-slider" id="miniSlider">
-            <img src="images/base1.jpg" alt="Base 1" />
-            <img src="images/base2.jpg" alt="Base 2" />
+            <img src={base1} alt="Base 1" />
+            <img src={base2} alt="Base 2" />
           </div>
         </div>
+
+        <div className="bases-button-container">
+          <a href="#/bases" className="bases-button">
+          Ver galería completa →
+          </a>
+
+</div>
       </div>
     </div>
   );
