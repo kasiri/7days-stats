@@ -60,13 +60,26 @@ export default function Nuevos(): React.ReactElement {
       <div className="cards-container">
         <Card className="consejo-card">
           <h3>📘 Completa el tutorial inicial</h3>
-          <p>Te da herramientas básicas...</p>
+          <p> Coloca tu cama</p>
+          <p> Reúne materiales básicos</p>
+          <p> Fabrica tus primeras herramientas</p>
+          <p> Busca un refugio para la noche</p>
         </Card>
         <Card className="consejo-card">
-          <h3>🏠 No uses tu primera casa como base de horda</h3>
+          <h3>🏠 No uses tu primera casa como base de hkaorda</h3>
+          <p> Las hordas ocurren cada <strong>7 días</strong></p>
+          <p> La dificultad aumenta con el tiempo</p>
+          <p> Recomendamos tener base antes del Día 7</p>
+          <p> Puedes ver el tiempo restante en el Dashboard</p>
         </Card>
         <Card className="consejo-card">
           <h3>🧱 Construye una base sencilla al principio</h3>
+          <p> Evita ciudades grandes los primeros días</p>
+          <p> No construyas en ningún bioma que no sea bosque de pino de inicio</p>
+          <p> Guarda munición para la horda</p>
+          <p> Juega con amigos para avanzar más rápido</p>
+          <p> El servidor está en una dificultad más alta que lo normal, no te preocupes si mueres</p>
+          <p> Si necesitas ayuda, pídela</p>
         </Card>
       </div>
     </div>

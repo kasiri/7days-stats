@@ -4,6 +4,7 @@ import Card from "../components/Card";
 import FeatureList from "../components/FeatureList";
 import SectionContent from "../components/SectionContent";
 import PageHeader from "../components/PageHeader";
+//import SectionTitle from "../components/SectionTitle";
 
 export default function Wipe(): React.ReactElement {
   const countdown = useCountdown("2026-03-13T00:00:00");
@@ -11,6 +12,7 @@ export default function Wipe(): React.ReactElement {
   return (
     <div className="wipe-wrapper">
       <PageHeader title="🔥 Wipe del Servidor" />
+      
 
       <Card className="wipe-small-card">
         <h2>📅 Próximo Wipe</h2>
@@ -31,7 +33,7 @@ export default function Wipe(): React.ReactElement {
           <FeatureList
             items={[
               "🌍 Mapa completamente limpio",
-              "🏚️ Bases desde cero",
+              "🏠 Bases desde cero",
               "⚙️ Ajustes de dificultad mejorados",
             ]}
           />
