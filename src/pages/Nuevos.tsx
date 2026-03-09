@@ -49,34 +49,31 @@ export default function Nuevos(): React.ReactElement {
 
       <div className="bloody-separator"></div>
 
-{/* PUNTO 1 */}
-<SectionTitle>🛠️ Preparativos Antes de Entrar</SectionTitle>
-<SectionContent>
-  <div className="survival-card-red no-bullets">
-    <p>
-      Antes de poner un pie en este mundo devastado, debes asegurarte de que tu equipo
-      está listo. Un superviviente mal preparado no dura mucho ahí fuera.
-    </p>
+      {/* PUNTO 1 */}
+      <SectionTitle>🛠️ Preparativos Antes de Entrar</SectionTitle>
+      <SectionContent className="no-gap">
+        <div className="survival-card-red no-bullets">
+          <p>
+            Antes de poner un pie en este mundo devastado, debes asegurarte de que tu equipo
+            está listo. Un superviviente mal preparado no dura mucho ahí fuera.
+          </p>
 
-    <p><strong>1. Instalación de Mods (OBLIGATORIO)</strong></p>
-    <ul>
-      <li>
-        Descarga los mods desde aquí:{" "}
-        <Link to="/mods">🧩 Página de Mods</Link>
-      </li>
-      <li>
-        Extrae la carpeta <strong>Mods</strong> en la ruta de instalación del juego.
-      </li>
-    </ul>
+          <p><strong>1. Instalación de Mods (OBLIGATORIO)</strong></p>
+          <ul>
+            <li>
+              Descarga los mods desde aquí:{" "}
+              <Link to="/mods">🧩 Página de Mods</Link>
+            </li>
+            <li>
+              Extrae la carpeta <strong>Mods</strong> en la ruta de instalación del juego (Desde steam, en vuestra biblioteca buscad el 7 days - Click derecho - Administrar - Ver archivos locales, y copias el contenido del archivo (extraído) en la carpeta mods).
+            </li>
+          </ul>
 
-    <p>
-      Solo entonces estarás preparado para cruzar la frontera hacia El Último Amanecer.
-    </p>
-  </div>
-</SectionContent>
-
-
-
+          <p>
+            Solo entonces estarás preparado para cruzar la frontera hacia El Último Amanecer.
+          </p>
+        </div>
+      </SectionContent>
 
       <div className="bloody-separator"></div>
 
@@ -111,111 +108,113 @@ export default function Nuevos(): React.ReactElement {
 
       <div className="bloody-separator"></div>
 
-      {/* PUNTO 3 */}
-<SectionTitle>🔥 Lecciones para Sobrevivir</SectionTitle>
-<SectionContent>
-  <p>
-    El mundo que estás a punto de recorrer no perdona errores.  
-    Aprende estas lecciones y vivirás un día más.
-  </p>
+      {/* PUNTO 3 — TARJETAS NUEVAS SIN HUECO */}
+      <SectionTitle>🔥 Lecciones para Sobrevivir</SectionTitle>
 
-  <div className="staff-row">
+      <SectionContent>
+        <p>
+          El mundo que estás a punto de recorrer no perdona errores.  
+          Aprende estas lecciones y vivirás un día más.
+        </p>
 
-    <div className="staff-card no-bullets">
-      <h3>📘 Completa el Tutorial Inicial</h3>
-      <ul>
-        <li>Coloca tu cama para fijar tu punto de respawn.</li>
-        <li>Reúne materiales básicos: madera, piedra y fibra.</li>
-        <li>Fabrica tus primeras herramientas.</li>
-        <li>Busca un refugio para pasar la primera noche.</li>
-      </ul>
-    </div>
+        <div className="staff-row">
 
-    <div className="staff-card no-bullets">
-      <h3>🏠 No Uses tu Primera Casa como Base de Horda</h3>
-      <ul>
-        <li>Las hordas ocurren cada 7 días.</li>
-        <li>La dificultad aumenta con el tiempo.</li>
-        <li>Recomendamos tener una base lista antes del Día 7.</li>
-        <li>Puedes ver el tiempo restante en el Dashboard.</li>
-      </ul>
-    </div>
+          <div className="lesson-card no-bullets">
+            <h3>📘 Completa el Tutorial Inicial</h3>
+            <ul>
+              <li>Coloca tu cama para fijar tu punto de respawn.</li>
+              <li>Reúne materiales básicos: madera, piedra y fibra.</li>
+              <li>Fabrica tus primeras herramientas.</li>
+              <li>Busca un refugio para pasar la primera noche.</li>
+            </ul>
+          </div>
 
-    <div className="staff-card no-bullets">
-      <h3>🧱 Construye una Base Sencilla al Principio</h3>
-      <ul>
-        <li>Evita ciudades grandes los primeros días.</li>
-        <li>No construyas en ningún bioma que no sea el bosque de pino inicial.</li>
-        <li>Guarda munición para la horda.</li>
-        <li>Juega con amigos para avanzar más rápido.</li>
-        <li>El servidor tiene una dificultad más alta de lo normal: no te preocupes si mueres.</li>
-        <li>Si necesitas ayuda, pídela. La comunidad está para apoyarte.</li>
-      </ul>
-    </div>
+          <div className="lesson-card no-bullets">
+            <h3>🏠 No Uses tu Primera Casa como Base de Horda</h3>
+            <ul>
+              <li>Las hordas ocurren cada 7 días.</li>
+              <li>La dificultad aumenta con el tiempo.</li>
+              <li>Recomendamos tener una base lista antes del Día 7.</li>
+              <li>Puedes ver el tiempo restante en el Dashboard.</li>
+            </ul>
+          </div>
 
-  </div>
+          <div className="lesson-card no-bullets">
+            <h3>🧱 Construye una Base Sencilla al Principio</h3>
+            <ul>
+              <li>Evita ciudades grandes los primeros días.</li>
+              <li>No construyas en ningún bioma que no sea el bosque de pino inicial.</li>
+              <li>Guarda munición para la horda.</li>
+              <li>Juega con amigos para avanzar más rápido.</li>
+              <li>El servidor tiene una dificultad más alta de lo normal: no te preocupes si mueres.</li>
+              <li>Si necesitas ayuda, pídela. La comunidad está para apoyarte.</li>
+            </ul>
+          </div>
 
+        </div>
+
+        {/* BLOQUE ÉPICO FINAL */}
         <div className="epic-block-container">
-  <div className="epic-block-line"></div>
+          <div className="epic-block-line"></div>
 
-  <div className="epic-block-content no-bullets">
+          <div className="epic-block-content no-bullets">
 
-    <h3>🩸 La Sangre Llama a la Sangre</h3>
-    <ul>
-      <li>Los zombis te escuchan, te huelen y te sienten.</li>
-      <li>Evita hacer ruido innecesario.</li>
-      <li>Las armas de fuego atraen más problemas de los que resuelven.</li>
-      <li>Cierra siempre las puertas detrás de ti.</li>
-    </ul>
+            <h3>🩸 La Sangre Llama a la Sangre</h3>
+            <ul>
+              <li>Los zombis te escuchan, te huelen y te sienten.</li>
+              <li>Evita hacer ruido innecesario.</li>
+              <li>Las armas de fuego atraen más problemas de los que resuelven.</li>
+              <li>Cierra siempre las puertas detrás de ti.</li>
+            </ul>
 
-    <h3>🌑 La Noche No Es Tu Aliada</h3>
-    <ul>
-      <li>Quédate bajo techo siempre que puedas.</li>
-      <li>Si debes salir, muévete despacio y sin luz.</li>
-    </ul>
+            <h3>🌑 La Noche No Es Tu Aliada</h3>
+            <ul>
+              <li>Quédate bajo techo siempre que puedas.</li>
+              <li>Si debes salir, muévete despacio y sin luz.</li>
+            </ul>
 
-    <h3>🧭 El Mapa Es Tu Mejor Amigo</h3>
-    <ul>
-      <li>Marca traders, refugios y zonas de loot.</li>
-      <li>No te alejes sin provisiones.</li>
-      <li>Perderse es morir lentamente.</li>
-    </ul>
+            <h3>🧭 El Mapa Es Tu Mejor Amigo</h3>
+            <ul>
+              <li>Marca traders, refugios y zonas de loot.</li>
+              <li>No te alejes sin provisiones.</li>
+              <li>Perderse es morir lentamente.</li>
+            </ul>
 
-    <h3>🔧 Repara, Repara, Repara</h3>
-    <ul>
-      <li>Una herramienta rota no sirve para nada.</li>
-      <li>Un arma rota te mata más rápido que un zombi.</li>
-    </ul>
+            <h3>🔧 Repara, Repara, Repara</h3>
+            <ul>
+              <li>Una herramienta rota no sirve para nada.</li>
+              <li>Un arma rota te mata más rápido que un zombi.</li>
+            </ul>
 
-    <h3>🧱 Construye con Cabeza</h3>
-    <ul>
-      <li>Refuerza esquinas y puertas.</li>
-      <li>Una trampa bien colocada vale más que diez muros.</li>
-    </ul>
+            <h3>🧱 Construye con Cabeza</h3>
+            <ul>
+              <li>Refuerza esquinas y puertas.</li>
+              <li>Una trampa bien colocada vale más que diez muros.</li>
+            </ul>
 
-    <h3>🧪 La Enfermedad También Mata</h3>
-    <ul>
-      <li>Lleva antibióticos o miel, vendas y agua limpia.</li>
-      <li>No comas nada que no reconozcas.</li>
-      <li>Si te infectas, actúa rápido...</li>
-    </ul>
+            <h3>🧪 La Enfermedad También Mata</h3>
+            <ul>
+              <li>Lleva antibióticos o miel, vendas y agua limpia.</li>
+              <li>No comas nada que no reconozcas.</li>
+              <li>Si te infectas, actúa rápido...</li>
+            </ul>
 
-    <h3>🧍‍♀️ No Estás Sola</h3>
-    <ul>
-      <li>Pide ayuda cuando la necesites.</li>
-      <li>Comparte recursos si te sobran.</li>
-      <li>Un aliado vale más que cien balas.</li>
-    </ul>
+            <h3>🧍‍♀️ No Estás Sola</h3>
+            <ul>
+              <li>Pide ayuda cuando la necesites.</li>
+              <li>Comparte recursos si te sobran.</li>
+              <li>Un aliado vale más que cien balas.</li>
+            </ul>
 
-    <p>
-      Estas no son simples recomendaciones.  
-      Son las reglas no escritas que mantienen con vida a quienes caminan bajo este cielo rojo.
-    </p>
+            <p>
+              Estas no son simples recomendaciones.  
+              Son las reglas no escritas que mantienen con vida a quienes caminan bajo este cielo rojo.
+            </p>
 
-  </div>
+          </div>
 
-  <div className="epic-block-line"></div>
-</div>
+          <div className="epic-block-line"></div>
+        </div>
 
       </SectionContent>
     </div>
