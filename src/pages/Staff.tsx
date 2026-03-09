@@ -93,6 +93,38 @@ export default function Staff(): React.ReactElement {
           <p>Moderador</p>
         </div>
       </div>
+
+      {/* BLOQUE ÉPICO */}
+      <div className="epic-block-container">
+        <div className="epic-block-line"></div>
+
+        <div className="epic-block-content">
+          <h3>💗 Agradecimiento Especial</h3>
+
+          <p>
+            Este proyecto no solo está construido con código, sino con personas que aportan
+            su tiempo, su energía y su pasión.
+          </p>
+
+          <p>
+            Por eso queremos dar las gracias a <strong>Kheile</strong>, cuya ayuda en la
+            administración de la web ha sido esencial.
+          </p>
+
+          <p>
+            Ha hecho que todo sea más fácil, ha resuelto problemas antes de que aparecieran
+            y ha compartido conocimientos que nos han permitido crecer.
+          </p>
+
+          <p>
+            Gracias por tu dedicación, tu apoyo y por enseñarnos tanto.  
+            Este amanecer es un poco más brillante gracias a ti.
+          </p>
+        </div>
+
+        <div className="epic-block-line"></div>
+      </div>
+
     </div>
   );
 }
