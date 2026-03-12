@@ -77,11 +77,11 @@ export default function Normas(): React.ReactElement {
         <SectionTitle>🌍 MUNDO</SectionTitle><SectionContent>
           <ul>
             <li>Tipo: RWG</li>
-            <li>Nombre: <strong>WestDepowukuTerritory</strong></li>
-            <li>Seed: <strong>KazurriMeoFran</strong></li>
+            <li>Nombre: <strong>Disire Valley</strong></li>
+            <li>Seed: <strong>perotiooo</strong></li>
             <li>Tamaño: 6144</li>
             <li>Modo: Supervivencia</li>
-            <li>Dificultad: Nomad</li>
+            <li>Dificultad: Guerrero</li>
           </ul>
         </SectionContent>
 

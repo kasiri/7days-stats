@@ -39,7 +39,22 @@ export default function Mods(): React.ReactElement {
         >
           Evita que se consuma todo el combustible cuando no hay nada en cola
         </ModItem>
+
+        <ModItem
+          title="Locks Mod"
+          href="https://7daystodiemods.com/locks-mod/"
+        >
+          Minijuego para abrir las ganzúas de cajas fuertes, puertas..
+        </ModItem>
+
+        <ModItem
+          title="SphereII Mods"
+          href="https://7daystodiemods.com/sphereiis-mods/"
+        >
+          Dependencia para que funcione el Locks Mod
+        </ModItem>
       </Card>
+
 
       <Card className="thanks-card">
         <h2>💖 Agradecimientos</h2>

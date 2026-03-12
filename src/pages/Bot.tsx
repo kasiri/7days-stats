@@ -40,6 +40,13 @@ export default function Bot(): React.ReactElement {
           <li>
             <strong>!stats</strong> - Muestra las estadísticas del servidor
           </li>
+          <li><strong>!mods</strong> - Muestra las estadísticas del servidor</li>
+          <li><strong>!wipe</strong> - Anuncia el próximo wipe del servidor</li>
+          <li><strong>!clips</strong> - Muestra un clip aleatorio de 7 Days del canal de Kasiri</li>
+          <li><strong>!news</strong> - Muestra las ultimas actualizaciones del bot</li>
+          <li><strong>!staff</strong> - Muestra el equipo del servidor</li>
+          <li><strong>!web</strong> - Muestra el enlace a las estadísticas en tiempo real</li>
+          <li><strong>!creditos</strong> - Muestra los créditos del desarrollador</li>
         </ul>
       </div>
 
@@ -47,7 +54,6 @@ export default function Bot(): React.ReactElement {
         <h2>🔧 Próximas mejoras del bot</h2>
         <ul>
           <li>📡 Alertas automáticas de hordas</li>
-          <li>📊 Estadísticas avanzadas por jugador</li>
           <li>⏳ Contador de tiempo para el próximo wipe</li>
         </ul>
       </div>
