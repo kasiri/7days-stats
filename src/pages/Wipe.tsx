@@ -7,7 +7,7 @@ import PageHeader from "../components/PageHeader";
 //import SectionTitle from "../components/SectionTitle";
 
 export default function Wipe(): React.ReactElement {
-  const countdown = useCountdown("2026-03-13T00:00:00");
+  const countdown = useCountdown("2026-03-13T19:00:00");
 
   return (
     <div className="wipe-wrapper">
