@@ -7,7 +7,7 @@ import PageHeader from "../components/PageHeader";
 //import SectionTitle from "../components/SectionTitle";
 
 export default function Wipe(): React.ReactElement {
-  const countdown = useCountdown("2026-03-13T00:00:00");
+  const countdown = useCountdown("2026-04-04T18:00:00");
 
   return (
     <div className="wipe-wrapper">
@@ -17,7 +17,7 @@ export default function Wipe(): React.ReactElement {
       <Card className="wipe-small-card">
         <h2>📅 Próximo Wipe</h2>
         <SectionContent>
-          <p className="wipe-date">13 de marzo de 2026</p>
+          <p className="wipe-date">4 de abril de 2026</p>
           <p>Un nuevo mundo está por comenzar.</p>
         </SectionContent>
       </Card>
@@ -32,16 +32,17 @@ export default function Wipe(): React.ReactElement {
         <SectionContent>
           <FeatureList
             items={[
-              "🌍 Mapa completamente limpio",
-              "🏠 Bases desde cero",
-              "⚙️ Ajustes de dificultad mejorados",
+              "🌍 Mapa completamente nuevo, diferente..",
+              "🏠 Bases desde cero con diferentes eventos.",
+              "⚙️ Ajustes de dificultad mejorados.",
+              "🎉 Nuevos eventos especiales y dinámicos durante lo que dure el server."
             ]}
           />
         </SectionContent>
       </Card>
 
       <div className="wipe-quote-small">
-        <p>“Cada Wipe es una nueva oportunidad para sobrevivir.”</p>
+        <p>“Recuerda que cada wipe es una nueva oportunidad para sobrevivir.”</p>
       </div>
     </div>
   );

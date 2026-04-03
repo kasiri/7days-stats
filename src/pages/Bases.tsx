@@ -3,9 +3,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useRef, useState, useEffect } from "react";
 import PageHeader from "../components/PageHeader";
-import base1 from "@/images/base1.jpg";
-import base2 from "@/images/base2.jpg";
-
+import { images } from "@/data/images";
 
 function useSlider(
   sliderRef: React.RefObject<HTMLDivElement | null>,
@@ -32,14 +30,7 @@ export default function Bases(): React.ReactElement {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const { move } = useSlider(sliderRef);
 
-  const images = [ 
-    { src: base1, alt: "Base 1", caption: "Base de OQ49" }, 
-    { src: base2, alt: "Base 2", caption: "Base de CalvoTeam primer server", },
-];
-
-
   useEffect(() => {
-    // lock scroll when lightbox is open
     if (lightboxIndex !== null) {
       const prev = document.body.style.overflow;
       document.body.style.overflow = "hidden";
@@ -47,7 +38,6 @@ export default function Bases(): React.ReactElement {
         document.body.style.overflow = prev;
       };
     }
-    return;
   }, [lightboxIndex]);
 
   useEffect(() => {
@@ -60,9 +50,8 @@ export default function Bases(): React.ReactElement {
     }
     if (lightboxIndex !== null) window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [lightboxIndex, images.length]);
+  }, [lightboxIndex]);
 
-  // touch swipe
   useEffect(() => {
     let startX: number | null = null;
     function onTouchStart(e: TouchEvent) {
@@ -88,7 +77,7 @@ export default function Bases(): React.ReactElement {
       window.removeEventListener("touchstart", onTouchStart);
       window.removeEventListener("touchend", onTouchEnd);
     };
-  }, [lightboxIndex, images.length]);
+  }, [lightboxIndex]);
 
   function openLightbox(idx: number) {
     setLightboxIndex(idx);
