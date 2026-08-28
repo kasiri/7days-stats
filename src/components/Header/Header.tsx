@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Header.scss";
 
@@ -15,18 +15,26 @@ const routes = [
   { to: "/bases", label: "Bases" },
 ];
 
-export default function Header(): React.ReactElement {
+export default function Header() {
+  const [open, setOpen] = useState(false);
+
   return (
-    <header className="navbar">
-      <div className="logo">EL ÚLTIMO AMANECER</div>
-      <p className="nav-subtitle">Servidor PvE — Comunidad Española — 24/7</p>
-      <nav>
-        {routes.map((r) => (
-          <Link key={r.to} to={r.to} style={{ marginRight: 10 }}>
-            {r.label}
-          </Link>
-        ))}
-      </nav>
+    <header className="navbar-7dtd">
+      <div className="navbar-inner">
+        <div className="logo">EL ÚLTIMO AMANECER</div>
+
+        <button className="menu-toggle" onClick={() => setOpen(!open)}>
+          ☰
+        </button>
+
+        <nav className={`nav-links ${open ? "open" : ""}`}>
+          {routes.map((r) => (
+            <Link key={r.to} to={r.to}>
+              {r.label}
+            </Link>
+          ))}
+        </nav>
+      </div>
     </header>
   );
 }

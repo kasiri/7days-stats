@@ -6,7 +6,10 @@ export default function Staff(): React.ReactElement {
     <div className="container">
       <PageHeader title="Equipo del Servidor" />
 
+      {/* FILA 1: Kasiri, Wil, OQ49 */}
       <div className="staff-row">
+
+        {/* KASIRI */}
         <div className="staff-card">
           <a
             href="https://steamcommunity.com/id/kasiri93/"
@@ -20,21 +23,51 @@ export default function Staff(): React.ReactElement {
             />
           </a>
           <h3>👑 Kasiri</h3>
-          <p>
-            Owner — Administración - Mantenimiento Técnico y Web - Moderador
-          </p>
+          <p>Owner — Administración - Mantenimiento Técnico y Web - Gestión de Mods - Moderador</p>
+
           <div className="twitch-center">
             <a
               href="https://twitch.tv/Kasiri"
               target="_blank"
               rel="noreferrer"
-              className="twitch-btn"
+              className="twitch-hero-btn"
             >
               🎮 Twitch
             </a>
           </div>
         </div>
 
+        {/* WIL */}
+        <div className="staff-card">
+          <a
+            href="https://steamcommunity.com/profiles/76561199558741084"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              src="https://avatars.akamai.steamstatic.com/55aaff30ed1c667d100b83dfa44e5f0bfe8ff8b8_full.jpg"
+              className="staff-avatar"
+              alt="Wil"
+            />
+          </a>
+          <h3>🧪 Wil</h3>
+          <p>Administración — Gestión de Mods - Moderador - Tester</p>
+
+          <p className="staff-inactive">⚠️ Actualmente inactivo</p>
+
+          <div className="twitch-center">
+            <a
+              href="https://twitch.tv/wil0806"
+              target="_blank"
+              rel="noreferrer"
+              className="twitch-hero-btn"
+            >
+              🎮 Twitch
+            </a>
+          </div>
+        </div>
+
+        {/* OQ49 */}
         <div className="staff-card">
           <a
             href="https://steamcommunity.com/id/OQ49/"
@@ -49,17 +82,23 @@ export default function Staff(): React.ReactElement {
           </a>
           <h3>⚒️ OQ49</h3>
           <p>Administración — Gestión de Mods - Moderador</p>
+
           <div className="twitch-center">
             <a
               href="https://twitch.tv/oq49"
               target="_blank"
               rel="noreferrer"
-              className="twitch-btn"
+              className="twitch-hero-btn"
             >
               🎮 Twitch
             </a>
           </div>
         </div>
+
+      </div>
+
+      {/* FILA 2: Fran y Neo */}
+      <div className="staff-row">
 
         <div className="staff-card">
           <a
@@ -89,9 +128,10 @@ export default function Staff(): React.ReactElement {
               alt="Neo"
             />
           </a>
-          <h3>🔧 Neo</h3>
-          <p>Moderador</p>
+          <h3>🧿 Neo</h3>
+          <p>Moderador - Creador de Escapes Rooms + Eventos</p>
         </div>
+
       </div>
 
       {/* BLOQUE ÉPICO */}

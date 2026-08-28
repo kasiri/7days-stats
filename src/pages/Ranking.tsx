@@ -32,6 +32,7 @@ export default function Ranking(): React.ReactElement {
     isRetrying,
     retry,
   } = useRankingData();
+
   const [sortColumn, setSortColumn] = useState<keyof Player>("level");
   const [ascending, setAscending] = useState<boolean>(false);
 
@@ -47,11 +48,11 @@ export default function Ranking(): React.ReactElement {
       <PageHeader title="Ranking de Jugadores" />
 
       {isLoading ? (
-        <div className="card">
+        <div className="card survival-card-red">
           <Loader text="Cargando ranking..." />
         </div>
       ) : hasError ? (
-        <div className="card">
+        <div className="card survival-card-red">
           <div className="alert-red">
             En estos momentos no podemos acceder a los datos
             <div>
@@ -67,11 +68,14 @@ export default function Ranking(): React.ReactElement {
         </div>
       ) : (
         <>
+          {/* PODIO */}
           <div id="podio" className="podio-container">
             {podium.map((p, i) => (
               <div
                 key={p.name || i}
-                className={`podio-item ${i === 0 ? "oro" : i === 1 ? "plata" : "bronce"}`}
+                className={`podio-item ${
+                  i === 0 ? "oro" : i === 1 ? "plata" : "bronce"
+                }`}
               >
                 <div className="puesto">
                   {i === 0 ? "🥇" : i === 1 ? "🥈" : "🥉"}
@@ -82,7 +86,11 @@ export default function Ranking(): React.ReactElement {
             ))}
           </div>
 
-          <div className="card">
+          {/* TABLA COMPLETA */}
+          <div className="card survival-card-red">
+            <h2 className="bloody-title">Tabla Completa</h2>
+            <div className="bloody-separator"></div>
+
             <table className="table">
               <thead>
                 <tr>
@@ -128,6 +136,7 @@ export default function Ranking(): React.ReactElement {
                   </th>
                 </tr>
               </thead>
+
               <tbody>
                 {sorted.map((p, idx) => (
                   <tr
@@ -137,20 +146,20 @@ export default function Ranking(): React.ReactElement {
                         p.level >= 60
                           ? "#ff4d4d"
                           : p.level >= 40
-                            ? "#b266ff"
-                            : p.level >= 20
-                              ? "#4da6ff"
-                              : "#66ff66",
+                          ? "#b266ff"
+                          : p.level >= 20
+                          ? "#4da6ff"
+                          : "#66ff66",
                     }}
                   >
                     <td>
                       {(idx === 0
                         ? "🥇 "
                         : idx === 1
-                          ? "🥈 "
-                          : idx === 2
-                            ? "🥉 "
-                            : "") + p.name}
+                        ? "🥈 "
+                        : idx === 2
+                        ? "🥉 "
+                        : "") + p.name}
                     </td>
                     <td>{p.level}</td>
                     <td>{p.zombies}</td>

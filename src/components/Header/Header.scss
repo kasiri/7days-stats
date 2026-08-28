@@ -1,99 +1,81 @@
-.navbar {
+.navbar-7dtd {
   position: fixed;
   top: 0;
   width: 100%;
-  background: rgba(10, 10, 10, 0.85);
+  background: rgba(15, 10, 10, 0.85);
   backdrop-filter: blur(6px);
-  border-bottom: 1px solid rgba(255, 0, 0, 0.3);
-  padding: 14px 15px 18px 15px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  border-bottom: 2px solid rgba(255, 60, 60, 0.4);
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.15);
   z-index: 1000;
 }
 
-.navbar .logo {
-  font-family: "Orbitron", sans-serif;
-  font-size: 40px;
-  letter-spacing: 1px;
-  color: #ff4d4d;
-  text-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
-  margin-bottom: 10px;
-}
-
-.navbar nav {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-}
-
-.navbar a {
-  color: #ff7777;
-  text-decoration: none;
-  font-size: 1rem;
-  padding: 5px 8px;
+.navbar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 20px;
   display: flex;
   align-items: center;
-  gap: 6px;
-  white-space: nowrap;
-  transition: 0.2s;
-  font-family: "Inter", sans-serif;
+  justify-content: space-between;
 }
 
-.navbar a:hover {
+.logo {
+  font-family: "Orbitron", sans-serif;
+  font-size: 32px;
+  color: #ff4d4d;
+  text-shadow: 0 0 12px rgba(255, 0, 0, 0.6);
+  letter-spacing: 2px;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: #ff7777;
+}
+
+.nav-links {
+  display: flex;
+  gap: 16px;
+}
+
+.nav-links a {
+  color: #ff7777;
+  text-decoration: none;
+  font-family: "Rajdhani", sans-serif;
+  padding: 6px 10px;
+  border: 1px solid rgba(255, 60, 60, 0.3);
+  border-radius: 4px;
+  background: rgba(30, 20, 20, 0.4);
+  transition: 0.2s;
+}
+
+.nav-links a:hover {
+  background: rgba(255, 60, 60, 0.2);
   color: #fff;
   text-shadow: 0 0 10px red;
 }
 
-@media (max-width: 850px) {
-  .navbar .logo {
-    font-size: 1.4rem;
-  }
-
-  .navbar a {
-    font-size: 0.85rem;
-    padding: 4px 6px;
-  }
-}
-
 @media (max-width: 768px) {
-  .navbar {
-    padding: 10px 10px 12px 10px;
+  .menu-toggle {
+    display: block;
   }
 
-  .navbar .logo {
-    font-size: 28px;
-    margin-bottom: 8px;
+  .nav-links {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background: rgba(20, 15, 15, 0.9);
+    backdrop-filter: blur(8px);
+    flex-direction: column;
+    padding: 20px;
+    gap: 12px;
+    border-left: 2px solid rgba(255, 60, 60, 0.3);
+    transform: translateX(100%);
+    transition: 0.3s;
   }
 
-  .navbar nav {
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-
-  .navbar a {
-    font-size: 0.75rem;
-    padding: 4px 6px;
-  }
-}
-
-@media (max-width: 480px) {
-  .navbar {
-    padding: 8px 8px 10px 8px;
-  }
-
-  .navbar .logo {
-    font-size: 20px;
-    margin-bottom: 6px;
-  }
-
-  .navbar nav {
-    gap: 6px;
-  }
-
-  .navbar a {
-    font-size: 0.65rem;
-    padding: 3px 5px;
+  .nav-links.open {
+    transform: translateX(0);
   }
 }

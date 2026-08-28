@@ -1,162 +1,134 @@
 import React from "react";
-import useRotatingTip from "../hooks/useRotatingTip";
+import { Link } from "react-router-dom";
 import useStats from "../hooks/useStats";
-import Card from "../components/Card";
-import SectionTitle from "../components/SectionTitle";
-import Loader from "../components/Loader";
-import { DEFAULT_TIPS } from "@/config/tips";
-import { images } from "@/data/images";
 
 export default function Home(): React.ReactElement {
-  const tip = useRotatingTip(DEFAULT_TIPS, 8000);
-  const { stats, isLoading, hasError, isRetrying, retry } = useStats();
-
-  // ⬅️ CAMBIA ESTO A false PARA QUITAR EL AVISO
-  const servidorCerrado = true;
-
-  // Seleccionar UNA imagen por grupo para el inicio
-  const groupsShown = new Set();
-  const featured = images
-    .filter((img) => {
-      if (groupsShown.has(img.group)) return false;
-      groupsShown.add(img.group);
-      return true;
-    })
-    .slice(0, 6);
-
-  // AUTO‑SLIDE del mini‑slider
-  React.useEffect(() => {
-    const slider = document.getElementById("miniSlider");
-    if (!slider) return;
-
-    let index = 0;
-    const interval = setInterval(() => {
-      if (!slider) return;
-
-      index = (index + 1) % featured.length;
-      const width = slider.children[0]?.clientWidth || 200;
-
-      slider.scrollTo({
-        left: width * index,
-        behavior: "smooth",
-      });
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, [featured]);
+  const { stats, isLoading } = useStats();
 
   return (
-    <div>
-      <div className="container">
+    <div className="container home-wrapper">
 
-        {/* 🚧 AVISO DE SERVIDOR CERRADO */}
-        {servidorCerrado && (
-          <div
-            style={{
-              background: "#8b0000",
-              color: "white",
-              padding: "20px",
-              borderRadius: "8px",
-              marginBottom: "25px",
-              textAlign: "center",
-              fontSize: "1.2rem",
-              fontWeight: "bold",
-            }}
-          >
-            🚧 El servidor está cerrado hasta el próximo wipe.  
-            <br />
+      {/* BARRA DE CONSEJOS */}
+      <div className="tips-banner-home">
+        💡 Consejo: Revisa la Guía del Superviviente antes de entrar al servidor.
+      </div>
+
+      {/* HERO ÉPICO */}
+      <div className="hero-epic">
+        <div className="hero-overlay"></div>
+
+        <div className="hero-content">
+          <h1 className="hero-title">El Último Amanecer</h1>
+          <p className="hero-subtitle">
+            Servidor PvE español — supervivencia, comunidad y caos controlado.
+          </p>
+
+          <div className="hero-buttons">
+            <Link to="/nuevos" className="hero-btn primary">
+              🧭 Guía del Superviviente
+            </Link>
+            <Link to="/mods" className="hero-btn secondary">
+              🧩 Mods del Servidor
+            </Link>
+            <Link to="/bases" className="hero-btn secondary">
+              🏠 Bases de Jugadores
+            </Link>
+          </div>
+
+          {/* PANEL DE ESTADO INTEGRADO */}
+          <div className="hero-status-card">
+            {isLoading ? (
+              <p>Cargando estado del mundo...</p>
+            ) : (
+              <>
+                <p>🌅 Día actual: <strong>{stats.day}</strong></p>
+                <p>🕒 Hora del servidor: <strong>{stats.time}</strong></p>
+                <p>🧟 Próxima horda: <strong>{stats.nextHordeDay}</strong></p>
+                <p>⏳ Tiempo restante: <strong>{stats.nextHordeIn}</strong></p>
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* SEPARADOR */}
+      <div className="bloody-separator"></div>
+
+      {/* SECCIÓN BASES DESTACADAS */}
+      <div className="epic-block-container">
+        <div className="epic-block-line"></div>
+
+        <div className="epic-block-content">
+          <h3>🏠 Bases Destacadas</h3>
+          <p>
+            La creatividad de la comunidad brilla incluso en un mundo en ruinas.
+          </p>
+
+          <Link to="/bases" className="hero-btn primary">
+            🔍 Ver Galería de Bases
+          </Link>
+        </div>
+
+        <div className="epic-block-line"></div>
+      </div>
+
+      {/* SEPARADOR */}
+      <div className="bloody-separator"></div>
+
+      {/* SECCIÓN COMUNIDAD */}
+      <div className="epic-block-container">
+        <div className="epic-block-line"></div>
+
+        <div className="epic-block-content">
+          <h3>💬 Comunidad</h3>
+          <p>
+            Únete al refugio, comparte tus aventuras y mantente al día con los eventos.
+          </p>
+
+          <div className="community-buttons">
+            <Link to="/bot" className="hero-btn primary">
+              🤖 Bot del Servidor
+            </Link>
+
+            <Link to="/staff" className="hero-btn secondary">
+              🛡️ Equipo del Servidor
+            </Link>
+
+            <Link to="/normas" className="hero-btn secondary">
+              📜 Normas del Servidor
+            </Link>
+
             <a
-              href="#/wipe"
-              style={{
-                color: "white",
-                textDecoration: "underline",
-                fontSize: "1.1rem",
-              }}
+              href="https://discord.gg/"
+              target="_blank"
+              rel="noreferrer"
+              className="hero-btn secondary"
             >
-              Ver información del wipe →
+              💬 Discord
             </a>
           </div>
-        )}
-
-        <p className="page-subtitle-main"></p>
-
-        <div className="tips-banner">
-          <div className="tips-text">{tip}</div>
         </div>
 
-        <div className="grid">
-          <Card>
-            <h2>Estado del Mundo</h2>
-            {isLoading ? (
-              <Loader text="Cargando estado del mundo..." />
-            ) : hasError ? (
-              <div className="alert-red">
-                En estos momentos no podemos acceder a los datos
-                <div>
-                  <button
-                    className="retry-btn"
-                    onClick={retry}
-                    disabled={isRetrying}
-                  >
-                    {isRetrying ? "Reintentando..." : "Reintentar ahora"}
-                  </button>
-                </div>
-              </div>
-            ) : (
-              <>
-                <p>Día actual: <span>{stats.day}</span></p>
-                <p>Hora del servidor: <span>{stats.time}</span></p>
-                <p>Próxima horda: <span>{stats.nextHordeDay}</span></p>
-                <p>Tiempo restante: <span>{stats.nextHordeIn}</span></p>
-              </>
-            )}
-          </Card>
+        <div className="epic-block-line"></div>
+      </div>
 
-          <Card>
-            <h2>Jugadores Online</h2>
-            {isLoading ? (
-              <Loader text="Cargando jugadores..." />
-            ) : hasError ? (
-              <div className="alert-red">
-                En estos momentos no podemos acceder a los datos
-                <div>
-                  <button
-                    className="retry-btn"
-                    onClick={retry}
-                    disabled={isRetrying}
-                  >
-                    {isRetrying ? "Reintentando..." : "Reintentar ahora"}
-                  </button>
-                </div>
-              </div>
-            ) : (
-              <>
-                <p>Total: <span>{stats.players.length}</span></p>
-                <div>
-                  {stats.players.map((p) => (
-                    <p key={p.name}>👤 {p.name} — ⭐ {p.level}</p>
-                  ))}
-                </div>
-              </>
-            )}
-          </Card>
+      {/* SEPARADOR */}
+      <div className="bloody-separator"></div>
+
+      {/* CIERRE ÉPICO */}
+      <div className="epic-block-container">
+        <div className="epic-block-line"></div>
+
+        <div className="epic-block-content">
+          <h3>🌅 El amanecer es solo el principio</h3>
+          <p>
+            Sobrevive un día más.  
+            Construye. Explora. Lucha.  
+            Y recuerda: en este mundo, cada amanecer es una victoria.
+          </p>
         </div>
 
-        <SectionTitle>🏠 Bases de los Jugadores</SectionTitle>
-
-        <div className="mini-slider-container">
-          <div className="mini-slider" id="miniSlider">
-            {featured.map((img) => (
-              <img key={img.src} src={img.src} alt={img.alt} />
-            ))}
-          </div>
-        </div>
-
-        <div className="bases-button-container">
-          <a href="#/bases" className="bases-button">
-            Ver galería completa →
-          </a>
-        </div>
+        <div className="epic-block-line"></div>
       </div>
     </div>
   );

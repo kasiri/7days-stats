@@ -8,10 +8,14 @@ export default function Stats(): React.ReactElement {
 
   return (
     <div className="container">
+      {/* Título principal */}
       <PageHeader title="Estado del Mundo" />
 
-      <div className="card">
-        <h2>Información del Servidor</h2>
+      {/* Tarjeta principal */}
+      <div className="card survival-card-red" style={{ marginTop: "25px" }}>
+        <h2 className="bloody-title">Información del Servidor</h2>
+        <div className="bloody-separator"></div>
+
         {isLoading ? (
           <Loader text="Cargando datos del servidor..." />
         ) : hasError ? (
