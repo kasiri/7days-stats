@@ -144,123 +144,176 @@ export default function Normas(): React.ReactElement {
       <div className="bloody-separator" />
 
       {/* CONFIGURACIÓN DEL SERVER */}
-      <Card className="normas-card">
-        <h2 className="bloody-title">⚙️ CONFIGURACIÓN DEL SERVER – 7 DAYS TO DIE</h2>
+<Card className="normas-card">
+  <h2 className="bloody-title">⚙️ CONFIGURACIÓN DEL SERVER – 7 DAYS TO DIE</h2>
 
-        <SectionContent>
-          <p>
-            <strong>🚫 ENTRAD SIN EASY ANTICHEAT</strong> — Igual que para instalar los mods.
-            Ejecutad <strong>7dLauncher.exe</strong> para iniciar sin anticheat.
-          </p>
-        </SectionContent>
+  <SectionContent>
+    <p>
+      <strong>🚫 ENTRAD SIN EASY ANTICHEAT</strong> — Igual que para instalar los mods.
+      Ejecutad <strong>7dLauncher.exe</strong> para iniciar sin anticheat.
+    </p>
+  </SectionContent>
 
-        <SectionTitle>🌍 MUNDO</SectionTitle>
-        <SectionContent>
-          <ul>
-            <li>Tipo: RWG</li>
-            <li>Nombre: South Wogau County</li>
-            <li>Seed: <strong>brrr</strong></li>
-            <li>Tamaño: 6144</li>
-            <li>Modo: Supervivencia</li>
-            <li>Dificultad: Guerrero (Hard)</li>
-          </ul>
-        </SectionContent>
+  {/* 🌍 MUNDO */}
+  <SectionTitle>🌍 MUNDO</SectionTitle>
+  <SectionContent>
+    <ul>
+      <li>Tipo: RWG</li>
+      <li>Nombre: <strong>South Culalisa Territory</strong></li>
+      <li>Seed: <strong>programacion</strong></li>
+      <li>Tamaño: <strong>8192 (8K)</strong></li>
+      <li>Modo: Supervivencia</li>
+      <li>Dificultad: <strong>Aventurero (Fácil)</strong></li>
+    </ul>
+  </SectionContent>
 
-        <SectionTitle>💥 DAÑOS Y PROGRESO</SectionTitle>
-        <SectionContent>
-          <ul>
-            <li>Daño jugador → bloques: 100%</li>
-            <li>Daño IA → bloques: 100%</li>
-            <li>Daño IA Luna de Sangre: 100%</li>
-            <li>XP multiplicada: 100%</li>
-          </ul>
-        </SectionContent>
+  {/* 💥 DAÑOS Y PROGRESO */}
+  <SectionTitle>💥 DAÑOS Y PROGRESO</SectionTitle>
+  <SectionContent>
+    <ul>
+      <li>Daño a distancia: 150%</li>
+      <li>Daño cuerpo a cuerpo: 150%</li>
+      <li>Daño recibido por el jugador: 75%</li>
+      <li>Daño jugador → bloques: 100%</li>
+      <li>Daño IA → bloques: 100%</li>
+      <li>Daño IA Luna de Sangre: 100%</li>
+      <li>Multiplicador de disparo a la cabeza: 100%</li>
+      <li>XP multiplicada: 100%</li>
+      <li>Modo de detección IA por olfato: Corre, corre</li>
+    </ul>
+  </SectionContent>
 
-        <SectionTitle>🌧️ TIEMPO Y CLIMA</SectionTitle>
-        <SectionContent>
-          <ul>
-            <li>Duración del día: 60 min</li>
-            <li>Horas de luz: 18 h</li>
-            <li>Progresión de biomas: Activada</li>
-            <li>Tormentas: 0</li>
-          </ul>
-        </SectionContent>
+  {/* 🌧️ TIEMPO Y CLIMA */}
+  <SectionTitle>🌧️ TIEMPO Y CLIMA</SectionTitle>
+  <SectionContent>
+    <ul>
+      <li>Duración del día: 60 min</li>
+      <li>Horas de luz: 18 h</li>
+      <li>Progresión de biomas: Activada</li>
+      <li>Tormentas: Ninguna</li>
+      <li>Alerta de tormenta: ----</li>
+      <li>Sensibilidad del mapa de calor: Predeterminado</li>
+    </ul>
+  </SectionContent>
 
-        <SectionTitle>💀 MUERTE Y RESPAWN</SectionTitle>
-        <SectionContent>
-          <ul>
-            <li>Penalización: Lesión</li>
-            <li>Al morir: TODO</li>
-            <li>Al salir: Nada</li>
-          </ul>
-        </SectionContent>
+  {/* 💀 MUERTE Y RESPAWN */}
+  <SectionTitle>💀 MUERTE Y RESPAWN</SectionTitle>
+  <SectionContent>
+    <ul>
+      <li>Potenciador de nuevo jugador: Sí</li>
+      <li>Pérdida al morir: Solo mochila</li>
+      <li>Degradación por muerte: Durabilidad</li>
+      <li>Soltar al morir: Solo mochila</li>
+      <li>Penalización por morir: Ninguno</li>
+      <li>Objetos perdidos al morir: 1–3</li>
+      <li>Degradación por muerte: 20%</li>
+      <li>Soltar al salir: Nada</li>
+    </ul>
+  </SectionContent>
 
-        <SectionTitle>🛏️ RESPAWN Y CAMAS</SectionTitle>
-        <SectionContent>
-          <ul>
-            <li>Zona muerta: 15 bloques</li>
-            <li>Expiración: 45 días</li>
-            <li>Cerca de amigos: Solo bosque</li>
-            <li>Cerca de mochila: Activado</li>
-          </ul>
-        </SectionContent>
+  {/* 🛏️ RESPAWN Y CAMAS */}
+  <SectionTitle>🛏️ RESPAWN Y CAMAS</SectionTitle>
+  <SectionContent>
+    <ul>
+      <li>Zona muerta: 15 bloques</li>
+      <li>Expiración: 45 días</li>
+      <li>Cerca de amigos: Solo bosque</li>
+      <li>Cerca de mochila: Activado</li>
+    </ul>
+  </SectionContent>
 
-        <SectionTitle>🎥 CÁMARA</SectionTitle>
-        <SectionContent>
-          <ul>
-            <li>Vista libre entre 1ª y 3ª persona</li>
-          </ul>
-        </SectionContent>
+  {/* 🎥 CÁMARA */}
+  <SectionTitle>🎥 CÁMARA</SectionTitle>
+  <SectionContent>
+    <ul>
+      <li>Vista libre entre 1ª y 3ª persona</li>
+    </ul>
+  </SectionContent>
 
-        <SectionTitle>🧟 SPAWN ENEMIGOS / ANIMALES</SectionTitle>
-        <SectionContent>
-          <ul>
-            <li>Zombis: 80</li>
-            <li>Animales: 50</li>
-            <li>Visión: 8</li>
-            <li>Malla: 1000</li>
-          </ul>
-        </SectionContent>
+  {/* 🧟 SPAWN ENEMIGOS / ANIMALES */}
+  <SectionTitle>🧟 SPAWN ENEMIGOS / ANIMALES</SectionTitle>
+  <SectionContent>
+    <ul>
+      <li>Aparición de enemigos: Sí</li>
+      <li>Densidad día enemigos: Predeterminado</li>
+      <li>Densidad día animales: Predeterminado</li>
+      <li>Densidad noche enemigos: Predeterminado</li>
+      <li>Densidad noche animales: Predeterminado</li>
+      <li>Reaparición día enemigos: Predeterminado</li>
+      <li>Reaparición día animales: Predeterminado</li>
+      <li>Reaparición noche enemigos: Predeterminado</li>
+      <li>Reaparición noche animales: Predeterminado</li>
+      <li>Zombis: 80</li>
+      <li>Animales: 50</li>
+      <li>Visión: 8</li>
+      <li>Malla: 1000</li>
+    </ul>
+  </SectionContent>
 
-        <SectionTitle>🔥 COMPORTAMIENTO ZOMBI</SectionTitle>
-        <SectionContent>
-          <ul>
-            <li>Día: Jog</li>
-            <li>Noche: Sprint</li>
-            <li>Ferales: Sprint</li>
-            <li>Luna de Sangre: Sprint</li>
-            <li>Frecuencia: 7 días</li>
-          </ul>
-        </SectionContent>
+  {/* 🔥 COMPORTAMIENTO ZOMBI */}
+  <SectionTitle>🔥 COMPORTAMIENTO ZOMBI</SectionTitle>
+  <SectionContent>
+    <ul>
+      <li>Velocidad día zombi: Corre, corre (Jog)</li>
+      <li>Velocidad noche zombi: Esprintar (Sprint)</li>
+      <li>Velocidad salvaje: Esprintar</li>
+      <li>Velocidad luna de sangre: Esprintar</li>
+      <li>Sentido salvaje: Deshabilitado</li>
+      <li>Furia zombi: 15%</li>
+      <li>Zombis comen animales: Sí</li>
+      <li>Excavación de zombis: No</li>
+      <li>Frecuencia Luna de Sangre: 14 días</li>
+      <li>Recuento Luna de Sangre: 10 enemigos</li>
+      <li>Advertencia: Mañana</li>
+    </ul>
+  </SectionContent>
 
-        <SectionTitle>📦 LOOT Y EVENTOS</SectionTitle>
-        <SectionContent>
-          <ul>
-            <li>Loot: 50%</li>
-            <li>Respawn: 15 días</li>
-            <li>Airdrops: 72 h</li>
-            <li>Marcador: Off</li>
-            <li>XP compartida: 500 bloques</li>
-          </ul>
-        </SectionContent>
+  {/* 📦 LOOT Y EVENTOS */}
+  <SectionTitle>📦 LOOT Y EVENTOS</SectionTitle>
+  <SectionContent>
+    <ul>
+      <li>Calidad máxima de botín: Predeterminado</li>
+      <li>Días de respawn del loot: 7 días</li>
+      <li>Probabilidad bolsa de botín: 75%</li>
+      <li>Loot general: 85%</li>
+      <li>Loot comida: 85%</li>
+      <li>Loot bebidas: 85%</li>
+      <li>Loot medicinas: 75%</li>
+      <li>Loot munición: 75%</li>
+      <li>Loot armaduras: 75%</li>
+      <li>Loot armas distancia: 75%</li>
+      <li>Loot armas melee: 85%</li>
+      <li>Loot recursos: 85%</li>
+      <li>Loot moneda: 85%</li>
+      <li>Loot libros: 65%</li>
+      <li>Respawn: 15 días</li>
+      <li>Airdrops: 72 h</li>
+      <li>Marcador: Off</li>
+      <li>XP compartida: 500 bloques</li>
+    </ul>
+  </SectionContent>
 
-        <SectionTitle>⚔️ PVP / PVE</SectionTitle>
-        <SectionContent>
-          <ul>
-            <li>PvE (No Killing)</li>
-          </ul>
-        </SectionContent>
+  {/* ⚔️ PVP / PVE */}
+  <SectionTitle>⚔️ PVP / PVE</SectionTitle>
+  <SectionContent>
+    <ul>
+      <li>PvE (No Killing)</li>
+    </ul>
+  </SectionContent>
 
-        <SectionTitle>🏠 LAND CLAIM</SectionTitle>
-        <SectionContent>
-          <ul>
-            <li>Claims: 2</li>
-            <li>Tamaño: 41 bloques</li>
-            <li>Zona muerta: 30 bloques</li>
-            <li>Expiración: 15 días</li>
-          </ul>
-        </SectionContent>
-      </Card>
+  {/* 🏠 LAND CLAIM */}
+  <SectionTitle>🏠 LAND CLAIM</SectionTitle>
+  <SectionContent>
+    <ul>
+      <li>Claims: 2</li>
+      <li>Tamaño: 41 bloques</li>
+      <li>Zona muerta: 30 bloques</li>
+      <li>Expiración: 15 días</li>
+    </ul>
+  </SectionContent>
+</Card>
+
+    
     </div>
   );
 }

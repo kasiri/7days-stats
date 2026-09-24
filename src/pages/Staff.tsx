@@ -53,8 +53,6 @@ export default function Staff(): React.ReactElement {
           <h3>🧪 Wil</h3>
           <p>Administración — Gestión de Mods - Moderador - Tester</p>
 
-          <p className="staff-inactive">⚠️ Actualmente inactivo</p>
-
           <div className="twitch-center">
             <a
               href="https://twitch.tv/wil0806"

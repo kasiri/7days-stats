@@ -133,9 +133,9 @@ export default function Nuevos(): React.ReactElement {
 
           <div className="lesson-card">
             <h3>🏠 No Uses tu Primera Casa como Base de Horda</h3>
-            <p>Las hordas ocurren cada 7 días.</p>
+            <p>Las hordas ocurren cada 14 días.</p>
             <p>La dificultad aumenta con el tiempo.</p>
-            <p>Ten una base lista antes del Día 7.</p>
+            <p>Ten una base lista antes del Día 14.</p>
             <p>Puedes ver el tiempo restante en el Dashboard.</p>
           </div>
 
@@ -185,7 +185,7 @@ export default function Nuevos(): React.ReactElement {
             <p>No comas nada que no reconozcas.</p>
             <p>Si te infectas, actúa rápido...</p>
 
-            <h3>🧍‍♀️ No Estás Sola</h3>
+            <h3>🧍‍♀️ No Estás Solo</h3>
             <p>Pide ayuda cuando la necesites.</p>
             <p>Comparte recursos si te sobran.</p>
             <p>Un aliado vale más que cien balas.</p>

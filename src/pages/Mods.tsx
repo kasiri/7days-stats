@@ -72,127 +72,117 @@ export default function Mods(): React.ReactElement {
           </p>
         </div>
 
-        {/* 🔥 MODS ELIMINADOS */}
-        <h2 className="bloody-title" style={{ marginTop: "30px" }}>🔥 Mods Eliminados</h2>
-        <div className="bloody-separator"></div>
-
-        <div className="survival-card-red">
-          <ul className="no-bullets">
-            <li style={{ textDecoration: "line-through", color: "#b33" }}>
-              izygunpack (Solo armas melee y modelos nuevos)
-            </li>
-            <li style={{ textDecoration: "line-through", color: "#b33" }}>
-              izygunpack (Eliminada la patada)
-            </li>
-            <li style={{ textDecoration: "line-through", color: "#b33" }}>
-              Oakraven Chicken Coops
-            </li>
-          </ul>
-        </div>
-
         {/* SEPARADOR */}
         <div className="bloody-separator" style={{ margin: "25px 0" }}></div>
 
         {/* LISTA DE MODS */}
-        <h2 className="bloody-title">📦 Lista de Mods Actuales</h2>
-        <div className="bloody-separator"></div>
+        {/* LISTA DE MODS */}
+<h2 className="bloody-title">📦 Lista de Mods Actuales</h2>
+<div className="bloody-separator"></div>
 
-        <div className="grid">
-          <ModItem title="BdubsVehicles" href="https://7daystodiemods.com/bdubs-vehicles/">
-            Más diseños de vehículos
-          </ModItem>
+<div className="grid">
 
-          <ModItem title="GNS_BeautifulBases" href="https://www.nexusmods.com/7daystodie/mods/3318">
-            Permite recoger ítems de decoración para vuestras bases
-          </ModItem>
+  {/* 
+  <ModItem title="BdubsVehicles" href="https://7daystodiemods.com/bdubs-vehicles/">
+    Más diseños de vehículos
+  </ModItem>
 
-          <ModItem title="OcbStopFuelWaste" href="https://www.nexusmods.com/7daystodie/mods/1884">
-            Evita que se consuma todo el combustible cuando no hay nada en cola
-          </ModItem>
+  <ModItem title="GNS_BeautifulBases" href="https://www.nexusmods.com/7daystodie/mods/3318">
+    Permite recoger ítems de decoración para vuestras bases
+  </ModItem>
+  */}
 
-          <ModItem
-            title="IZY-All in One Gun Pack v5.1"
-            href="https://www.nexusmods.com/7daystodie/mods/5458"
-          >
-            Nuevas armas para todas las habilidades
-          </ModItem>
+  {/* ⭐ ÚNICO MOD ACTIVO */}
+  <ModItem title="OcbStopFuelWaste" href="https://www.nexusmods.com/7daystodie/mods/1884">
+    Evita que se consuma todo el combustible cuando no hay nada en cola
+  </ModItem>
 
-          <ModItem title="Little Red Sonja Zombie Pack" href="https://www.nexusmods.com/7daystodie/mods/7573">
-            Pack de zombies personalizados
-          </ModItem>
+  {/* 
+  <ModItem title="IZY-All in One Gun Pack v5.1" href="https://www.nexusmods.com/7daystodie/mods/5458">
+    Nuevas armas para todas las habilidades
+  </ModItem>
 
-          <ModItem title="Horn Opens Doors" href="https://www.nexusmods.com/7daystodie/mods/8041">
-            Permite abrir las puertas tocando el claxon del vehículo
-          </ModItem>
+  <ModItem title="Little Red Sonja Zombie Pack" href="https://www.nexusmods.com/7daystodie/mods/7573">
+    Pack de zombies personalizados
+  </ModItem>
 
-          <ModItem title="LittleRedSonja Mumpfy ArmorPack01DangerGirls" href="https://www.nexusmods.com/7daystodie/mods/7344">
-            Cosméticos añadidos
-          </ModItem>
+  <ModItem title="Horn Opens Doors" href="https://www.nexusmods.com/7daystodie/mods/8041">
+    Permite abrir las puertas tocando el claxon del vehículo
+  </ModItem>
 
-          <ModItem title="LittleRedSonja and Mumpfy ArmorPack02 VanillaReVamp" href="https://www.nexusmods.com/7daystodie/mods/7377">
-            Cosméticos añadidos
-          </ModItem>
+  <ModItem title="LittleRedSonja Mumpfy ArmorPack01DangerGirls" href="https://www.nexusmods.com/7daystodie/mods/7344">
+    Cosméticos añadidos
+  </ModItem>
 
-          <ModItem title="LittleRedSonja and Mumpfy ArmorPack03 Some Traders" href="https://www.nexusmods.com/7daystodie/mods/7440">
-            Cosméticos añadidos
-          </ModItem>
+  <ModItem title="LittleRedSonja and Mumpfy ArmorPack02 VanillaReVamp" href="https://www.nexusmods.com/7daystodie/mods/7377">
+    Cosméticos añadidos
+  </ModItem>
 
-          <ModItem title="LittleRedSonja and Mumpfy ArmorPack04 GNS Armors" href="https://www.nexusmods.com/7daystodie/mods/7758">
-            Cosméticos añadidos
-          </ModItem>
+  <ModItem title="LittleRedSonja and Mumpfy ArmorPack03 Some Traders" href="https://www.nexusmods.com/7daystodie/mods/7440">
+    Cosméticos añadidos
+  </ModItem>
 
-          <ModItem title="LittleRedSonja and Mumpfy ArmorPack06 Resident Evil" href="https://www.nexusmods.com/7daystodie/mods/8466">
-            Cosméticos añadidos
-          </ModItem>
+  <ModItem title="LittleRedSonja and Mumpfy ArmorPack04 GNS Armors" href="https://www.nexusmods.com/7daystodie/mods/7758">
+    Cosméticos añadidos
+  </ModItem>
 
-          <ModItem title="LittleRedSonja and Mumpfy ArmorPack07 The Walking Dead" href="https://www.nexusmods.com/7daystodie/mods/8662">
-            Cosméticos añadidos
-          </ModItem>
+  <ModItem title="LittleRedSonja and Mumpfy ArmorPack06 Resident Evil" href="https://www.nexusmods.com/7daystodie/mods/8466">
+    Cosméticos añadidos
+  </ModItem>
 
-          <ModItem title="LittleRedSonja and Mumpfy ArmorPack09 - Fallout" href="https://www.nexusmods.com/7daystodie/mods/9489">
-            Cosméticos añadidos
-          </ModItem>
+  <ModItem title="LittleRedSonja and Mumpfy ArmorPack07 The Walking Dead" href="https://www.nexusmods.com/7daystodie/mods/8662">
+    Cosméticos añadidos
+  </ModItem>
 
-          <ModItem title="LittleRedSonja and Mumpfy ArmorPack08 Goofy Time" href="https://www.nexusmods.com/7daystodie/mods/8929">
-            Cosméticos añadidos
-          </ModItem>
+  <ModItem title="LittleRedSonja and Mumpfy ArmorPack09 - Fallout" href="https://www.nexusmods.com/7daystodie/mods/9489">
+    Cosméticos añadidos
+  </ModItem>
 
-          <ModItem title="Drone Lock To Player" href="https://www.nexusmods.com/7daystodie/mods/6817">
-            Coloca el dron detrás del player como si fuese una mochila
-          </ModItem>
+  <ModItem title="LittleRedSonja and Mumpfy ArmorPack08 Goofy Time" href="https://www.nexusmods.com/7daystodie/mods/8929">
+    Cosméticos añadidos
+  </ModItem>
 
-          <ModItem title="Quick Stack modeado por SixtoST" href="https://www.nexusmods.com/7daystodie/mods/1357">
-            Meter objetos en cajas sin abrirlas
-          </ModItem>
+  <ModItem title="Drone Lock To Player" href="https://www.nexusmods.com/7daystodie/mods/6817">
+    Coloca el dron detrás del player como si fuese una mochila
+  </ModItem>
 
-          <ModItem title="Partes legendarias crafteables" href="https://www.nexusmods.com/7daystodie/mods/7602">
-            Se pueden craftear partes legendarias
-          </ModItem>
+  <ModItem title="Quick Stack modeado por SixtoST" href="https://www.nexusmods.com/7daystodie/mods/1357">
+    Meter objetos en cajas sin abrirlas
+  </ModItem>
 
-          <ModItem title="Añade decoración" href="https://www.nexusmods.com/7daystodie/mods/1242">
-            Para tener tu propia cocina del Ikea :D
-          </ModItem>
+  <ModItem title="Partes legendarias crafteables" href="https://www.nexusmods.com/7daystodie/mods/7602">
+    Se pueden craftear partes legendarias
+  </ModItem>
 
-          <ModItem title="Quest POI Preview" href="https://www.nexusmods.com/7daystodie/mods/8631">
-            Imagen referencial del POI para misiones
-          </ModItem>
+  <ModItem title="Añade decoración" href="https://www.nexusmods.com/7daystodie/mods/1242">
+    Para tener tu propia cocina del Ikea :D
+  </ModItem>
 
-          <ModItem title="Crafting Preview Stats" href="https://www.nexusmods.com/7daystodie/mods/10232">
-            Añade estadísticas del objeto a craftear
-          </ModItem>
+  <ModItem title="Quest POI Preview" href="https://www.nexusmods.com/7daystodie/mods/8631">
+    Imagen referencial del POI para misiones
+  </ModItem>
 
-          <ModItem title="Fluffy Panda POI Pack" href="https://7daystodiemods.com/fluffy-panda-poi-pack/">
-            Añade más POIs
-          </ModItem>
+  <ModItem title="Crafting Preview Stats" href="https://www.nexusmods.com/7daystodie/mods/10232">
+    Añade estadísticas del objeto a craftear
+  </ModItem>
 
-          <ModItem title="Pyro Paints" href="https://www.nexusmods.com/7daystodie/mods/5836">
-            Añade más pinturas
-          </ModItem>
+  <ModItem title="Fluffy Panda POI Pack" href="https://7daystodiemods.com/fluffy-panda-poi-pack/">
+    Añade más POIs
+  </ModItem>
 
-          <ModItem title="Have you read this" href="https://www.nexusmods.com/7daystodie/mods/9696">
-            Info sobre compañeros y libros leídos
-          </ModItem>
-        </div>
+  <ModItem title="Pyro Paints" href="https://www.nexusmods.com/7daystodie/mods/5836">
+    Añade más pinturas
+  </ModItem>
+
+  <ModItem title="Have you read this" href="https://www.nexusmods.com/7daystodie/mods/9696">
+    Info sobre compañeros y libros leídos
+  </ModItem>
+  */}
+
+</div>
+
+
+     
       </Card>
 
       {/* AGRADECIMIENTOS */}

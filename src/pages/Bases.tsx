@@ -5,32 +5,9 @@ import React, { useRef, useState, useEffect } from "react";
 import PageHeader from "../components/PageHeader";
 import { images } from "@/data/images";
 
-function useSlider(
-  sliderRef: React.RefObject<HTMLDivElement | null>,
-  gap = 20,
-) {
-  const indexRef = useRef(0);
-
-  function move(direction: number): void {
-    const slider = sliderRef.current;
-    if (!slider) return;
-    const slides = slider.querySelectorAll<HTMLElement>(".slide");
-    if (!slides.length) return;
-
-    indexRef.current =
-      (indexRef.current + direction + slides.length) % slides.length;
-
-    const slideWidth = slides[0].offsetWidth + gap;
-    slider.style.transform = `translateX(-${indexRef.current * slideWidth}px)`;
-  }
-
-  return { move };
-}
-
-export default function Bases(): React.ReactElement {
-  const sliderRef = useRef<HTMLDivElement>(null);
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-  const { move } = useSlider(sliderRef);
+export default function Bases() {
+  const [sliderIndex, setSliderIndex] = useState(0);
+  const [lightboxIndex, setLightboxIndex] = useState(null);
 
   // Bloquear scroll cuando el lightbox está abierto
   useEffect(() => {
@@ -45,7 +22,7 @@ export default function Bases(): React.ReactElement {
 
   // Navegación con teclado
   useEffect(() => {
-    function onKey(e: KeyboardEvent) {
+    function onKey(e) {
       if (e.key === "Escape") setLightboxIndex(null);
       if (e.key === "ArrowRight" && lightboxIndex !== null)
         setLightboxIndex((lightboxIndex + 1) % images.length);
@@ -59,13 +36,13 @@ export default function Bases(): React.ReactElement {
 
   // Swipe en móvil
   useEffect(() => {
-    let startX: number | null = null;
+    let startX = null;
 
-    function onTouchStart(e: TouchEvent) {
+    function onTouchStart(e) {
       startX = e.touches[0].clientX;
     }
 
-    function onTouchEnd(e: TouchEvent) {
+    function onTouchEnd(e) {
       if (startX === null || lightboxIndex === null) return;
 
       const endX = e.changedTouches[0].clientX;
@@ -92,7 +69,11 @@ export default function Bases(): React.ReactElement {
     };
   }, [lightboxIndex]);
 
-  function openLightbox(idx: number) {
+  function move(direction) {
+    setSliderIndex((prev) => (prev + direction + images.length) % images.length);
+  }
+
+  function openLightbox(idx) {
     setLightboxIndex(idx);
   }
 
@@ -131,17 +112,22 @@ export default function Bases(): React.ReactElement {
 
       {/* SLIDER PRINCIPAL */}
       <div className="slider-container">
-        <div className="slider" id="slider" ref={sliderRef}>
-          {images.map((img, i) => (
-            <div className="slide" key={img.src}>
-              <img
-                src={img.src}
-                alt={img.alt}
-                onClick={() => openLightbox(i)}
-              />
-              <p className="slide-text">{img.caption}</p>
-            </div>
-          ))}
+        <div className="slider" id="slider">
+          {images.map((_, i) => {
+            const realIndex = (i + sliderIndex) % images.length;
+            const img = images[realIndex];
+
+            return (
+              <div className="slide" key={img.src}>
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  onClick={() => openLightbox(realIndex)}
+                />
+                <p className="slide-text">{img.caption}</p>
+              </div>
+            );
+          })}
         </div>
 
         <button className="slider-btn left" onClick={() => move(-1)}>
@@ -179,12 +165,19 @@ export default function Bases(): React.ReactElement {
             ✖
           </span>
 
-          <img
-            id="lightbox-img"
-            src={images[lightboxIndex].src}
-            alt={images[lightboxIndex].alt}
-            onClick={(e) => e.stopPropagation()}
-          />
+          {/* CONTENIDO DEL LIGHTBOX */}
+          <div className="lightbox-content">
+            <img
+              id="lightbox-img"
+              src={images[lightboxIndex].src}
+              alt={images[lightboxIndex].alt}
+              onClick={(e) => e.stopPropagation()}
+            />
+
+            <div className="lightbox-caption">
+              {images[lightboxIndex].caption}
+            </div>
+          </div>
 
           <button
             className="nav-btn next"

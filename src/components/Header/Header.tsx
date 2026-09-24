@@ -21,7 +21,9 @@ export default function Header() {
   return (
     <header className="navbar-7dtd">
       <div className="navbar-inner">
-        <div className="logo">EL ÚLTIMO AMANECER</div>
+        <div className="logo"> EL ÚLTIMO AMANECER
+        <span className="by-kasiri">by Kasiri</span></div>
+
 
         <button className="menu-toggle" onClick={() => setOpen(!open)}>
           ☰

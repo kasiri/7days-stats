@@ -68,23 +68,6 @@ export default function Ranking(): React.ReactElement {
         </div>
       ) : (
         <>
-          {/* PODIO */}
-          <div id="podio" className="podio-container">
-            {podium.map((p, i) => (
-              <div
-                key={p.name || i}
-                className={`podio-item ${
-                  i === 0 ? "oro" : i === 1 ? "plata" : "bronce"
-                }`}
-              >
-                <div className="puesto">
-                  {i === 0 ? "🥇" : i === 1 ? "🥈" : "🥉"}
-                </div>
-                <div className="nombre">{p.name}</div>
-                <div className="nivel">Nivel {p.level}</div>
-              </div>
-            ))}
-          </div>
 
           {/* TABLA COMPLETA */}
           <div className="card survival-card-red">
