@@ -163,7 +163,7 @@ export default function Normas(): React.ReactElement {
       <li>Seed: <strong>programacion</strong></li>
       <li>Tamaño: <strong>8192 (8K)</strong></li>
       <li>Modo: Supervivencia</li>
-      <li>Dificultad: <strong>Aventurero (Fácil)</strong></li>
+      <li>Dificultad: <strong>Nómada (Fácil)</strong></li>
     </ul>
   </SectionContent>
 
@@ -288,7 +288,7 @@ export default function Normas(): React.ReactElement {
       <li>Loot libros: 65%</li>
       <li>Respawn: 15 días</li>
       <li>Airdrops: 72 h</li>
-      <li>Marcador: Off</li>
+      <li>Marcador: On</li>
       <li>XP compartida: 500 bloques</li>
     </ul>
   </SectionContent>

@@ -92,9 +92,17 @@ export default function Mods(): React.ReactElement {
   </ModItem>
   */}
 
-  {/* ⭐ ÚNICO MOD ACTIVO */}
+  {/* ⭐ MODS ACTIVOS */}
   <ModItem title="OcbStopFuelWaste" href="https://www.nexusmods.com/7daystodie/mods/1884">
     Evita que se consuma todo el combustible cuando no hay nada en cola
+  </ModItem>
+
+   <ModItem title="GBZ-CraftingPreviewStats" href="https://www.nexusmods.com/7daystodie/mods/10232">
+    Añade estadísticas del objeto a craftear
+  </ModItem>
+
+    <ModItem title="Quest POI Preview" href="https://www.nexusmods.com/7daystodie/mods/8631">
+    Imagen referencial del POI para misiones
   </ModItem>
 
   {/* 

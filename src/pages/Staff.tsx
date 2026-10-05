@@ -52,6 +52,19 @@ export default function Staff(): React.ReactElement {
           </a>
           <h3>🧪 Wil</h3>
           <p>Administración — Gestión de Mods - Moderador - Tester</p>
+          <p
+            style={{
+            color: "#ff6b6b",
+            fontWeight: "bold",
+            marginTop: "8px"
+                  }}
+            >
+            🔴 Actualmente inactivo
+          </p>
+
+
+
+
 
           <div className="twitch-center">
             <a
